@@ -4,12 +4,13 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
+
 const Card = (props) => {
   
   return (
     <div className="card" id={props.id}>
       {props.text}
-      {props.emoji}
+      {emoji.getUnicode(`${props.emoji}`)}
       {/* <button onClick={handleClick}>
         Delete
       </button> */}
