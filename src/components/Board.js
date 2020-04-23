@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -7,17 +7,35 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
+
 const Board = (props) => {
-  const cards = props.cardList.map(card=>{
-    
-    return(
-    <Card id={card.card.id} text={card.card.text} emoji={card.card.emoji}/>
-    );
-  });
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    axios.get(props.url + props.boardName + "/cards")
+      .then( (response) => {
+        console.log(`SUCCESS: ${JSON.stringify(response.data)}`)
+        setCards(response.data);
+      })
+      .catch((error) => {
+        console.log(`ERROR: ${error}`)
+      });
+  }, []);
+
+  const getCards = () => {
+    console.log(`Fetching from state: ${JSON.stringify(cards)}`)
+    const processed = cards.map(card => {
+      return(
+      <Card id={card.card.id} text={card.card.text} emoji={card.card.emoji} />
+      );
+    })
+    return processed;
+  }
+
 
   return (
     <div>
-      {cards}
+      {getCards()}
     </div>
   )
 };
