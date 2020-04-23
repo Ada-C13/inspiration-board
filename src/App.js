@@ -3,6 +3,8 @@ import './App.css';
 import Board from './components/Board';
 import axios from 'axios'
 
+const BASE_URL = "https://inspiration-board.herokuapp.com/"
+// http://inspiration-board.herokuapp.com/boards/jessica-liang/cards
 const App = () => {
 
   const [cardList, setCardList] = useState([]);
@@ -11,13 +13,16 @@ const App = () => {
 
   const deleteCard = (props) => {
     console.log("This is linked to " + props);
+    console.log(BASE_URL + "cards/" + props);
     const newCardList = cardList.filter((card) => {
       return card.id !== props;
     });
 
     if (newCardList.length < cardList.length) {
-      axios.delete(props.url + "cards/:" + props)
+      axios.delete(BASE_URL + "cards/" + props)
         .then((response) => {
+          console.log("This is linked to " + props);
+
           setErrorMessage(`Card ${ props } deleted`);
         })
         .catch((error) => {
