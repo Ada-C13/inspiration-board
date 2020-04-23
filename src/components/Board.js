@@ -8,9 +8,24 @@ import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
 const Board = () => {
+
+  const cards = CARD_DATA.cards.map((card) => {
+    console.log(card);
+    if(card['emoji'] && card['text']){
+      return <li> <Card text={card.text} emoji={card.Emoji}/></li>
+    }else if(card['text']){
+      return <li> <Card text={card.text}/></li>
+    }else{
+      return <li> <Card emoji={card.emoji}/></li>
+    }
+
+    }
+    
+  );
+
   return (
     <div>
-      Board
+      <ul> {cards}</ul>
     </div>
   )
 };
