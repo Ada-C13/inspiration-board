@@ -5,10 +5,7 @@ import emojiDictionary from 'emoji-dictionary';
 import './Card.css';
 
 const Card = (props) => {
-
-  const onDeleteClick = () => {
-    props.onDeleteCard(props.id);
-  }
+  console.log(props);
   
   return (
     <div className="card">
@@ -17,7 +14,7 @@ const Card = (props) => {
         {props.emoji}
       </div>
       <button 
-        onClick={() => props.onDeleteClick(props.id)}
+        onClick={() => props.deleteCardCallBack(props.id)}
       >
           CLICK ME TO DELETE
       </button>

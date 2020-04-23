@@ -31,9 +31,10 @@ const Board = (props) => {
         <li key={card.card.id}>
           <Card
             key={card.card.id}
+            id={card.card.id}
             text={card.card.text}
             emoji={card.card.emoji}
-            onDeleteClick={deleteCard(card.card.id)}
+            deleteCardCallBack={props.deleteCardCallBack}
           />
         </li>
         );
@@ -47,23 +48,23 @@ const Board = (props) => {
     });
   }, []);
 
-  const deleteCard = (props) => {
-    console.log("This is linked to " + props);
-    const newCardList = cardList.filter((card) => {
-      return card.id !== props;
-    });
+  // const deleteCard = (props) => {
+  //   console.log("This is linked to " + props);
+  //   const newCardList = cardList.filter((card) => {
+  //     return card.id !== props;
+  //   });
 
-    if (newCardList.length < cardList.length) {
-      axios.delete(props.url + "cards/:" + props)
-        .then((response) => {
-          setErrorMessage(`Card ${ props } deleted`);
-        })
-        .catch((error) => {
-          setErrorMessage(`Unable to delete card ${ props }`);
-        })
-      setCardList(newCardList);
-    }
-  }
+  //   if (newCardList.length < cardList.length) {
+  //     axios.delete(props.url + "cards/:" + props)
+  //       .then((response) => {
+  //         setErrorMessage(`Card ${ props } deleted`);
+  //       })
+  //       .catch((error) => {
+  //         setErrorMessage(`Unable to delete card ${ props }`);
+  //       })
+  //     setCardList(newCardList);
+  //   }
+  // }
 
   return (
     <div>
