@@ -31,18 +31,36 @@ const Board = (props) => {
 
     })}, []);
 
-  const cards = cardData.map((card) => {
-    console.log(card);
-    if(card['emoji'] && card['text']){
-      return <li> <Card id={card.id} text={card.text} emoji={card.Emoji}/></li>
-    }else if(card['text']){
-      return <li> <Card id={card.id} text={card.text}/></li>
-    }else{
-      return <li> <Card id={card.id} emoji={card.emoji}/></li>
-    }
+    const cards = cardData.map((card) => {
+      //console.log(card);
+      if(card['emoji'] && card['text']){
+        return <li> <Card id={card.id} text={card.text} emoji={card.Emoji}/></li>
+      }else if(card['text']){
+        return <li> <Card id={card.id} text={card.text}/></li>
+      }else{
+        return <li> <Card id={card.id} emoji={card.emoji}/></li>
+      }
 
+      }
+    );
+
+    const deleteCard = (id) => {
+      const newCardData = cardData.filter((card) => {
+        return card.id !== id;
+      });
+
+      if (newCardData.length < cardData.length) {
+        axios.delete(`${props.url}cards/${card.id}`)
+        .then((response) => {
+          setErrorMessage(`Card ${id} is deleted`);
+        })
+        .catch((error) => {
+          setErrorMessage(`Unable to delete card ${id}`);
+
+        })
+        setCardData(newCardData);
+      }
     }
-  );
 
   return (
     <div>
