@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import Board from './components/Board';
 
+
+
+
 const App = () => {
   return (
     <section>
@@ -10,7 +13,7 @@ const App = () => {
       </header>
       <Board
         url="https://inspiration-board.herokuapp.com/boards/"
-        boardName={`Ada-Lovelace`}
+        boardName={`Rusty-Cats`}
       />
     </section>
   );
