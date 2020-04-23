@@ -1,26 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
 
-const Board = () => {
 
-  const cards = CARD_DATA.cards.map((card) => {
+
+
+const Board = (props) => {
+
+  const [cardData, setCardData] = useState([]); 
+
+  useEffect(() => {
+    axios.get(`${props.url}${props.boardName}/cards`)
+
+    .then((response) => {
+      let newCardData = []
+      for(let i = 0; i < response.data.length; i ++){
+        newCardData.push(response.data[i].card);
+
+      }      
+      console.log(cardData);
+      setCardData(newCardData);
+      
+    })
+    .catch((error)=>{
+
+
+    })}, []);
+
+  const cards = cardData.map((card) => {
     console.log(card);
     if(card['emoji'] && card['text']){
-      return <li> <Card text={card.text} emoji={card.Emoji}/></li>
+      return <li> <Card id={card.id} text={card.text} emoji={card.Emoji}/></li>
     }else if(card['text']){
-      return <li> <Card text={card.text}/></li>
+      return <li> <Card id={card.id} text={card.text}/></li>
     }else{
-      return <li> <Card emoji={card.emoji}/></li>
+      return <li> <Card id={card.id} emoji={card.emoji}/></li>
     }
 
     }
-    
   );
 
   return (

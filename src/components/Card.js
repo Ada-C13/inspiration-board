@@ -12,7 +12,7 @@ const Card = (props) => {
   
 
   const cardContents = () => {
-    console.log(props);
+    
       if(props.emoji && props.text){
         return (<p>{props.text} {emojiDictionary.getUnicode(props.emoji)}</p>);
       }else if(props.text){
@@ -25,7 +25,7 @@ const Card = (props) => {
 
 
   return (
-    <div className="card">
+    <div className="card" id={props.id}>
       {cardContents()}
     </div>
   )
