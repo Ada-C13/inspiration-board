@@ -5,7 +5,7 @@ import axios from 'axios';
 import NewCardForm from './components/NewCardForm';
 
 const BASE_URL = "https://inspiration-board.herokuapp.com/"
-// http://inspiration-board.herokuapp.com/boards/jessica-liang/cards
+
 const App = () => {
 
   const [cardList, setCardList] = useState([]);
@@ -25,8 +25,6 @@ const App = () => {
     // if (newCardList.length < cardList.length) {
       axios.delete(BASE_URL + "cards/" + props)
         .then((response) => {
-          console.log("This is linked to " + props);
-
           setErrorMessage(`Card ${ props } deleted`);
         })
         .catch((error) => {

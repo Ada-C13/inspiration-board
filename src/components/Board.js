@@ -73,6 +73,7 @@ const Board = (props) => {
     </div>
   );
 };
+
 Board.propTypes = {
   
 };
