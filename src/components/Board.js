@@ -21,7 +21,7 @@ const Board = () => {
 
   return (
     <div>
-      {boardComponents}
+      { boardComponents }
     </div>
   )
 };
