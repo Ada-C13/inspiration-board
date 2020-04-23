@@ -67,8 +67,8 @@ const Board = (props) => {
 
   return (
     <div>
-      <NewCardForm />
-      
+      <NewCardForm addCardCallBack={ props.addCardCallBack } />
+
       { cardList }
     </div>
   );

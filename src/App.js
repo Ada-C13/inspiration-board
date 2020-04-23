@@ -12,7 +12,6 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const newCardList = [];
 
-  // console.log(props);
   const deleteCard = (props) => {
     console.log("This is linked to " + props);
     // console.log(BASE_URL + "cards/" + props);
@@ -34,8 +33,18 @@ const App = () => {
           setErrorMessage(`Unable to delete card ${ props }`);
         })
       
-    }
+  };
   // }
+
+  const addCard = (props) => {
+    axios.post(BASE_URL + "boards/jessica-liang/cards", props)
+      .then((response) => {
+        setErrorMessage(`Card ${ props } added`);
+      })
+      .catch((response) => {
+        setErrorMessage(`Unable to add card ${ props }`);
+      });
+  };
 
   return (
     <section>
@@ -45,8 +54,9 @@ const App = () => {
       <Board
         url="https://inspiration-board.herokuapp.com/"
         boardName={`jessica-liang`}
-        deleteCardCallBack={deleteCard}
-        setCardList={setCardList}
+        deleteCardCallBack={ deleteCard }
+        addCardCallBack={ addCard }
+        setCardList={ setCardList }
       />
     </section>
   );
