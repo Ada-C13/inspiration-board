@@ -7,11 +7,16 @@ import './Card.css';
 const Card = (props) => {
   return (
     <div className="card">
-      <div>
-        {props.text}
-        {props.emoji}
+      <div className="card__content">
+        <section className="card__content-text">
+          {props.text}
+        </section>
+        <section className="card__content-emoji">
+          {props.emoji}
+        </section>
       </div>
       <button 
+        className="card__delete"
         onClick={() => props.deleteCardCallBack(props.id)}
       >
           CLICK ME TO DELETE
