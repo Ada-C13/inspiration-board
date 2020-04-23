@@ -24,23 +24,46 @@ const Board = (props) => {
   const newCardList = [];
 
   useEffect(() => {
-    axios.get(props.url + props.boardName + "/cards")
+    axios.get(props.url + "boards/" + props.boardName + "/cards")
     .then( (response) => {
       for (let card of response.data) {
-        newCardList.push(<Card
-          key={card.card.id}
-          text={card.card.text}
-          emoji={card.card.emoji}
-        />);
+        newCardList.push(
+        <li key={card.card.id}>
+          <Card
+            key={card.card.id}
+            text={card.card.text}
+            emoji={card.card.emoji}
+            onDeleteClick={deleteCard(card.card.id)}
+          />
+        </li>
+        );
       };
-      
+
       setCardList(newCardList);
     })
     .catch((error) => {
       setErrorMessage(error.message);
       console.log(error.message);
-    }) 
-  })
+    });
+  }, []);
+
+  const deleteCard = (props) => {
+    console.log("This is linked to " + props);
+    const newCardList = cardList.filter((card) => {
+      return card.id !== props;
+    });
+
+    if (newCardList.length < cardList.length) {
+      axios.delete(props.url + "cards/:" + props)
+        .then((response) => {
+          setErrorMessage(`Card ${ props } deleted`);
+        })
+        .catch((error) => {
+          setErrorMessage(`Unable to delete card ${ props }`);
+        })
+      setCardList(newCardList);
+    }
+  }
 
   return (
     <div>

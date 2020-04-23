@@ -5,10 +5,22 @@ import emojiDictionary from 'emoji-dictionary';
 import './Card.css';
 
 const Card = (props) => {
+
+  const onDeleteClick = () => {
+    props.onDeleteCard(props.id);
+  }
+  
   return (
     <div className="card">
-      {props.text}
-      {props.emoji}
+      <div>
+        {props.text}
+        {props.emoji}
+      </div>
+      <button 
+        onClick={() => props.onDeleteClick(props.id)}
+      >
+          CLICK ME TO DELETE
+      </button>
     </div>
   )
 }
