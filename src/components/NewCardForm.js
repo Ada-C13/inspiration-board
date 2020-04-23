@@ -31,6 +31,7 @@ const onSubmitHandler = (event) => {
     emoji: ''  
   })
 }
+const emojiOptions = EMOJI_LIST.map((emoji, i) => <option key={ i } value={ emoji }>{ emoji }</option>);
 
 return (
 <form className="new-card-form" onSubmit={ onSubmitHandler }>
@@ -47,14 +48,14 @@ return (
           </div>
           <div>
             <label htmlFor="emoji">Emoji: </label>
-            {/* <select
+            <select
               name="emoji"
               id="emoji"
               onChange={ onFieldChange }
               value={ formFields.emoji }
             >
               { emojiOptions }
-            </select> */}
+            </select> 
           </div>
           <input
             type="submit"
