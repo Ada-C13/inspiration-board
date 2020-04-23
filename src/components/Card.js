@@ -8,16 +8,25 @@ import './Card.css';
 const Card = (props) => {
  // text
  // optional emoji 
-  const emojiChar = require("emoji-dictionary");
-  const text = props.text;
-  const emoji = props.emoji 
+  const emojiDictionary = require("emoji-dictionary");
+  
 
-
+  const cardContents = () => {
+    console.log(props);
+      if(props.emoji && props.text){
+        return (<p>{props.text} {emojiDictionary.getUnicode(props.emoji)}</p>);
+      }else if(props.text){
+        return (<p>{props.text} </p>);
+      }else{
+        return ((<p>{emoji.getUnicode(props.emoji)}</p>))
+      }
+     
+  }
 
 
   return (
     <div className="card">
-      <p>{emoji}</p>
+      {cardContents()}
     </div>
   )
 }
