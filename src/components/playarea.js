@@ -9,7 +9,5 @@ const cardSamples = (cards) => {
   }
 
 
-    let recipe = {
-      “name” : $(’#title’).val(),
-      “ingredients” : $(’#ingredients’).val()
-      };
+  console.log(emoji.getUnicode("heart_eyes"));
+  // 😍

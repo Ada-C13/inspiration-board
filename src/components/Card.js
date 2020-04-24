@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
+import emojis from 'emoji-dictionary';
 
 import './Card.css';
 
-const Card = (props) => {
-  console.log(props)
+const Card = ({text, emoji}) => {
+  console.log(emoji)
   return (
     <div className="card">
       
-      <p>{props.text}</p>
-      <p>{props.emoji}</p>
+      <p className="card__content-text">{text}</p>
+      {/* <p className="card__content-emoji" >{emojis.getUnicode({emoji})}</p> */}
 
     </div>
   )

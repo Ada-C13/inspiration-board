@@ -30,6 +30,9 @@
 .card__content-text {
   text-overflow: ellipsis;
   overflow: hidden;
+  /* text-align: center;
+  color: pink;
+  justify-content: space-around; */
 }
 
 .card__content-emoji {
