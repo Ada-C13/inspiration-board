@@ -6,8 +6,7 @@ describe('Card', () => {
   test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <Card
-      />
+      <Card />
     );
 
     // Assert
