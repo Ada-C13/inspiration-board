@@ -14,9 +14,7 @@ const Board = (props) => {
     //our API call
     axios.get(props.url + props.boardName + "/cards")
       .then((response) => {
-        console.log(response.data)
         const cardListFromAPI = response.data.map( (card, i) => {
-          console.log(card)
           return (
             <li key={card.card.id}>
               <Card 
@@ -30,7 +28,6 @@ const Board = (props) => {
       })
       .catch((error) =>{
         setErrorMessage(error.message);
-        console.log(error.message);
       })
   }, []);
 
