@@ -12,7 +12,7 @@ const Card = (props) => {
           {props.text}
         </section>
         <section className="card__content-emoji">
-          {props.emoji}
+          {emojiDictionary.getUnicode(`${props.emoji}`)}
         </section>
       </div>
       <button 

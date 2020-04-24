@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
+import emojiDictionary from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
@@ -32,7 +32,7 @@ const NewCardForm = (props) => {
 		})
 	};
 
-	const emojiOptions = EMOJI_LIST.map((emoji, i) => <option key={ i } value={ emoji }>{ emoji }</option>);
+	const emojiOptions = EMOJI_LIST.map((emoji, i) => <option key={ i } value={ emoji }>{emojiDictionary.getUnicode(emoji) }</option>);
 
 	return (
 		<form className="new-card-form" onSubmit={ onSubmitHandler }>
@@ -55,9 +55,10 @@ const NewCardForm = (props) => {
 								name="emoji"
 								id="emoji"
 								onChange={ onFieldChange }
-								value={ formFields.emoji }
+								value={emojiDictionary.getUnicode(`${emojiOptions}`)}
 							>
 								{ emojiOptions }
+								{/* {emojiDictionary.getUnicode(`${emojiOptions}`)} */}
 							</select> 
 						</div>
 						<input
