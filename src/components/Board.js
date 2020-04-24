@@ -8,9 +8,16 @@ import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
 const Board = () => {
+  // map CARD_DATA to create cards in array
+
+  const cards = CARD_DATA.cards.map((card_data, i) =>
+    <Card key={i} data={card_data}/>
+  )
+  
+
   return (
     <div>
-      Board
+      {cards}
     </div>
   )
 };

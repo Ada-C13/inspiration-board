@@ -4,7 +4,6 @@ import Board from './components/Board';
 
 const App = () => {
 
-
   return (
     <section>
       <header className="header">
@@ -19,3 +18,7 @@ const App = () => {
 };
 
 export default App;
+
+// Use hardcoded data form data folder to populate the board
+// Build the Card component to display a single inspirational quote and optional emoji
+// Build a Board component which renders a list of Cards from hardcoded data
