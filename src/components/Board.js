@@ -10,6 +10,7 @@ import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
   const [cards, setCards] = useState([]);
+  
 
   useEffect(() => {
     axios.get(props.url + "/boards/" + props.boardName + "/cards")
@@ -40,6 +41,10 @@ const Board = (props) => {
 
     setCards(cardsupdated);
   };
+  //
+
+
+
 
   const getCards = () => {
     console.log(`Fetching from state: ${JSON.stringify(cards)}`)
