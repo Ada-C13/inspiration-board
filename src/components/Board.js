@@ -37,6 +37,20 @@ const Board = (props) => {
     })
   };
   
+  const addNewCard = (text, emoji) => {
+    axios.post((props.url + "boards/" + props.boardName + "/cards"), {
+      text: text,
+      emoji: emoji
+    })
+    .then((response) => {
+      const newCardList = [...cardList, response.data];
+      setCardList(newCardList);
+    })
+    .catch((error) => {
+      setErrorMessage(error.message);
+    })
+  }
+
   const boardComponent = cardList.map((card, i) => {
     return (
       <Card 
@@ -52,6 +66,7 @@ const Board = (props) => {
   return (
     <div className='board'>
       {boardComponent}
+      <NewCardForm />
     </div>
   )
 };
