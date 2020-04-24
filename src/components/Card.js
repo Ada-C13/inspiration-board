@@ -26,7 +26,11 @@ const Card = (props) => {
 }
 
 Card.propTypes = {
-
+  data: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    emoji: PropTypes.string,
+  }),
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default Card;
