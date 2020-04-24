@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -7,20 +7,37 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
+
 const Board = () => {
-  // map CARD_DATA to create cards in array
+  const axios = require('axios').default;
+  const [boardData, setBoardData] = useState([])
 
-  const cards = CARD_DATA.cards.map((card_data, i) =>
-    <Card key={i} data={card_data}/>
+  const getBoardData = () => {
+    axios({
+      method: 'get',
+      url: 'https://inspiration-board.herokuapp.com/boards/Jocelyn-Haben/cards'})
+      .then(function (response) {
+        setBoardData(response.data)
+      }) 
+  }
+
+  getBoardData()
+
+  const cardsFromBoard = boardData.map((card_data, i) =>
+    <Card key={i} data={card_data.card}/>
   )
-  
 
+  // const cardsFromFile = CARD_DATA.cards.map((card_data, i) =>
+  //   <Card key={i} data={card_data.card}/>
+  // )
+  
   return (
     <div>
-      {cards}
+      {cardsFromBoard}
     </div>
   )
 };
+
 Board.propTypes = {
 
 };
