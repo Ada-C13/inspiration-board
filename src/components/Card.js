@@ -11,14 +11,16 @@ const Card = (props) => {
 
   return (
     <div className="card">
-      <h1>{props.data.text}</h1>
-      {presentEmoji || ""}
-      <input 
-        id={props.data.id}
-        type="submit" 
-        value="Delete"
-        onClick={props.deleteCard}
-        className="PlayerSubmissionForm__submit-btn" />
+      <section className="card__content">
+        <h1 className="card__content-text">{props.data.text}</h1>
+        <p className="card__content-emoji">{presentEmoji || ""}</p>
+        <input 
+          id={props.data.id}
+          type="submit" 
+          value="Delete"
+          onClick={props.deleteCard}
+          className="card__delete" />
+      </section>
     </div>
   )
 }

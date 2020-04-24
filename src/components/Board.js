@@ -7,7 +7,6 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
-
 const Board = () => {
   const emptyCard = () => {
     return {text: '', emoji: ''}
@@ -60,7 +59,10 @@ const Board = () => {
         createCard={createCard}
         onChangeHandler={onChangeHandler}/>
 
-      {boardData}  
+      <section className="board">
+        {boardData}
+      </section>
+       
     </div>
   )
 };

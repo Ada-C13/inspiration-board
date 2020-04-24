@@ -11,28 +11,33 @@ const NewCardForm = ({ newCardInfo,
                        }) => {
                          
   return (
-    <div>
-      Input Text Here:
-      <input 
-        name="text"
-        type="text"
-        placeholder="Type in inspirational message here"
-        value={newCardInfo.text}
-        onChange={onChangeHandler}/>
+    <div className="new-card-form">
+      <h1 className="new-card-form__header">Pass it Forward - Post an Inspirational Message</h1>
+      <form className="new-card-form__form">
+          <label htmlFor="text" className="new-card-form__form-label">Input Text Here:</label>
+            <input 
+              name="text"
+              type="text"
+              placeholder="Enter Message"
+              value={newCardInfo.text}
+              onChange={onChangeHandler}
+              className="new-card-form__form-textarea"/>
 
-      Input Emoji Here:
-      <input 
-        name="emoji"
-        type="text"
-        placeholder="Enter emoji"
-        value={newCardInfo.emoji}
-        onChange={onChangeHandler}/>
+          <label htmlFor="emoji" className="new-card-form__form-label">Input Emoji Here:</label>
+            <input 
+              name="emoji"
+              type="text"
+              placeholder="Enter Emoji"
+              value={newCardInfo.emoji}
+              onChange={onChangeHandler}
+              className="new-card-form__form-textarea"/>
 
-      <input 
-        type="button" 
-        value="Add New Card"
-        onClick={createCard} />
-      
+          <input 
+            type="button" 
+            value="Add New Card"
+            onClick={createCard}
+            className="new-card-form__form-button" />
+      </form>
     </div>
   );
 } 
