@@ -1,14 +1,12 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import NewCardForm from './NewCardForm';
+import Card from './Card';
 
-describe('NewCardForm', () => {
+describe('Card', () => {
   test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <NewCardForm
-        addCardCallBack={() => { }}
-      />
+      <Card />
     );
 
     // Assert
