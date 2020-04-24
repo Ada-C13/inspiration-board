@@ -11,11 +11,11 @@ const Card = ({text, emoji}) => {
     <div className="card card__content">
       
       <p className="card__content-text">{text}</p>
-      {/* <p className="card__content-emoji" >{emojis.getUnicode({emoji})}</p> */}
+      <p className="card__content-emoji" >{emojis.getUnicode(`${emoji}`)}</p>
 
     </div>
   )
-}
+
 
 Card.propTypes = {
   text: PropTypes.string,
