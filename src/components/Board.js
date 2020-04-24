@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+
+import React, { Component, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -7,11 +8,16 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
-const Board = () => {
+
+
+const Board = (props) => {
+
+  const endPoint = `${ props.url }/${props.boardName}`
+  
 
   const cardList = CARD_DATA.cards.map((card, i)=> {
-    console.log(i);
-    console.log(card);
+    // console.log(i);
+    // console.log(card);
     return(
       <Card
         key={i}
