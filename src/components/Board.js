@@ -12,11 +12,11 @@ const Board = (props) => {
     console.log(card);
 
     if(card['emoji'] && card['text']) {
-      return <li> <Card text={card.text} emoji={card.emoji}/> </li>
+      return <p> <Card text={card.text} emoji={card.emoji}/> </p>
     }else if(card['text']) {
-      return <li> <Card text={card.text}/> </li>
+      return <p> <Card text={card.text}/> </p>
     }else{
-      return <li> <Card emoji={card.emoji}/> </li>
+      return <p> <Card emoji={card.emoji}/> </p>
     }
   });
 
