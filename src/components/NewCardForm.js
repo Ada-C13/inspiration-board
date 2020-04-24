@@ -6,13 +6,16 @@ import './NewCardForm.css';
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
 
-const NewCardForm = () =>{
+const NewCardForm = (props) =>{
 
     const [input, changeInput] = useState({
         text: '', 
         emoji: '',
     })
 
+    const [currentId, changeCurrentId] = useState();
+    
+   
     const onInput = (event) => {
         const newInput = {
           ...input,
@@ -43,10 +46,10 @@ const NewCardForm = () =>{
                 <form onClick={onAddCard} > 
                     <header> Add A Card </header>
                     <label htmlFor='text' className='new-card-form__form-label'> Text </label>
-                    <input className='text' />
+                    <input key={`${props.id}`} className='text' />
 
                     <label htmlFor='emoji'  className='new-card-form__form-label'> Emoji </label>
-                    <input className='emoji' /> 
+                    <input key={`${props.id}`} className='emoji' /> 
 
 
                 </form>

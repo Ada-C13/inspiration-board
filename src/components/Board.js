@@ -44,6 +44,16 @@ const Board = (props) => {
       }
     );
 
+    const nextId = Math.max(...cardData.map(card => card.id)) + 1
+
+
+      const addCard = () => {
+
+
+
+      }
+    
+
     const deleteCard = (id) => {
       const newCardData = cardData.filter((card) => {
         return card.id !== id;
@@ -65,6 +75,7 @@ const Board = (props) => {
   return (
     <div>
       <ul> {cards}</ul>
+      <NewCardForm id={nextId} addCardCallback={addCard} />
     </div>
   )
 };
