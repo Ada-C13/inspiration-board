@@ -9,11 +9,15 @@ const emoji_test = require("emoji-dictionary");
 // TODO - figure out more dynamic way to call upper and lower case emoji
 
 const Card = (props) => {
-
   return (
     <div className="card">
       {props.data.text}
       {emoji_test.getUnicode(props.data.emoji || props.data.Emoji || "")}
+      <input 
+        type="button" 
+        value="Delete"
+        // onClick={onSubmitForm}
+        className="PlayerSubmissionForm__submit-btn" />
     </div>
   )
 }

@@ -19,6 +19,6 @@ const App = () => {
 
 export default App;
 
-// Use hardcoded data form data folder to populate the board
-// Build the Card component to display a single inspirational quote and optional emoji
-// Build a Board component which renders a list of Cards from hardcoded data
+// Add a delete button on each card which will remove a card from the Board and delete it from the API.
+// Create a NewCardForm component which will add new cards to the board and trigger POST requests to the API to create a card on the API.
+// Create a shallow snapshot tests for the Card and NewCardForm components
