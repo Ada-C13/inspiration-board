@@ -6,8 +6,9 @@ import './Card.css';
 
 const Card = ({text, emoji}) => {
   console.log(emoji)
+  console.log(text)
   return (
-    <div className="card">
+    <div className="card card__content">
       
       <p className="card__content-text">{text}</p>
       {/* <p className="card__content-emoji" >{emojis.getUnicode({emoji})}</p> */}
@@ -17,7 +18,7 @@ const Card = ({text, emoji}) => {
 }
 
 Card.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   emoji: PropTypes.string
 };
 
