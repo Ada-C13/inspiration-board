@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Board from './components/Board';
-import axios from 'axios';
-import NewCardForm from './components/NewCardForm';
 
 const BASE_URL = "https://inspiration-board.herokuapp.com/"
 

@@ -29,8 +29,6 @@ const Board = (props) => {
         </li>
         );
       };
-      // console.log(cardList);
-      // console.log(newCardList);z
       setCardList(newCardList);
     })
     .catch((error) => {
@@ -39,24 +37,18 @@ const Board = (props) => {
     });
   }, [cardList]);
 
+  // Delete a card from board.
   const deleteCard = (props) => {
-    console.log("This is linked to " + props);
+    axios.delete(BASE_URL + "cards/" + props)
+      .then((response) => {
+        setErrorMessage(`Card ${ props } deleted`);
+      })
+      .catch((error) => {
+        setErrorMessage(`Unable to delete card ${ props }`);
+      });
+  };
 
-    const newCardList = cardList;
-    console.log(cardList);
-    console.log(newCardList);
-    setCardList(newCardList);
-
-    // if (newCardList.length < cardList.length) {
-      axios.delete(BASE_URL + "cards/" + props)
-        .then((response) => {
-          setErrorMessage(`Card ${ props } deleted`);
-        })
-        .catch((error) => {
-          setErrorMessage(`Unable to delete card ${ props }`);
-        });
-      };
-
+  // Add a card to board.
   const addCard = (props) => {
     axios.post(BASE_URL + "boards/jessica-liang/cards", props)
       .then((response) => {

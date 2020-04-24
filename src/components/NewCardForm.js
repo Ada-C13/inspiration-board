@@ -58,7 +58,6 @@ const NewCardForm = (props) => {
 								value={emojiDictionary.getUnicode(`${emojiOptions}`)}
 							>
 								{ emojiOptions }
-								{/* {emojiDictionary.getUnicode(`${emojiOptions}`)} */}
 							</select> 
 						</div>
 						<input
