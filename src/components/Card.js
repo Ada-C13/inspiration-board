@@ -5,9 +5,11 @@ import emoji from 'emoji-dictionary';
 import './Card.css';
 
 const Card = () => {
+
   return (
     <div className="card">
-      Card
+      <div>
+      </div>
     </div>
   )
 }

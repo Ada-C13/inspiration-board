@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState ,useEffect, Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,9 +8,10 @@ import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
 const Board = () => {
+
   return (
-    <div>
-      Board
+    <div className='Board'>
+      <p>Board</p>
     </div>
   )
 };
