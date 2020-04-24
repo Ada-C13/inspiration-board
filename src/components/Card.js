@@ -10,6 +10,7 @@ const Card = (props) => {
     props.removeCardCallback(props.id);
   }
 
+
   return (
     <div className='card'>
       <section className='card__content'>

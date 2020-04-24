@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Board.css';
 import Card from './Card';
-// import NewCardForm from './NewCardForm';
+import NewCardForm from './NewCardForm';
 // import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
@@ -37,8 +37,30 @@ const Board = (props) => {
     axios
       .delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then((response) => {
-        const updatedCardDeck = cards.filter(card =>  card.id !== response.data.card.id );
+        const updatedCardDeck = cards.filter(
+          (card) => card.id !== response.data.card.id
+        );
         setCards(updatedCardDeck);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
+  };
+
+  const addCard = (newCardContent) => {
+    const nextId = Math.max(...cards.map((card) => card.id)) + 1;
+    axios
+      .post(BASE_URL, newCardContent)
+      .then((response) => {
+        const newCards = [...cards];
+
+        const newCard = {
+          ...newCardContent,
+          id: nextId,
+        };
+        newCards.push(newCard);
+
+        setCards(newCards);
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -57,14 +79,16 @@ const Board = (props) => {
     );
   });
 
+  //cliked --> NEWCARDCOMPONET
+  //newCardComponent --> text: ....... hit submit 
+  //event handler in NewCardComponent that's info back to board 
+  //
+
   return (
     <div>
-      {errorMessage && (
-        <div>
-          <h4>{errorMessage}</h4>
-        </div>
-      )}
+      {errorMessage && <div><h4>{errorMessage}</h4></div>}
       {cardComponents}
+      <NewCardForm addCardCallback={addCard}/>
     </div>
   );
 };
