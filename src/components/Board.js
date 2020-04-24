@@ -66,10 +66,12 @@ const Board = (props) => {
   // }
 
   return (
-    <div>
+    <div className="board">
       <NewCardForm addCardCallBack={ props.addCardCallBack } />
 
-      { cardList }
+      <ul className="validation-errors-display validation-errors-display__list">
+        { cardList }
+      </ul>
     </div>
   );
 };
