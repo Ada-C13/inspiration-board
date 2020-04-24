@@ -4,16 +4,21 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
-const Card = () => {
+const Card = (props) => {
+  console.log(props)
   return (
     <div className="card">
-      Card
+      
+      <p>{props.text}</p>
+      <p>{props.emoji}</p>
+
     </div>
   )
 }
 
 Card.propTypes = {
-
+  text: PropTypes.string.isRequired,
+  emoji: PropTypes.string
 };
 
 export default Card;
