@@ -4,11 +4,16 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
+const emoji_test = require("emoji-dictionary");
+
+// TODO - figure out more dynamic way to call upper and lower case emoji
+
 const Card = (props) => {
+
   return (
     <div className="card">
       {props.data.text}
-      {/* {props.data.emoji} */}
+      {emoji_test.getUnicode(props.data.emoji || props.data.Emoji || "")}
     </div>
   )
 }
