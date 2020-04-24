@@ -14,9 +14,10 @@ const Card = (props) => {
       {props.data.text}
       {emoji_test.getUnicode(props.data.emoji || props.data.Emoji || "")}
       <input 
-        type="button" 
+        id={props.data.id}
+        type="submit" 
         value="Delete"
-        // onClick={onSubmitForm}
+        onClick={props.deleteCard}
         className="PlayerSubmissionForm__submit-btn" />
     </div>
   )

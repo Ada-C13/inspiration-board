@@ -9,31 +9,57 @@ import CARD_DATA from '../data/card-data.json';
 
 
 const Board = () => {
-  const axios = require('axios').default;
-  const [boardData, setBoardData] = useState([])
-
-  const getBoardData = () => {
-    axios({
-      method: 'get',
-      url: 'https://inspiration-board.herokuapp.com/boards/Jocelyn-Haben/cards'})
-      .then(function (response) {
-        setBoardData(response.data)
-      }) 
+  const emptyCard = () => {
+    return {text: '', emoji: ''}
   }
 
-  getBoardData()
+  const axios = require('axios').default;
+  const [boardData, setBoardData] = useState([])
+  const [newCardInfo, setNewCardInfo] = useState(emptyCard())
 
-  const cardsFromBoard = boardData.map((card_data, i) =>
-    <Card key={i} data={card_data.card}/>
-  )
+  axios({
+    method: 'get',
+    url: 'https://inspiration-board.herokuapp.com/boards/Jocelyn-Haben/cards'})
+    .then((response) => {
+      setBoardData(response.data.map((card_data, i) =>
+        <Card 
+          key={i} 
+          data={card_data.card} 
+          deleteCard={deleteCard}/>));
+  }) 
 
-  // const cardsFromFile = CARD_DATA.cards.map((card_data, i) =>
-  //   <Card key={i} data={card_data.card}/>
-  // )
+  const deleteCard = (event) => {
+    // console.log(event.target.id)
+    axios({
+      method: 'delete',
+      url: `https://inspiration-board.herokuapp.com/cards/${event.target.id}`})
+  }
+
+  const createCard = () => {
+    axios({
+      method: 'post',
+      url: `https://inspiration-board.herokuapp.com/boards/Jocelyn-Haben/cards`,
+      data: {
+        text: newCardInfo.text,
+        emoji: newCardInfo.emoji
+      }
+    })
+  }
+
+  const onChangeHandler = (event) => {
+    setNewCardInfo({
+      ...newCardInfo,
+      [event.target.name]: event.target.value})
+  }
   
   return (
     <div>
-      {cardsFromBoard}
+      <NewCardForm 
+        newCardInfo={newCardInfo}
+        createCard={createCard}
+        onChangeHandler={onChangeHandler}/>
+
+      {boardData}  
     </div>
   )
 };
