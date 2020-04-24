@@ -32,8 +32,29 @@ const Board = (props) => {
       });
   }, []);
 
+  //https://github.com/AdaGold/inspiration-board-api
+  const removeCard = (id) => {
+    axios
+      .delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+      .then((response) => {
+        const updatedCardDeck = cards.filter(card =>  card.id !== response.data.card.id );
+        setCards(updatedCardDeck);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
+  };
+
   const cardComponents = cards.map((card, i) => {
-    return <Card key={i} id={card.id} text={card.text} emoji={card.emoji} />;
+    return (
+      <Card
+        key={i}
+        id={card.id}
+        text={card.text}
+        emoji={card.emoji}
+        removeCardCallback={removeCard}
+      />
+    );
   });
 
   return (
