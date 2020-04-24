@@ -7,16 +7,6 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 
 const Board = (props) => {
-  // const boardComponents = CARD_DATA.cards.map((card, i) => {
-  //   return (
-  //     <li key={i}>
-  //       <Card 
-  //         text={card.text} 
-  //         emoji={card.emoji} 
-  //       />
-  //     </li>
-  //   );
-  // });
 
   const [cardList, setCardList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -46,24 +36,6 @@ const Board = (props) => {
       console.log(error.message);
     });
   }, []);
-
-  // const deleteCard = (props) => {
-  //   console.log("This is linked to " + props);
-  //   const newCardList = cardList.filter((card) => {
-  //     return card.id !== props;
-  //   });
-
-  //   if (newCardList.length < cardList.length) {
-  //     axios.delete(props.url + "cards/:" + props)
-  //       .then((response) => {
-  //         setErrorMessage(`Card ${ props } deleted`);
-  //       })
-  //       .catch((error) => {
-  //         setErrorMessage(`Unable to delete card ${ props }`);
-  //       })
-  //     setCardList(newCardList);
-  //   }
-  // }
 
   return (
     <div className="board">

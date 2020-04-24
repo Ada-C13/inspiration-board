@@ -36,11 +36,12 @@ const NewCardForm = (props) => {
 
 	return (
 		<form className="new-card-form" onSubmit={ onSubmitHandler }>
-					<h1>Add a Card</h1>
-					<div>
+					<h1 className="new-card-form__header">Add a Card</h1>
+					<div className="new-card-form__form">
 						<div>
-							<label htmlFor="text">Text: </label>
+							<label className="new-card-form__form-label" htmlFor="text">Text: </label>
 							<input
+								className="new-card-form__form-textarea"
 								name="text"
 								id="text"
 								onChange={ onFieldChange }
@@ -48,8 +49,9 @@ const NewCardForm = (props) => {
 							/>
 						</div>
 						<div>
-							<label htmlFor="emoji">Emoji: </label>
+							<label className="new-card-form__form-label" htmlFor="emoji">Emoji: </label>
 							<select
+								className="new-card-form__form-select"
 								name="emoji"
 								id="emoji"
 								onChange={ onFieldChange }
@@ -59,6 +61,7 @@ const NewCardForm = (props) => {
 							</select> 
 						</div>
 						<input
+							className="new-card-form__form-button"
 							type="submit"
 							name="submit"
 							value="Submit"
