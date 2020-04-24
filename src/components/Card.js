@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 
+
 import './Card.css';
 
 const Card = (props) => {
+
+  // const currentEmoji = emoji.getUnicode(props.emoji)
+  
 
   console.log(props);
   return (
     <div id={props.id} className="card">
       Card
       <p>{props.text} </p>
+      {/* ? Solve the dictionary library  */}
       <p>{props.emoji} </p>
     </div>
   )
