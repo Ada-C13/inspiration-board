@@ -5,6 +5,7 @@ import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
 
+
 const Board = (props) => {
   
   const [cardList, setCardList] = useState([]);
@@ -37,11 +38,10 @@ const Board = (props) => {
     })
   };
   
-  const addNewCard = (text, emoji) => {
-    axios.post((props.url + "boards/" + props.boardName + "/cards"), {
+  const addNewCard = (text , emoji) => {
+    axios.post((props.url + "boards/" + props.boardName + "/cards"),{ 
       text: text,
-      emoji: emoji
-    })
+      emoji: emoji})
     .then((response) => {
       const newCardList = [...cardList, response.data];
       setCardList(newCardList);
@@ -50,7 +50,7 @@ const Board = (props) => {
       setErrorMessage(error.message);
     })
   }
-
+  // https://inspiration-board.herokuapp.com/boards/Sharon-Olga/cards?text=Hi Sharon!&emoji='hi'
   const boardComponent = cardList.map((card, i) => {
     return (
       <Card 
@@ -66,12 +66,10 @@ const Board = (props) => {
   return (
     <div className='board'>
       {boardComponent}
-      <NewCardForm />
+      <NewCardForm addNewCardCallback={addNewCard}/>
     </div>
   )
 };
-
-
 
 Board.propTypes = {
   url: PropTypes.string.isRequired,
