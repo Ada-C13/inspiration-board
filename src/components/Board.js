@@ -7,15 +7,34 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
-const Board = () => {
+const Board = (props) => {
+
+  const createCards = () => {
+
+    return CARD_DATA.cards.map((card, index) => {
+      return (
+        <Card
+        key={index}
+        text={card.text}
+        emoji={card.emoji}
+        />
+      )
+    });
+
+  };
+
   return (
-    <div>
-      Board
-    </div>
+    <section>
+      <div>
+        {createCards()}
+      </div>
+    </section>
   )
 };
-Board.propTypes = {
 
+Board.propTypes = {
+url: PropTypes.string.isRequired,
+boardname: PropTypes.string.isRequired,
 };
 
 export default Board;
