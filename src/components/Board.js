@@ -8,6 +8,7 @@ import NewCardForm from './NewCardForm';
 
 const Board = (props) => {
 
+  const BASE_URL = "https://inspiration-board.herokuapp.com/"
   const [cardList, setCardList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const newCardList = [];
@@ -23,7 +24,7 @@ const Board = (props) => {
             id={card.card.id}
             text={card.card.text}
             emoji={card.card.emoji}
-            deleteCardCallBack={props.deleteCardCallBack}
+            deleteCardCallBack ={ deleteCard } 
           />
         </li>
         );
@@ -37,9 +38,39 @@ const Board = (props) => {
     });
   }, []);
 
+  const deleteCard = (props) => {
+    console.log("This is linked to " + props);
+    // console.log(BASE_URL + "cards/" + props);
+    // const newCardList = cardList.filter((card) => {
+    //   console.log(card);
+    //   console.log(props);
+    //   return card.id !== props;
+    // });
+    // setCardList(newCardList);
+
+    // if (newCardList.length < cardList.length) {
+      axios.delete(BASE_URL + "cards/" + props)
+        .then((response) => {
+          setErrorMessage(`Card ${ props } deleted`);
+        })
+        .catch((error) => {
+          setErrorMessage(`Unable to delete card ${ props }`);
+        });
+      };
+
+  const addCard = (props) => {
+    axios.post(BASE_URL + "boards/jessica-liang/cards", props)
+      .then((response) => {
+        setErrorMessage(`Card ${ props } added`);
+      })
+      .catch((response) => {
+        setErrorMessage(`Unable to add card ${ props }`);
+      });
+  };
+
   return (
     <div className="board">
-      <NewCardForm addCardCallBack={ props.addCardCallBack } />
+      <NewCardForm addCardCallBack={ addCard } />
 
       <ul className="validation-errors-display validation-errors-display__list">
         { cardList }

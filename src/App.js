@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Board from './components/Board';
 import axios from 'axios';
@@ -8,42 +8,6 @@ const BASE_URL = "https://inspiration-board.herokuapp.com/"
 
 const App = () => {
 
-  const [cardList, setCardList] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const newCardList = [];
-
-  const deleteCard = (props) => {
-    console.log("This is linked to " + props);
-    // console.log(BASE_URL + "cards/" + props);
-    // const newCardList = cardList.filter((card) => {
-    //   console.log(card);
-    //   console.log(props);
-    //   return card.id !== props;
-    // });
-    // setCardList(newCardList);
-
-    // if (newCardList.length < cardList.length) {
-      axios.delete(BASE_URL + "cards/" + props)
-        .then((response) => {
-          setErrorMessage(`Card ${ props } deleted`);
-        })
-        .catch((error) => {
-          setErrorMessage(`Unable to delete card ${ props }`);
-        })
-      
-  };
-  // }
-
-  const addCard = (props) => {
-    axios.post(BASE_URL + "boards/jessica-liang/cards", props)
-      .then((response) => {
-        setErrorMessage(`Card ${ props } added`);
-      })
-      .catch((response) => {
-        setErrorMessage(`Unable to add card ${ props }`);
-      });
-  };
-
   return (
     <section>
       <header className="header">
@@ -51,11 +15,8 @@ const App = () => {
       </header>
       <section className="app">
         <Board
-          url="https://inspiration-board.herokuapp.com/"
+          url={BASE_URL}
           boardName={`jessica-liang`}
-          deleteCardCallBack={ deleteCard }
-          addCardCallBack={ addCard }
-          setCardList={ setCardList }
         />
       </section>
     </section>
