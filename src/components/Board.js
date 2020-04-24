@@ -22,11 +22,28 @@ const Board = (props) => {
       });
   }, []);
 
+
+  const deleteCard=(deletedcard)=>{
+    const cardsupdated = [];
+
+    cards.forEach((card)=>{
+      if(card.card.id.toString() === deletedcard.target.id.toString()){
+        
+      }
+      else {
+        cardsupdated.push(card);
+      }
+    });
+
+    setCards(cardsupdated);
+
+  };
+
   const getCards = () => {
     console.log(`Fetching from state: ${JSON.stringify(cards)}`)
     const processed = cards.map(card => {
       return(
-      <Card id={card.card.id} text={card.card.text} emoji={card.card.emoji} />
+      <Card id={card.card.id} text={card.card.text} emoji={card.card.emoji} onDeleteCallBack={deleteCard} />
       );
     })
     return processed;

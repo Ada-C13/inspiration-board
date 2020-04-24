@@ -6,14 +6,17 @@ import './Card.css';
 
 
 const Card = (props) => {
+
+  
+
   
   return (
-    <div className="card" id={props.id}>
+    <div className="card" id={props.id} >
       {props.text}
       {emoji.getUnicode(`${props.emoji}`)}
-      {/* <button onClick={handleClick}>
+      <button onClick={props.onDeleteCallBack} id={props.id}>
         Delete
-      </button> */}
+      </button>
     </div>
   )
 }
