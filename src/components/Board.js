@@ -12,7 +12,7 @@ const Board = (props) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    axios.get(props.url + props.boardName + "/cards")
+    axios.get(props.url + "/boards/" + props.boardName + "/cards")
       .then( (response) => {
         console.log(`SUCCESS: ${JSON.stringify(response.data)}`)
         setCards(response.data);
@@ -22,21 +22,23 @@ const Board = (props) => {
       });
   }, []);
 
-
+  
   const deleteCard=(deletedcard)=>{
     const cardsupdated = [];
 
     cards.forEach((card)=>{
       if(card.card.id.toString() === deletedcard.target.id.toString()){
-        
-      }
-      else {
-        cardsupdated.push(card);
-      }
+          axios.delete(props.url + '/cards/' + deletedcard.target.id)
+        .then( (response) => {
+          console.log(`SUCCESSFUL DELETION`)
+        })
+        .catch((error) => {
+          console.log(`ERROR could not delete: ${error}`)
+        });
+      } else { cardsupdated.push(card); }
     });
 
     setCards(cardsupdated);
-
   };
 
   const getCards = () => {
