@@ -4,10 +4,14 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
-const Card = () => {
+const Card = (props) => {
+
+  console.log(props);
   return (
-    <div className="card">
+    <div id={props.id} className="card">
       Card
+      <p>{props.text} </p>
+      <p>{props.emoji} </p>
     </div>
   )
 }
