@@ -25,7 +25,6 @@ const Card = (props) => {
 }
 
 Card.propTypes = {
-  // key: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   text: PropTypes.string,
   emoji: PropTypes.string,
