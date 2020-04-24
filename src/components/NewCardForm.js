@@ -8,12 +8,11 @@ const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_
 const NewCardForm =(props) => {
 
   const emojiDropdown = () => {
-    const emojiList = EMOJI_LIST.map(emoji=>{
-      return  (<option value={emoji}>{emoji}</option>);
+    const emojiList = EMOJI_LIST.map((emoji, index)=>{
+      return  (<option key={index} value={emoji}>{emoji}</option>);
     });
     return emojiList;
   };
-
 
 
   return(
