@@ -13,8 +13,9 @@
 
 .new-card-form__form {
   font-size: 1.5em;
-  display: grid;
-  grid-template-columns: [labels] auto [controls] 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   grid-auto-flow: row;
   grid-gap: .8em;
 }
@@ -22,6 +23,7 @@
 .new-card-form__form-label  {
   grid-column: labels;
   grid-row: auto;
+  align-self: center;
 }
 
 .new-card-form__form-select,
@@ -31,6 +33,9 @@
   font-size: 1.25em;
   grid-column: controls;
   grid-row: auto;
+  margin: 10px;
+  align-self: center;
+  border-radius: 5%;
 }
 
 .new-card-form__form-button {
