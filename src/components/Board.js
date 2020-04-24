@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+
 import axios from 'axios';
 
 import './Board.css';
@@ -25,7 +26,6 @@ const Board = () => {
   }) 
 
   const deleteCard = (event) => {
-    // console.log(event.target.id)
     axios({
       method: 'delete',
       url: `https://inspiration-board.herokuapp.com/cards/${event.target.id}`})
