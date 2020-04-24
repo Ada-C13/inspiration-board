@@ -14,12 +14,11 @@ const NewCardForm =(props) => {
     return emojiList;
   };
 
-  
 
 
   return(
 
-    <form className="NewCardForm">
+    <form className="NewCardForm" onSubmit={props.onSubmitCard}>
     <label>Card Text:</label>
      <input name = "cardtext" type="text" onChange={props.onChangeCard}/>
     <label>Emoji Input:</label>

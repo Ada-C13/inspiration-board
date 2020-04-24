@@ -29,7 +29,7 @@ const Board = (props) => {
 
     cards.forEach((card)=>{
       if(card.card.id.toString() === deletedcard.target.id.toString()){
-          axios.delete(props.url + '/cards/' + deletedcard.target.id)
+        axios.delete(props.url + '/cards/' + deletedcard.target.id)
         .then( (response) => {
           console.log(`SUCCESSFUL DELETION`)
         })
