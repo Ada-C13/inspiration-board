@@ -5,8 +5,6 @@ import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
 
-
-
 const Board = (props) => {
   
   const [cardList, setCardList] = useState([]);
@@ -23,18 +21,6 @@ const Board = (props) => {
     });
   }, []);
   
-//   {
-//     "card": {
-//         "id": 4888,
-//         "text": null,
-//         "emoji": "heart_eyes"
-//     }
-// }
-
-
-  //console.log(cardList);
-  // url="https://inspiration-board.herokuapp.com/boards/"
-// https://inspiration-board.herokuapp.com/cards/:card_id
   const onClickCallback = (id) =>{
     axios.delete(props.url +`cards/` + id)
     .then((response) => {

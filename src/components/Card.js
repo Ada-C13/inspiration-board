@@ -10,8 +10,6 @@ const Card = (props) => {
     props.onClickCallback(props.id);
   }
 
-  // props.onClickCallback(props.id);
-
   return (
     <div className="card">
       <section className='card__content'>
@@ -22,9 +20,12 @@ const Card = (props) => {
     </div>
   )
 }
-
+// value: PropTypes.string.isRequired,
 Card.propTypes = {
-
+  text: PropTypes.string,
+  emoji: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  onClickCallback: PropTypes.func.isRequired
 };
 
 export default Card;
