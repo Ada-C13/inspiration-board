@@ -44,6 +44,7 @@ const Board = () => {
         emoji: newCardInfo.emoji
       }
     })
+    setNewCardInfo(emptyCard())
   }
 
   const onChangeHandler = (event) => {

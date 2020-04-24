@@ -9,8 +9,6 @@ const NewCardForm = ({ newCardInfo,
                        onChangeHandler,
                        createCard
                        }) => {
-
-  // console.log(newCardInfo)
                          
   return (
     <div>

@@ -9,10 +9,15 @@ const emoji_test = require("emoji-dictionary");
 // TODO - figure out more dynamic way to call upper and lower case emoji
 
 const Card = (props) => {
+  // console.log(emoji_test.getUnicode(props.data.emoji) || emoji_test.getName(props.data.emoji))
+  const presentEmoji = emoji_test.getUnicode(
+    emoji_test.getName(props.data.emoji) || 
+    props.data.emoji)
+
   return (
     <div className="card">
-      {props.data.text}
-      {emoji_test.getUnicode(props.data.emoji || props.data.Emoji || "")}
+      <h1>{props.data.text}</h1>
+      {presentEmoji || ""}
       <input 
         id={props.data.id}
         type="submit" 
