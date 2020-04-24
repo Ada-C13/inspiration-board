@@ -1,29 +1,54 @@
-import React, { useState ,useEffect, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
 
-const Board = () => {
+const Board = (props) => {
+	const [ cardsList, setCardsList ] = useState([]);
+	const [ errorMessage, setErrorMessage ] = useState(null);
 
-  const cardsList = CARD_DATA.cards.map((card, i) => {
-    return (
-      <div key={i}>
-        <Card card={card} />
-      </div>
-    )
-  })
-  return (
-    <div className='Board'>
-      {cardsList}
-    </div>
-  )
+	useEffect(() => {
+		axios
+			.get(props.url + props.boardName + '/cards')
+			.then((response) => {
+				console.log(response.data);
+				const newCardsList = response.data;
+				setCardsList(newCardsList);
+			})
+			.catch((error) => {
+				console.log(error.message);
+				setErrorMessage(error.message);
+			});
+	}, []);
+
+	const board = cardsList.map((post) => {
+		return (
+			<div key={post.card.id}>
+				<Card text={post.card.text} emoji={post.card.emoji} />
+			</div>
+		);
+	});
+
+	return (
+		<div className="Board">
+			{errorMessage ? (
+				<div>
+					<h2 className="validation-errors-display">{errorMessage}</h2>
+				</div>
+			) : (
+				''
+			)}
+			{board}
+		</div>
+	);
 };
-Board.propTypes = {
 
+Board.propTypes = {
+	url       : PropTypes.string.isRequired,
+	boardName : PropTypes.string.isRequired
 };
 
 export default Board;
