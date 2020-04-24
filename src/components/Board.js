@@ -29,24 +29,23 @@ const Board = (props) => {
         </li>
         );
       };
-
+      // console.log(cardList);
+      // console.log(newCardList);z
       setCardList(newCardList);
     })
     .catch((error) => {
       setErrorMessage(error.message);
       console.log(error.message);
     });
-  }, []);
+  }, [cardList]);
 
   const deleteCard = (props) => {
     console.log("This is linked to " + props);
-    // console.log(BASE_URL + "cards/" + props);
-    // const newCardList = cardList.filter((card) => {
-    //   console.log(card);
-    //   console.log(props);
-    //   return card.id !== props;
-    // });
-    // setCardList(newCardList);
+
+    const newCardList = cardList;
+    console.log(cardList);
+    console.log(newCardList);
+    setCardList(newCardList);
 
     // if (newCardList.length < cardList.length) {
       axios.delete(BASE_URL + "cards/" + props)
