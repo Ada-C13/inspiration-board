@@ -29,7 +29,7 @@ export default App;
 //----- GET API ----------------
 //const App = () => {
 // const [studentList, setStudentList] = useState([]);
-// const [errorMessage, setErrorMessage] = useState(null);
+//;
 
 // useEffect(() => {
 //   axios.get(API_URL_BASE)

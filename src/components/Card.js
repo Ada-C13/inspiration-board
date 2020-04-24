@@ -24,12 +24,12 @@ const Card = ({emoji, text, deleteCallback, id}) => {
 //   }
 // };
 
-// Card.propTypes = {
-//   id: PropTypes.number,
-//   text: PropTypes.string.isRequired,
-//   emoji: PropTypes.string,
-//   deleteCallback: PropTypes.func,
-// };
+Card.propTypes = {
+  id: PropTypes.number,
+  text: PropTypes.string.isRequired,
+  emoji: PropTypes.string,
+  deleteCallback: PropTypes.func,
+};
 //card data
 
 // const studentIds = newStudentList.map(student => student.id);
