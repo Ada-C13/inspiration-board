@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './Board.css';
@@ -9,12 +8,13 @@ import NewCardForm from './NewCardForm';
 const Board = (props) => {
 
   const BASE_URL = "https://inspiration-board.herokuapp.com/"
+  const BASE_BOARD = "jessica-liang"
   const [cardList, setCardList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const newCardList = [];
 
   useEffect(() => {
-    axios.get(props.url + "boards/" + props.boardName + "/cards")
+    axios.get(BASE_URL + "boards/" + BASE_BOARD + "/cards")
     .then( (response) => {
       for (let card of response.data) {
         newCardList.push(
@@ -35,7 +35,7 @@ const Board = (props) => {
       setErrorMessage(error.message);
       console.log(error.message);
     });
-  }, [cardList]);
+  }, [newCardList]);
 
   // Delete a card from board.
   const deleteCard = (props) => {
@@ -50,7 +50,7 @@ const Board = (props) => {
 
   // Add a card to board.
   const addCard = (props) => {
-    axios.post(BASE_URL + "boards/jessica-liang/cards", props)
+    axios.post(BASE_URL + "boards/" + BASE_BOARD + "/cards", props)
       .then((response) => {
         setErrorMessage(`Card ${ props } added`);
       })
@@ -68,10 +68,6 @@ const Board = (props) => {
       </ul>
     </div>
   );
-};
-
-Board.propTypes = {
-  
 };
 
 export default Board;
