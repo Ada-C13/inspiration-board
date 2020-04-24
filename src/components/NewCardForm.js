@@ -28,7 +28,7 @@ const NewCardForm = (props) => {
 
 		setFormFields({
 			text: '',
-			emoji: ''  
+			emoji: ''
 		})
 	};
 
@@ -55,8 +55,7 @@ const NewCardForm = (props) => {
 								name="emoji"
 								id="emoji"
 								onChange={ onFieldChange }
-								value={emojiDictionary.getUnicode(`${emojiOptions}`)}
-							>
+								value={(formFields.emoji === '') ? '' : emojiDictionary.getUnicode(`${emojiOptions}`)}>
 								{ emojiOptions }
 							</select> 
 						</div>
