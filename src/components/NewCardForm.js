@@ -5,4 +5,3 @@ import './NewCardForm.css';
 
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
-//emoji = EMOJI_LIST.map((text) => { return emoji.getUnicode(text)});

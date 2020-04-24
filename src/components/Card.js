@@ -3,30 +3,23 @@ import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './Card.css';
 
+// Resource: Hannah J zoom chat
 const Card = (props) => {
-
-  const emojiCollection = require('emoji-dictionary');
-
-  const cardInspiration = () => {
-
-    if (props.emoji) {
-      return (<p>{ emoji.getUnicode(props.emoji) }</p>);
-    }else if (props.text) {
-      return (<p>{ props.text }</p>);
-    }else{
-      return (<p>{ props.text } { emojiCollection.getUnicode(props.emoji) }</p>);
-    };
-  }
-  
   return (
-    <div className="card" id={props.id}>
-      {cardInspiration()}
+    <div className='card'>
+      <section className='card__content'>
+        <p className='card__content_text'>{props.text && props.text}</p>
+        <span className='card__content_emoji'>
+          {props.emoji && emoji.getUnicode(props.emoji)}
+        </span>
+      </section>
     </div>
   );
-}
+};
 
 Card.propTypes = {
-
+  text: PropTypes.string,
+  emoji: PropTypes.string,
 };
 
 export default Card;

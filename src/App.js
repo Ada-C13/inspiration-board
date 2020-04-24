@@ -13,7 +13,7 @@ const App = () => {
       </header>
       <Board
         url="https://inspiration-board.herokuapp.com/boards/"
-        boardName={`Rusty-Cats`}
+        boardName={`rusty-cats`}
       />
     </section>
   );
