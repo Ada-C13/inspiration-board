@@ -9,9 +9,16 @@ import CARD_DATA from '../data/card-data.json';
 
 const Board = () => {
 
+  const cardsList = CARD_DATA.cards.map((card, i) => {
+    return (
+      <div key={i}>
+        <Card card={card} />
+      </div>
+    )
+  })
   return (
     <div className='Board'>
-      <p>Board</p>
+      {cardsList}
     </div>
   )
 };
