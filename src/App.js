@@ -6,11 +6,11 @@ import NewCardForm from './components/NewCardForm';
 const App = () => {
   const [newcard,setNewCard] = useState({text:null, emoji:null});
 
-  const onInputChange = (event) =>{
-    console.log(`changed ${event.target.value}`);
-    // const newSubmitCard = {...newcard};
-    // newSubmitCard[`${text}`] = event.target.value;
-    // setNewCard(newSubmitCard);
+  const onInputChange = (event) =>{    
+
+    const newSubmitCard = {...newcard};
+    newSubmitCard[event.target.name] = event.target.value;
+    setNewCard(newSubmitCard);
 
   };
 

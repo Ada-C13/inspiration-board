@@ -20,9 +20,9 @@ const NewCardForm =(props) => {
 
     <form className="NewCardForm" onSubmit={props.onSubmitCard}>
     <label>Card Text:</label>
-     <input name = "cardtext" type="text" onChange={props.onChangeCard}/>
+     <input name = "text" type="text" onChange={props.onChangeCard}/>
     <label>Emoji Input:</label>
-     <select  name="cardemoji" onChange={props.onChangeCard}>
+     <select  name="emoji" onChange={props.onChangeCard}>
       {emojiDropdown()}
     </select>
     <input

@@ -15,7 +15,7 @@ const Board = (props) => {
   useEffect(() => {
     axios.get(props.url + "/boards/" + props.boardName + "/cards")
       .then( (response) => {
-        console.log(`SUCCESS: ${JSON.stringify(response.data)}`)
+        // console.log(`SUCCESS: ${JSON.stringify(response.data)}`)
         setCards(response.data);
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const Board = (props) => {
 
 
   const getCards = () => {
-    console.log(`Fetching from state: ${JSON.stringify(cards)}`)
+    // console.log(`Fetching from state: ${JSON.stringify(cards)}`)
     const processed = cards.map(card => {
       return(
       <Card id={card.card.id} text={card.card.text} emoji={card.card.emoji} onDeleteCallBack={deleteCard} />
