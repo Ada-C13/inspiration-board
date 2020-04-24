@@ -1,6 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
-import './NewCardForm.css';
+import React, { Component } from "react"; //this is new
+import PropTypes from "prop-types";
+import emoji from "emoji-dictionary";
+import "./NewCardForm.css";
 
-const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
+const EMOJI_LIST = [
+  "",
+  "heart_eyes",
+  "beer",
+  "clap",
+  "sparkling_heart",
+  "heart_eyes_cat",
+  "dog",
+];
+
+//formSubmitCallback
+//name or id of the board
