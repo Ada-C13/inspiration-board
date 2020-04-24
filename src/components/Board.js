@@ -47,6 +47,7 @@ const Board = ({url, boardName}) => {
   return (
     <div className="board">
       {cardList}
+      <NewCardForm />
     </div>
 )};
 
