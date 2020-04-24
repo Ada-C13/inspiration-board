@@ -1,11 +1,10 @@
 import React, { useState, Component, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
+
 
 
 const Board = (props) => {
@@ -14,7 +13,7 @@ const Board = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
   
   useEffect(() => {    
-    axios.get(props.url + props.boardName + "/cards")
+    axios.get(props.url + "boards/" + props.boardName + "/cards")
     .then((response) => {
       const apiCardList = response.data;
       setCardList(apiCardList);
@@ -24,14 +23,42 @@ const Board = (props) => {
     });
   }, []);
   
-  console.log(cardList);
+//   {
+//     "card": {
+//         "id": 4888,
+//         "text": null,
+//         "emoji": "heart_eyes"
+//     }
+// }
+
+
+  //console.log(cardList);
+  // url="https://inspiration-board.herokuapp.com/boards/"
+// https://inspiration-board.herokuapp.com/cards/:card_id
+  const onClickCallback = (id) =>{
+    axios.delete(props.url +`cards/` + id)
+    .then((response) => {
+      const newCardList = [];
+      for (let card of cardList) {
+        if (card.card["id"] !== id) {
+          newCardList.push(card);
+        }
+      };
+      setCardList(newCardList);
+    })
+    .catch((error) => {
+      setErrorMessage(error.message);
+    })
+  };
   
   const boardComponent = cardList.map((card, i) => {
     return (
       <Card 
-        key={i}
+        key={card.card["id"]}
         text={card.card["text"]}
         emoji={card.card["emoji"]}
+        id={card.card["id"]}
+        onClickCallback={onClickCallback}
       />
     )
   });
