@@ -11,3 +11,13 @@ const cardSamples = (cards) => {
 
   console.log(emoji.getUnicode("heart_eyes"));
   // 😍
+
+  axios.get('url')
+  .then((response) => {
+    // Load in the data
+    setResult(response.data) })
+  })
+  .catch((error) => {
+    // Show an error
+    setError('There was an error with this request!');
+  })

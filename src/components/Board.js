@@ -17,13 +17,23 @@ const cardSamples = (cards) => {
   return mappedCards
 }
 
-const Board = (props) => {
+const Board = ({url, boardName}) => {
+  // const cardList = "";
   
-  const cardList = cardSamples(CARD_DATA);
+  let apiData = axios.get(`${url}/${boardName}/cards`)
+    .then ((response) => {
+      console.log(response.data)
+      return cardSamples(response.data.card);
+    })
+    .catch((error) => {
+      // Still need to handle errors
+    });
+
+  // const cardList = cardSamples(CARD_DATA);
   
   return (
     <div className="board">
-      {cardList}
+      {apiData}
     </div>
 )};
 
