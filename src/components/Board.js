@@ -42,7 +42,12 @@ const Board = ({ url, boardName }) => {
       )}
       {listCards.map((el) => {
         return (
-          <Card id={el.card.id} text={el.card.text} emoji={el.card.emoji} />
+          <Card
+            key={el.card.id}
+            id={el.card.id}
+            text={el.card.text}
+            emoji={el.card.emoji}
+          />
         );
       })}
     </div>
@@ -55,19 +60,3 @@ Board.propTypes = {
 };
 
 export default Board;
-
-//allCards
-//formSubmitCallback
-//board has a name or an unique id
-
-//if something is always a prop you dont need to track in state, because you are never going to change it
-
-// const createBoard = () => {
-//   const board = {
-//     board: [], //array is going to hold all the cards
-//     boardName: props.boardName,
-//     boardURL: props.url,
-//     error: "",
-//   };
-//   return board;
-// };
