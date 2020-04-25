@@ -23,12 +23,11 @@ const Board = (props) => {
   }, []);
 
   const onDeleteClick = (event) => {
-    console.log(`Click!`, event.target.name, event.target.value);
     const cardId = event.target.name;
     axios.delete(`${props.url}cards/${cardId}`)
       .then((response) => {
         const deleteResponse = response.data;
-        console.log(`response`, deleteResponse);
+        console.log(`response`, deleteResponse); // check if id on response matches
       })
       .catch((error) => {
         console.log(error.message);
