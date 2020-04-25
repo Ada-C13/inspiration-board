@@ -1,15 +1,17 @@
 .card {
-	background-color: #f4ff81;
+  background-color: #f4ff81;
+  color: darkred;
 	padding: 1em 0;
-	margin: 0.5rem;
+	margin: 1rem;
 	width: 20vw;
 	min-height: 40vh;
 	align-items: center;
-	box-shadow: lightpink;
+	box-shadow: 0.5rem 0.5rem rgb(202, 201, 201);
 }
 
 .card.pink {
-	background-color: hotpink;
+  background-color: rgb(245, 138, 191);
+  color: black;
 }
 
 .card__content {
@@ -24,13 +26,13 @@
 	fo: ellipsis;
 	overflow: hidden;
 	grid-row-start: 1;
-	/* min-height: 60%; */
+	min-height: 10vh;
 }
 
 .card__content-emoji {
 	font-size: 3rem;
 	grid-row-start: 2;
-	/* min-height: 30%; */
+	min-height: 10vh;
 }
 
 .card__content-text,
@@ -41,16 +43,16 @@
 
 .card__delete_div {
 	grid-row-start: 3;
-	min-height: 10%;
-	/* display: flex; */
+	min-height: 5vh;
 }
 
 .card__delete {
-	/* position: absolute; */
-	/* bottom: 5%; */
-	/* float: bottom; */
 	width: 50%;
 	margin-top: auto;
 	align-self: center;
 	font-family: 'Permanent Marker', Helvetica, sans-serif;
+}
+
+.card__delete:hover {
+  background-color: red;
 }

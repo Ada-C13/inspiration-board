@@ -47,7 +47,7 @@ const NewCardForm = (props) => {
 					className="new-card-form__form-textarea"
 				/>
 				<label htmlFor="emoji" className="new-card-form__form-label">
-					Emoji:
+					Enter Emoji Here
 				</label>
 				<input
 					id="emoji"
@@ -56,7 +56,7 @@ const NewCardForm = (props) => {
 					value={cardForm.emoji}
 					className="new-card-form__form-textarea"
 				/>
-				<button className="new-card-form__form-button">Make New Card</button>
+				<button className="new-card-form__form-button">Post New Card</button>
 			</form>
 		</div>
 	);
