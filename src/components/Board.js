@@ -31,12 +31,9 @@ const Board = (props) => {
 
   const DELETE_URL = "https://inspiration-board.herokuapp.com/cards/"
   const deleteCard = (id) =>{
-    console.log(cardData)
     const newcardData = cardData.filter((card) =>{
       return card.id !== id
     })
-
-    console.log(`trying to delete id ${id}`)
 
     if(newcardData.length < cardData.length){
       axios.delete(DELETE_URL + id)
@@ -54,7 +51,6 @@ const Board = (props) => {
     axios.post("https://inspiration-board.herokuapp.com/boards/lak-and-katie/cards", card)
       .then((response) =>{
         const updatedCardData = [response.data.card, ...cardData];
-        console.log(updatedCardData)
         setCardData(updatedCardData);
         setErrorMessage('');
       })
