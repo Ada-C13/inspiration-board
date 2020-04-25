@@ -18,7 +18,8 @@ const Card = (props) => {
 
 Card.propTypes = {
 	text  : PropTypes.string,
-	emoji : PropTypes.string,
+  emoji : PropTypes.string,
+  id : PropTypes.number,
 	deleteCardcallBack : PropTypes.func.isRequired,
 };
 

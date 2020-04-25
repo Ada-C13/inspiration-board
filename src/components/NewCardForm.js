@@ -4,7 +4,7 @@ import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const NewCardForm = (props) => {
-	const [ cardForm, setCardForm ] = useState({
+	const [ cardForm, setCardForm ] = useState({   //initial state can be empty object
 		text  : '',
 		emoji : ''
 	});
@@ -31,10 +31,10 @@ const NewCardForm = (props) => {
 
 	return (
 		<div className="new-card-form">
+      <header className="new-card-form__header">
+        <h2>Make a new Card!</h2>
+      </header>
 			<form className="new-card-form__form" onSubmit={onFormSubmit}>
-				<header className="new-card-form__header">
-					<h3>Make a new Card!</h3>
-				</header>
 				<label htmlFor="text" className="new-card-form__form-label">
 					Type Text Here
 				</label>

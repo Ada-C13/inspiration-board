@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import emoji from 'emoji-dictionary';
 import axios from 'axios';
 
 import './Board.css';
@@ -24,7 +25,7 @@ const Board = (props) => {
 			});
 	}, []);
 
-	useEffect(() => {}, []);
+	// useEffect(() => {}, []);
 
 	const deleteCardcallBack = (id) => {
 		const newCardsList = cardsList.filter((post) => {
@@ -46,17 +47,20 @@ const Board = (props) => {
 	};
 
 	const addCardCallBack = (card) => {
-
-		axios
-			.post(`https://inspiration-board.herokuapp.com/boards/cathynikki/cards?text=${card.text}&emoji=${card.emoji}`)
-			.then((response) => {
-				const newCard = response.data;
-				const newCardList = [...cardsList, newCard];
-				setCardsList(newCardList);
-			})
-			.catch((error) => {
-        setErrorMessage(`Error: ${error.message}`);
-      });
+		let newEmoji = emoji.getName(card.emoji);
+		if(!newEmoji) {
+			newEmoji = card.emoji
+		}
+				axios
+					.post(`https://inspiration-board.herokuapp.com/boards/cathynikki/cards?text=${card.text}&emoji=${newEmoji}`)
+					.then((response) => {
+						const newCard = response.data;
+						const newCardsList = [ ...cardsList, newCard ];
+						setCardsList(newCardsList);
+					})
+					.catch((error) => {
+						setErrorMessage(`Error: ${error.message}`);
+					});
 	};
 
 	const board = cardsList.map((post) => {
