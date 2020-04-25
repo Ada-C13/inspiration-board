@@ -14,22 +14,17 @@ console.log(emoji.unicode);
 const Board = (props) => {
   const [cards, setCards] = useState([]);
 
-// https://inspiration-board.herokuapp.com/boards/hannah-nataliya/cards
-useEffect(() => {
-  axios.get(`${props.url}/${props.boardName}/cards`)
-    .then((response) => {
-      console.log(response);
-      const apiCards = response.data;
-      setCards(apiCards);
-    })
-    .catch((error) => {
-      // Still need to handle errors
-      // setErrorMessage(error.message);
-    });
-}, []);
-
-
-  
+  // https://inspiration-board.herokuapp.com/boards/hannah-nataliya/cards
+  useEffect(() => {
+    axios.get(`${props.url}/${props.boardName}/cards`)
+      .then((response) => {
+        const apiCards = response.data;
+        setCards(apiCards);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error.message}`);
+      });
+  }, []);
 
   const cardComponents = cards.map((card) => {
     let singleEmoji = card.card.emoji;
