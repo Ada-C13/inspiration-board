@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -12,14 +12,33 @@ const emoji = require("emoji-dictionary");
 console.log(emoji.unicode);
 
 const Board = (props) => {
-  const cards = [
-      {id: 1, text: "you are cool", emoji: emoji.getUnicode("hibiscus")},
-      {id: 2, text: "you are doing enough" , emoji: emoji.getUnicode("ok_hand")},
-      {id: 3, text: "you are perfect the way you are", emoji: emoji.getUnicode("princess")},
-    ]
-    const cardComponents = cards.map((card) => {
-      return ( <Card id={card.id} text={card.text} emoji={card.emoji} />);
+  const [cards, setCards] = useState([]);
+
+// https://inspiration-board.herokuapp.com/boards/hannah-nataliya/cards
+useEffect(() => {
+  axios.get(`${props.url}/${props.boardName}/cards`)
+    .then((response) => {
+      console.log(response);
+      const apiCards = response.data;
+      setCards(apiCards);
+    })
+    .catch((error) => {
+      // Still need to handle errors
+      // setErrorMessage(error.message);
     });
+}, []);
+
+
+  
+
+  const cardComponents = cards.map((card) => {
+    let singleEmoji = card.card.emoji;
+    if (singleEmoji !== null) {
+      singleEmoji = emoji.getUnicode(card.card.emoji);
+    }
+    
+    return ( <Card id={card.card.id} text={card.card.text} emoji={singleEmoji} />);
+  });
   
   return (
     <div className="board">
@@ -33,3 +52,28 @@ Board.propTypes = {
 };
 
 export default Board;
+
+
+// [
+//   {
+//       "card": {
+//           "id": 6066,
+//           "text": "you are perfect the way you are",
+//           "emoji": "princess"
+//       }
+//   },
+//   {
+//       "card": {
+//           "id": 6065,
+//           "text": "you are doing enough",
+//           "emoji": "ok_hand"
+//       }
+//   },
+//   {
+//       "card": {
+//           "id": 6064,
+//           "text": "you are cool",
+//           "emoji": "hibiscus"
+//       }
+//   }
+// ]
