@@ -52,27 +52,3 @@ exports[`Board that it matches the existing snapshot 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`Card that it matches the existing snapshot 1`] = `
-<DocumentFragment>
-  <div
-    class="card"
-  >
-    <div
-      class="card__content"
-    >
-      <p
-        class="card__content-text"
-      />
-      <p
-        class="card__content-emoji"
-      />
-      <button
-        class="card__delete"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
-</DocumentFragment>
-`;
