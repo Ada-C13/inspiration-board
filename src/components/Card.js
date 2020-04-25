@@ -10,8 +10,12 @@ const Card = (props) => {
     // console.log(props.text)
   }
   
-  // const onDeleteButtonClick = (event) => { 
-  //   props.onDeleteButtonClickCallback(props.id)
+  const onDeleteButtonClick = () => { 
+    props.onDeleteCallback(props.id)
+  }
+
+  // handleClick() {
+    
   // }
 
   return (
@@ -22,7 +26,7 @@ const Card = (props) => {
           <p className="card__content-emoji">Emoji:{emoji.getUnicode(`${props.emoji}`)}</p>
         </div>
         <div className="card__delete">
-            <button>Delete</button> {/* Revisit later to see if CSS still functional/ optimal */ }
+            <button onClick={onDeleteButtonClick}>Delete</button> {/* Revisit later to see if CSS still functional/ optimal */ }
         </div>
       </div>
     </div>
@@ -30,11 +34,8 @@ const Card = (props) => {
 }
 
 
-
-
-
 Card.propTypes = {
-  onDeleteButtonClickCallback:PropTypes.func.isRequired,
+  onDeleteCallback:PropTypes.func.isRequired,
   text: PropTypes.string,
   emoji: PropTypes.string,
 };

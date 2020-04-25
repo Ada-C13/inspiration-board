@@ -13,9 +13,7 @@ const App = () => {
   const [boardName,setBoardName] = useState('ross-lex');
   const [cardList, setCardList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [getCard, setGetCard] = useState(`${API_URL_BASE}${boardName}/cards`) 
-  // https://inspiration-board.herokuapp.com/boards/ross-lex/cards
-  // console.log(get_request)
+  const getCard = `${API_URL_BASE}${boardName}/cards`
 
   // const onDeleteButtonClickCallback = ( (`https://inspiration-board.herokuapp.com/cards/${id}`) => {
   //   const afterDeleteButtonClick = cards.filter(card => card.id !== id);
@@ -26,27 +24,28 @@ const App = () => {
   //   })
   // };
 
-  // const deleteCard = ((id) => {
-  //   axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
-  //     .then((response) => {
-  //       setCardList(response.data);
-  //       console.log(response.data)
-  //     })
-  //     .catch((error) =>{
-  //       setErrorMessage(error.message);
-  //     })
-  //   })
+
+  // Currently, after clicking the delete button, user has to refresh the page to in order to see the updated list.
+  // TODO: remove the card right away
+  const onDeleteCallback = ((id) => {
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+      .then((response) => {
+        const updatedCardList = cardList.filter(card => card.id !== id)
+        setCardList(updatedCardList);
+      })
+      .catch((error) =>{
+        setErrorMessage(error.message);
+      })
+    })
 
   const addCard = ((card) => {
     axios.post(getCard, card)
     .then((response) => {
-      // What should we do when we know the post request worked?
       const updatedData = [...cardList, response.data];
       setCardList(updatedData);
       setErrorMessage('');
     })
     .catch((error) => {
-      // What should we do when we know the post request failed?
       setErrorMessage(error.message);
     });
   }) 
@@ -72,10 +71,8 @@ const App = () => {
       </header>
       <Board
         cards={cardList}
-        onDeleteButtonClickCallback={deleteCard} 
-        // boardName={`ross-lex`} 
+        onDeleteCallback={onDeleteCallback} 
       />
-      {/* <Card /> */}
       <NewCardForm onFormSubmitCallBack={addCard}/>
     </section>
   );

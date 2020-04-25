@@ -9,17 +9,15 @@ import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
 
-  // console.log(props.cards)
-
   const boardComponents = () => { 
     const cardsList = props.cards.map((card, index) => {
     return(
       <Card
-        // content={card.content}
         key={index}
         id={card.card.id}
         text= {card.card.text}
         emoji= {card.card.emoji}
+        onDeleteCallback={props.onDeleteCallback}
         />
       );
     }); 
