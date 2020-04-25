@@ -1,12 +1,15 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react'
-import App from './App'
+import Board from '../Board'
 
-describe('App', () => {
+describe('Board Component', () => {
   test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <App />
+      <Board
+      url="https://inspiration-board.herokuapp.com/"
+      boardName={`Sharon-Olga`}
+    />
     );
 
     // Assert
@@ -14,4 +17,5 @@ describe('App', () => {
     cleanup();
   });
 });
+
 

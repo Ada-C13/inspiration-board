@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
@@ -67,8 +67,10 @@ const emojiOptions = EMOJI_LIST.map((emoji1 , i) => {
       
     </form>     
   )
-
 }
+NewCardForm.propTypes = {
+  addNewCardCallback: PropTypes.func.isRequired,
+};
 
 
 export default NewCardForm;

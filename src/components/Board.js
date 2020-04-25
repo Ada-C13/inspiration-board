@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Board.css';
@@ -66,6 +66,7 @@ const Board = (props) => {
   return (
     <div className='board' title={`${props.boardName}`}>
       {boardComponent}
+      {errorMessage ? <div><h2 className="validation-errors-display">{errorMessage}</h2></div> : ''}
       <NewCardForm addNewCardCallback={addNewCard}/>
     </div>
   )

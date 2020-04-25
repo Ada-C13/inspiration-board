@@ -1,12 +1,16 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react'
-import App from './App'
+import Card from '../Card'
 
-describe('App', () => {
+describe('Card Component', () => {
   test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <App />
+      <Card
+      text="Hello"
+      emoji="heart-eyes"
+      onClickCallback={() => { }}
+    />
     );
 
     // Assert
@@ -14,4 +18,3 @@ describe('App', () => {
     cleanup();
   });
 });
-

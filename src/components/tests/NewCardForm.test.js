@@ -1,12 +1,13 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react'
-import App from './App'
+import NewCardForm from '../NewCardForm';
 
-describe('App', () => {
-  test('that it matches the existing snapshot', () => {
+describe('NewCardForm', () => {
+    test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <App />
+      <NewCardForm addNewCardCallback={() => { }}
+      />
     );
 
     // Assert
@@ -14,4 +15,3 @@ describe('App', () => {
     cleanup();
   });
 });
-
