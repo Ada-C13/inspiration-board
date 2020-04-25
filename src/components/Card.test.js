@@ -1,14 +1,16 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import NewCardForm from './NewCardForm.js';
+import Card from './card.js';
 
-
-describe('NewCardForm', () => {
+describe('Card', () => {
   test('that it matches the existing snapshot', () => {
     // Arrange-Act
     const { asFragment } = render(
-      <NewCardForm
-        onSubmitCallback={() => { }}
+      <Card
+        text=''
+        emoji=''
+        onClickCallBack={() => { }}
+        id={4}
       />
     );
 

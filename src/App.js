@@ -11,7 +11,6 @@ const App = () => {
       <Board
         url="https://inspiration-board.herokuapp.com/"
         boardName={`juneA`}
-        // boardName={`Ada-Lovelace`}
       />
     </section>
   );

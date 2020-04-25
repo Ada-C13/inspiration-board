@@ -28,38 +28,23 @@ const Board = ({url, boardName}) => {
   }, [cardList, onSubmitCallback]);
 
   const onClickCallback = (id) => {
-    console.log(`before delete ${id}`)
     axios.delete(`${url}cards/${id}`)
     .then ((response) => {
-      console.log(`we are in callback function`)
-      console.log(response)
       setCardList(updateData)
     })
     .catch((error) => {
-      console.log(`here is our error ${error}`)
+      console.log(`Error: ${error}`)
     });
   }
 
   const onSubmitCallback = (phrase) => {
     axios.post(`${url}boards/${boardName}/cards?text=${phrase}`) 
     .then ((response) => {
-      console.log(`we are in onSubmitCallback function`)
-      console.log(response)
-      // setCardList(updateData)
+
     })
     .catch((error) => {
-      console.log(`here is our error ${error}`)
+      console.log(`Error: ${error}`)
     });
-
-    // useEffect(() => {
-    //   setCardList
-    //   }, [onSubmitCallback]);
-  
-// POST https://inspiration-board.herokuapp.com/boards/:board_name/cards
-// accepted params:
-// text (string)
-// emoji (string)
-
   }
 
   return (
@@ -70,7 +55,8 @@ const Board = ({url, boardName}) => {
 )};
 
 Board.propTypes = {
-
+  url: PropTypes.string.isRequired, 
+  boardName: PropTypes.string.isRequired
 };
 
 export default Board;
