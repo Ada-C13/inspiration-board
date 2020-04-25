@@ -9,29 +9,30 @@ import CARD_DATA from "../data/card-data.json";
 const Board = ({ url, boardName }) => {
   const [listCards, setListCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null); //api error message
+  console.log(listCards);
 
   //--------- API CALL ------------
-
   useEffect(() => {
     axios
-      .get(`${url}${boardName}`)
+      .get(`${url}${boardName}/cards`)
       .then((response) => {
         const apiListCards = response.data;
         setListCards(apiListCards);
+        console.log(apiListCards[0].card.id);
       })
       .catch((error) => {
         setErrorMessage(error.message);
         console.log(error.message);
       });
-  }, [listCards]);
-  console.log(listCards);
+  }, [boardName]); // this is a dependency array. If one of the dependencies change the callback method will be run, if it is empty it will only run on the first render
+
   const formSubmitCallback = () => {};
 
   const deleteCallback = (id) => {};
 
   return (
     <div className="Myboard">
-      <div>Board</div>
+      <div>Board {boardName}</div>
       {errorMessage ? (
         <div>
           <h2 className="error-msg">{errorMessage}</h2>
@@ -39,7 +40,11 @@ const Board = ({ url, boardName }) => {
       ) : (
         ""
       )}
-      <Card id="id" text="" deleteCallback={deleteCallback(id)} emoji="" />
+      {listCards.map((el) => {
+        return (
+          <Card id={el.card.id} text={el.card.text} emoji={el.card.emoji} />
+        );
+      })}
     </div>
   );
 };
