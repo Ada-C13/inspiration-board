@@ -12,11 +12,11 @@ const Board = (props) => {
   // console.log(props.cards)
 
   const boardComponents = () => { 
-    const cardsList = props.cards.map((card) => {
+    const cardsList = props.cards.map((card, index) => {
     return(
       <Card
         // content={card.content}
-        // key={index}
+        key={index}
         id={card.card.id}
         text= {card.card.text}
         emoji= {card.card.emoji}
@@ -25,7 +25,6 @@ const Board = (props) => {
     }); 
     return cardsList
   }
-
 
   return (
     <div className="board">

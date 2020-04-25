@@ -11,9 +11,9 @@ const NewCardForm = (props) => {
     emoji:'',
   });
 
-  const emojiOptions = EMOJI_LIST.map((e) => {
+  const emojiOptions = EMOJI_LIST.map((e, index) => {
     return (
-      <option value={e}>{emoji.getUnicode(`${e}`)}</option>
+      <option value={e} key={index}>{emoji.getUnicode(`${e}`)}</option>
     )
   })
 
