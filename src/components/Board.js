@@ -34,7 +34,7 @@ const Board = (props) => {
 
 Board.propTypes = {
 url: PropTypes.string.isRequired,
-boardname: PropTypes.string.isRequired,
+boardName: PropTypes.string.isRequired,
 };
 
 export default Board;

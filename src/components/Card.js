@@ -6,6 +6,14 @@ import './Card.css';
 
 const Card = (props) => {
 
+  const getEmoji = () => {
+    if (props.emoji){
+      return emoji.getUnicode(props.emoji);
+    } else {
+      return "";
+    }
+  }
+
   return (
     <div className="card">
       <ul className="card__content">
@@ -13,16 +21,14 @@ const Card = (props) => {
           {props.text}
         </span>
         <span className="card__content-emoji">
-        {props.emoji}
+        {getEmoji()}
         </span>
       </ul>
-      Card
     </div>
   )
 }
 
 Card.propTypes = {
-id: PropTypes.number.isRequired,
 text: PropTypes.string.isRequired,
 emoji: PropTypes.string,
 };
