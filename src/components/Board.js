@@ -5,14 +5,13 @@ import axios from 'axios';
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-// import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
   
   const [cardsList, setCardsList] = useState([]);
 
   useEffect(() => {
-    axios.get(`${props.url}/${props.boardName}/cards`)
+    axios.get(`${props.url}boards/${props.boardName}/cards`)
       .then((response) => {
         const apiCardsList = response.data;
         setCardsList(apiCardsList);
@@ -24,13 +23,12 @@ const Board = (props) => {
   }, []);
 
   const onDeleteClick = (event) => {
-
+    console.log(`Click!`, event.target.name, event.target.value);
     const cardId = event.target.name;
-    // E https://inspiration-board.herokuapp.com/cards/:card_id
-    axios.delete(`${props.url}cards/:${cardId}`)
+    axios.delete(`${props.url}cards/${cardId}`)
       .then((response) => {
         const deleteResponse = response.data;
-        setCardsList(deleteResponse);
+        console.log(`response`, deleteResponse);
       })
       .catch((error) => {
         console.log(error.message);

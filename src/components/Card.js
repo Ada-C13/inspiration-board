@@ -28,7 +28,7 @@ const Card = (props) => {
           name={props.id}
           onClick={props.onDeleteClick}
           value="Delete this card"
-          className="card_delete"/> 
+          className="card__content-button"/> 
       </ul>
     </div>
   )
