@@ -23,14 +23,22 @@ const Card = (props) => {
         <span className="card__content-emoji">
         {getEmoji()}
         </span>
+        <input
+          type="button"
+          name={props.id}
+          onClick={props.onDeleteClick}
+          value="Delete this card"
+          className="card_delete"/> 
       </ul>
     </div>
   )
 }
 
 Card.propTypes = {
+  id: PropTypes.number,
 text: PropTypes.string,
 emoji: PropTypes.string,
+onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default Card;
