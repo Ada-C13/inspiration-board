@@ -7,15 +7,14 @@ import NewCardForm from './NewCardForm';
 // import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
-  //resources: https://alligator.io/react/axios-react
+  // Resources: https://alligator.io/react/axios-react
   const BASE_URL = `${props.url}${props.boardName}/cards`;
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  //Resource: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/apis-get.md
+  // Resource: https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/React/apis-get.md
   useEffect(() => {
-    axios
-      .get(BASE_URL)
+    axios.get(BASE_URL)
       .then((response) => {
         const apiData = response.data;
         const cardAPI = apiData.map((wrap) => {
@@ -32,10 +31,9 @@ const Board = (props) => {
       });
   }, []);
 
-  //https://github.com/AdaGold/inspiration-board-api
+  // Resource: https://github.com/AdaGold/inspiration-board-api
   const removeCard = (id) => {
-    axios
-      .delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then((response) => {
         const updatedCardDeck = cards.filter(
           (card) => card.id !== response.data.card.id
@@ -49,8 +47,7 @@ const Board = (props) => {
 
   const addCard = (newCardContent) => {
     const nextId = Math.max(...cards.map((card) => card.id)) + 1;
-    axios
-      .post(BASE_URL, newCardContent)
+    axios.post(BASE_URL, newCardContent)
       .then((response) => {
         const newCards = [...cards];
 
@@ -85,11 +82,21 @@ const Board = (props) => {
   //
 
   return (
-    <div>
-      {errorMessage && <div><h4>{errorMessage}</h4></div>}
-      {cardComponents}
-      <NewCardForm addCardCallback={addCard}/>
+    <div className="validation-errors-display">
+
+      {errorMessage &&
+      <div className="validation-errors-display__list">
+        <h2>{errorMessage}</h2>
+      </div>}
+      <div className="board">
+        {cardComponents}
+      </div>
+
+      <NewCardForm 
+        addCardCallback={addCard}
+      />
     </div>
+
   );
 };
 

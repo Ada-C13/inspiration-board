@@ -13,28 +13,29 @@ describe('Card', () => {
         removeCardCallback={() => {}}
       />
     );
+
     // Assert
     expect(asFragment()).toMatchSnapshot();
     cleanup();
+    
   });
 });
 
 describe('user interaction with removing a card', () => {
-  const setup = () => {
-    const removeCardCallbackMock = jest.fn(() => { });
-    const renderResult = render(
-    <Card 
-      id={202}
-      text={'hello world'}
-      emoji={'beer'}
-      removeCardCallback={removeCardCallbackMock}
-    />);
-    const removeCard = renderResult.getByText('remove THIS card');
+  const removeCardCallbackMock = jest.fn(() => { });
+  const renderResult = render(
+  <Card 
+    id={202}
+    text={'hello world'}
+    emoji={'beer'}
+    removeCardCallback={removeCardCallbackMock}
+  />);
 
-    return {
-      ...renderResult,
-      removeCardCallbackMock,
-      removeCard,
-    }
+  const removeCard = renderResult.getByText('remove THIS card');
+
+  return {
+    ...renderResult,
+    removeCardCallbackMock,
+    removeCard,
   };
 });
