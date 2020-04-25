@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-// import './DropDownMenu.css';
+import './DropDownMenu.css';
 
 const BoardsMenu = ({ title, items = [], onChosenCallback }) => {
 	const [ open, setOpen ] = useState(false);
@@ -18,15 +18,9 @@ const BoardsMenu = ({ title, items = [], onChosenCallback }) => {
 				tabIndex={0}
 				className="dd-header"
 				role="button"
-				onKeyPress={() => toggle(!open)}
 				onClick={() => toggle(!open)}
 			>
-				<div className="dd-header__title">
-					<p className="dd-header__title--bold">{title}</p>
-				</div>
-				<div className="dd-header__action">
-					<p>{open ? 'close' : 'open'}</p>
-				</div>
+					<h4 className="dd-header__title"><span className="header__text">{title}...</span></h4>
 			</div>
 			{open && (
 				<ul className="dd-list">

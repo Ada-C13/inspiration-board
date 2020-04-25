@@ -1,18 +1,25 @@
-div {
+.dd-container{
+  display: flex;
+  flex-direction: row;
   width: 200px;
+  height: 130px;
   margin: 30px;
 }
 
-.dd-header__title h2 {
+.dd-header__title {
   font-family: 'Permanent Marker', Helvetica, sans-serif;
   margin: 0;
   padding: 5px;
 }
 
+.dd-header:focus {
+  outline: 0;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding-left: 0;
 }
 
 li {
@@ -32,21 +39,11 @@ li button {
 
 li button:hover {
   font-size: 20px;
-
 }
 
-.header {
-  padding: 4rem;
-}
-
-.header__h1 {
-  margin: auto 0;
-  text-align: center;
-}
-
-.dd-header__text {
+.header__text {
   padding: 1rem;
-
+  font-size: 35px;
   display: inline-block;
   background-color: #222;
   color: white;
