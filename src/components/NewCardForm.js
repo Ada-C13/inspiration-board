@@ -7,7 +7,11 @@ const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_
 
 const NewCardForm = () => {
   
-
+  const emojis = EMOJI_LIST.map((em) => {
+    return(
+    <option>{emoji.getUnicode(em)}</option>
+    );
+  })
 
   return (
     <div className="new-card-form">
@@ -16,11 +20,18 @@ const NewCardForm = () => {
       </h1>
       <form className="new-card-form__form">
         <div>
-          <label className="new-card-form__form-label"></label>
+          <label className="new-card-form__form-label">Write your sticky: </label>
           <input 
             type="text" 
             className="new-card-form__form-textarea"/>
         </div>
+        <div>
+          {/* <label className="new-card-form__form-label">Pick your emoji:</label> */}
+          <select className="new-card-form__form-select">
+            {emojis}
+          </select>
+        </div>
+        <button className="new-card-form__form-button">Submit</button>
       </form>
     </div>
   );

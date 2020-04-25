@@ -60,9 +60,11 @@ const Board = (props) => {
   });
 
   return (
-    <div className="board">
-     {cardComponents}
-
+    <div>
+      <NewCardForm />
+      <div className="board">
+        {cardComponents}
+      </div>
     </div>
   )
 };
