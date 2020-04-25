@@ -7,11 +7,15 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
+const emoji = require("emoji-dictionary");
+// console.log(emoji.getUnicode("heart_eyes"));
+console.log(emoji.unicode);
+
 const Board = (props) => {
   const cards = [
-      {id: 1, text: "you are cool", emoji: "flower"},
-      {id: 2, text: "you are doing enough" , emoji: "smile" },
-      {id: 3, text: "atleast it's not rainning", emoji: "coffee"},
+      {id: 1, text: "you are cool", emoji: emoji.getUnicode("hibiscus")},
+      {id: 2, text: "you are doing enough" , emoji: emoji.getUnicode("ok_hand")},
+      {id: 3, text: "you are perfect the way you are", emoji: emoji.getUnicode("princess")},
     ]
     const cardComponents = cards.map((card) => {
       return ( <Card id={card.id} text={card.text} emoji={card.emoji} />);
