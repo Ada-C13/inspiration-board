@@ -86,7 +86,7 @@ const Board = (props) => {
 			) : (
 				''
 			)}
-			<h2> Current Board is {currentBoard} </h2>
+			<h2> Current Board @ {currentBoard} </h2>
 			<DropDownMenu title="Choose Board" items={BOARDS} onChosenCallback={chooseBoard} />
 			<div className='card-container'>
 					{board}

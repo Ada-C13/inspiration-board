@@ -54,5 +54,10 @@
 }
 
 .card__delete:hover {
-  background-color: darkgray;
+  background-color:black;
+  color: white;
+}
+
+.board--header {
+  display: inline block;
 }

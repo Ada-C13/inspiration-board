@@ -26,11 +26,11 @@ const NewCardForm = (props) => {
 	return (
 		<div className="new-card-form">
 			<header className="new-card-form__header">
-				<h2>Make a new Card!</h2>
+				<h3 className='header__text' >Make a new Card!</h3>
 			</header>
 			<form className="new-card-form__form" onSubmit={onFormSubmit}>
 				<label htmlFor="text" className="new-card-form__form-label">
-					Type Text Here
+					Text
 				</label>
 				<input
 					id="text"
@@ -40,7 +40,7 @@ const NewCardForm = (props) => {
 					className="new-card-form__form-textarea"
 				/>
 				<label htmlFor="emoji" className="new-card-form__form-label">
-					Enter Emoji Here
+					Emoji
 				</label>
 				<input
 					id="emoji"
