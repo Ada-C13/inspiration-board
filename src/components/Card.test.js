@@ -36,3 +36,5 @@ test("That the callback funtions work as expected", () => {
 });
 
 ^//I think line 32 and 35 need to be calling a different function, but I haven't cleared up which one yet. 
+
+//Added comment to test add . functionality. 
