@@ -77,45 +77,6 @@ const Board = (props) => {
 		);
 	});
 
-	const BOARDS = [
-		{
-			board : {
-				id   : 234,
-				name : 'banana-banana'
-			}
-		},
-		{
-			board : {
-				id   : 237,
-				name : 'cojenco'
-			}
-		},
-		{
-			board : {
-				id   : 238,
-				name : 'nvco'
-			}
-		},
-		{
-			board : {
-				id   : 14,
-				name : 'Bita-Amani'
-			}
-		},
-		{
-			board : {
-				id   : 176,
-				name : 'BogartsBoard'
-			}
-		},
-		{
-			board : {
-				id   : 254,
-				name : 'cathynikki'
-			}
-		}
-	];
-
 	return (
 		<div className="Board">
 			{errorMessage ? (
@@ -130,11 +91,51 @@ const Board = (props) => {
 			<div className='card-container'>
 					{board}
 			</div>
-      <h2>You are posting at {currentBoard} </h2>
+      <h2>You are posting @ {currentBoard} </h2>
 			<NewCardForm addCardCallBack={addCardCallBack} />
 		</div>
 	);
 };
+
+const BOARDS = [
+  {
+    board : {
+      id   : 254,
+      name : 'cathynikki'
+    }
+  },
+  {
+    board : {
+      id   : 234,
+      name : 'banana-banana'
+    }
+  },
+  {
+    board : {
+      id   : 224,
+      name : 'foobar'
+    }
+  },
+  {
+    board : {
+      id   : 1,
+      name : 'Ada-Lovelace'
+    }
+  },
+  {
+    board : {
+      id   : 12,
+      name : 'Green-Pea'
+    }
+  },
+  {
+    board : {
+      id   : 151,
+      name : 'fluffy'
+    }
+  },
+
+];
 
 Board.propTypes = {
 	url       : PropTypes.string.isRequired,
