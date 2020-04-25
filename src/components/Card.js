@@ -8,12 +8,16 @@ const Card = (props) => {
   const colors = ["yellow", "lightblue", "pink", "lightgreen", "violet"];
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
+  const onClickCallback = () => {
+    props.deleteCard(props.id);
+  };
+
   return (
     <div className="card" style={{backgroundColor: randomColor}}>
       <div className="card__content">
         <p className="card__content-text"> {props.text}  </p>
         <div className="card__content-emoji"> {props.emoji} </div>
-        <button className="card__delete"> delete</button>
+        <button className="card__delete" onClick={onClickCallback}> delete</button>
       </div>
     </div>
   )

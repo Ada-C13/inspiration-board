@@ -26,34 +26,39 @@ const Board = (props) => {
       });
   }, []);
 
+  const deleteCard = (id) => {
+    console.log(id);
+    const newCards = cards.filter((card) => {
+      return card.card.id !== id;
+    });
+
+    // https://inspiration-board.herokuapp.com/cards/:card_id
+    if (newCards.length < cards.length) {
+      axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+        .then((response) => {
+         console.log(`Card ${ id } deleted`);
+        })
+        .catch((error) => {
+          console.log(`Unable to delete card ${ id }`);
+        })
+      setCards(newCards);
+    }
+  }
+
   const cardComponents = cards.map((card) => {
     let singleEmoji = card.card.emoji;
     if (singleEmoji !== null) {
       singleEmoji = emoji.getUnicode(card.card.emoji);
     }
     
-    return ( <Card id={card.card.id} text={card.card.text} emoji={singleEmoji} />);
+    return (<Card 
+                id={card.card.id}
+                text={card.card.text}
+                emoji={singleEmoji}
+                deleteCard={deleteCard} 
+            />);
   });
 
-
-
-  // const deleteStudent = (id) => {
-  //   const newStudentList = studentList.filter((student) => {
-  //     return student.id !== id;
-  //   });
-
-  //   if (newStudentList.length < studentList.length) {
-  //     axios.delete(`${ API_URL_BASE }/${ id }`)
-  //       .then((response) => {
-  //         setErrorMessage(`Student ${ id } deleted`);
-  //       })
-  //       .catch((error) => {
-  //         setErrorMessage(`Unable to delete student ${ id }`);
-  //       })
-  //     setStudentList(newStudentList);
-  //   }
-  // }
-  
   return (
     <div className="board">
      {cardComponents}
