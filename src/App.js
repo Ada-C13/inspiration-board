@@ -9,7 +9,6 @@ import NewCardForm from './components/NewCardForm';
 const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/"
 
 const App = () => {
-
   const [boardName,setBoardName] = useState('ross-lex');
   const [cardList, setCardList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -30,7 +29,7 @@ const App = () => {
   const onDeleteCallback = ((id) => {
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then((response) => {
-        const updatedCardList = cardList.filter(card => card.id !== id)
+        const updatedCardList = cardList.filter(card => card.card.id !== id)
         setCardList(updatedCardList);
       })
       .catch((error) =>{

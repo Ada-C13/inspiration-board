@@ -24,7 +24,15 @@ describe('Card', () => {
   });
 });
 
-test("That the callback funtions works as expected", () => {
+test("That the callback funtions work as expected", () => {
   // Arrange
   const formData = setup();
 
+  //Act
+  fireEvent.click(formData.deleteButton);
+
+  //Assert 
+  expect(formData.onDeleteButtonClick).toHaveBeenCalled();
+});
+
+^//I think line 32 and 35 need to be calling a different function, but I haven't cleared up which one yet. 
