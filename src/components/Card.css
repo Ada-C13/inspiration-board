@@ -30,6 +30,7 @@
 .card__content-text {
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: 3rem;
 }
 
 .card__content-emoji {
