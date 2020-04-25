@@ -50,7 +50,7 @@ const Board = (props) => {
       setErrorMessage(error.message);
     })
   }
-  // https://inspiration-board.herokuapp.com/boards/Sharon-Olga/cards?text=Hi Sharon!&emoji='hi'
+
   const boardComponent = cardList.map((card, i) => {
     return (
       <Card 
@@ -64,7 +64,7 @@ const Board = (props) => {
   });
 
   return (
-    <div className='board'>
+    <div className='board' title={`${props.boardName}`}>
       {boardComponent}
       <NewCardForm addNewCardCallback={addNewCard}/>
     </div>

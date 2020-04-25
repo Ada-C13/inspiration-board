@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, getByText } from '@testing-library/react'
+import { render, cleanup, getByTitle } from '@testing-library/react'
 import Board from './Board'
 
 describe('Board Component', () => {
@@ -10,10 +10,10 @@ describe('Board Component', () => {
   />);
 
   test('A Board can be rendered', () => {
-    const { getByText } = renderSampleBoard();
-    const BoardElement = getByText(/Inspiration Board/i);
-    expect(BoardElement).toBeInTheDocument();
-});
+    const { getByTitle } = renderSampleBoard();
+    const BoardElement = getByTitle(/Hi/i);
+    expect(BoardElement).toBeInTheDocument;
+  });
 });
 
 

@@ -1,8 +1,20 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react'
-import NewCardForm from '../NewCardForm';
+import NewCardForm from './NewCardForm';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
+describe('NewCardForm', () => {
+    test('that it matches the existing snapshot', () => {
+    // Arrange-Act
+    const { asFragment } = render(
+      <NewCardForm />
+    );
 
+    // Assert
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
 
 // describe('NewStudentForm', () => {
 //   afterEach(cleanup); // Clear the DOM, to start with fresh empty HTML source code
