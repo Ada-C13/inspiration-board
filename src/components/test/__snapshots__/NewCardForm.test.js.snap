@@ -3,34 +3,35 @@
 exports[`NewCardForm that it matches the existing snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="new-card-form"
+    class="new-card__form"
   >
-    <h4
-      class="new-card-form_header"
+    <h2
+      class="new-card-form__header"
     >
-       Add an INSPIRATION note below:
-    </h4>
+       Add an INSPIRATION card:
+    </h2>
     <form
-      class="new-card-form_form"
+      class="new-card-form--form"
     >
       <div>
         <label
-          class="new-card-form_form-label"
+          class="new-card-form__form-label"
           for="text"
         />
         <textarea
-          class="new-card-form_form-text-area"
+          class="new-card-form__form-textarea"
+          data-testid="text"
           id="text"
           name="text"
         />
       </div>
       <div>
         <label
-          class="new-card-form_form-label"
+          class="new-card-form__form-label"
           for="emoji"
         />
         <select
-          class="new-card-form_form-select"
+          class="new-card-form__form-select"
           id="emoji"
           name="emoji"
         >
@@ -70,9 +71,9 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
         </select>
       </div>
       <input
-        class="new-card-form_form-button"
+        class="new-card-form__form-button"
         type="submit"
-        value="Add Card"
+        value="Add Card !!"
       />
     </form>
   </div>

@@ -20,29 +20,29 @@ const NewCardForm = (props) => {
   });
 
   const inputChange = (event) => {
+    //event handler function
     const { name, value } = event.target;
 
     const newCard = { ...card };
 
     newCard[name] = value;
-    setCard(newCard);
+    setCard(newCard); //update the card content with users input
   };
 
   const submitForm = (event) => {
     event.preventDefault();
 
-    props.addCardCallback(card);
+    props.addCardCallback(card); //send the information to parent component via the event handler call back function
     setCard({
       text: '',
       emoji: '',
-    });
+    }); //set the content of card to empty string after adding card to card list (happens in the parent component)
   };
 
   const emojiFinder = EMOJI_LIST.map((ugh_emoji, i) => {
+    //an array for options of the emojis the use can choose from-- will be displayed in emojies and not text
     return (
-      <option 
-        key={i}
-        value={ugh_emoji}>
+      <option key={i} value={ugh_emoji}>
         {emoji.getUnicode(ugh_emoji)}
       </option>
     );
@@ -60,19 +60,18 @@ const NewCardForm = (props) => {
             name='text'
             onChange={inputChange}
             value={card.text}
+            data-testid = "text"
           />
         </div>
         <div>
-          <label 
-            className='new-card-form__form-label' 
-            htmlFor='emoji'>
-          </label>
+          <label className='new-card-form__form-label' htmlFor='emoji'></label>
           <select
             className='new-card-form__form-select'
             id='emoji'
             name='emoji'
             onChange={inputChange}
-            value={card.emoji}>
+            value={card.emoji}
+          >
             {emojiFinder}
           </select>
         </div>
@@ -87,7 +86,7 @@ const NewCardForm = (props) => {
 };
 
 NewCardForm.propTypes = {
-  addCardCallback: PropTypes.func.isRequired
+  addCardCallback: PropTypes.func.isRequired,
 };
 
 export default NewCardForm;

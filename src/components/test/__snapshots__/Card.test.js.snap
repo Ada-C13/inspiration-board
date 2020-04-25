@@ -9,19 +9,19 @@ exports[`Card that it matches the existing snapshot 1`] = `
       class="card__content"
     >
       <p
-        class="card__content_text"
+        class="card__content-text"
       >
         hello word
       </p>
       <span
-        class="card__content_emoji"
+        class="card__content-emoji"
       >
         🍺
       </span>
       <button
-        class="card_remove"
+        class="card__delete"
       >
-        Remove THIS card
+        Take this card if you want/need it...
       </button>
     </section>
   </div>

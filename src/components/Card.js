@@ -13,13 +13,13 @@ const Card = (props) => {
   return (
     <div className='card'>
       <section className='card__content'>
-        <p className='card__content-text'>{props.text && props.text}</p>
+        <p className='card__content-text'>{props.text}</p>
         <span className='card__content-emoji'>
           {props.emoji && emoji.getUnicode(props.emoji)}
         </span>
         <button 
           className='card__delete' 
-          onClick={removeCard}>
+          onClick={removeCard}> 
           Take this card if you want/need it...
         </button>
       </section>

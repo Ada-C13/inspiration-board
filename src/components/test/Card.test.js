@@ -3,6 +3,7 @@ import { render, cleanup } from '@testing-library/react';
 import Card from '../Card';
 
 describe('Card', () => {
+  afterEach(cleanup);
   test('that it matches the existing snapshot', () => {
     //Arrange-Act
     const { asFragment } = render(
@@ -16,22 +17,23 @@ describe('Card', () => {
 
     // Assert
     expect(asFragment()).toMatchSnapshot();
-    cleanup();
-    
   });
 });
 
 describe('user interaction with removing a card', () => {
-  const removeCardCallbackMock = jest.fn(() => { });
+  const removeCardCallbackMock = jest.fn(() => {});
   const renderResult = render(
-  <Card 
-    id={202}
-    text={'hello world'}
-    emoji={'beer'}
-    removeCardCallback={removeCardCallbackMock}
-  />);
+    <Card
+      id={202}
+      text={'hello world'}
+      emoji={'beer'}
+      removeCardCallback={removeCardCallbackMock}
+    />
+  );
 
-  const removeCard = renderResult.getByText('remove THIS card');
+  const removeCard = renderResult.getByText(
+    'Take this card if you want/need it...'
+  );
 
   return {
     ...renderResult,
