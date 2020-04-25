@@ -4,7 +4,8 @@ import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const NewCardForm = (props) => {
-	const [ cardForm, setCardForm ] = useState({   //initial state can be empty object
+	const [ cardForm, setCardForm ] = useState({
+		//initial state can be empty object
 		text  : '',
 		emoji : ''
 	});
@@ -31,9 +32,9 @@ const NewCardForm = (props) => {
 
 	return (
 		<div className="new-card-form">
-      <header className="new-card-form__header">
-        <h2>Make a new Card!</h2>
-      </header>
+			<header className="new-card-form__header">
+				<h2>Make a new Card!</h2>
+			</header>
 			<form className="new-card-form__form" onSubmit={onFormSubmit}>
 				<label htmlFor="text" className="new-card-form__form-label">
 					Type Text Here
@@ -62,7 +63,7 @@ const NewCardForm = (props) => {
 };
 
 NewCardForm.propTypes = {
-	addCardCallBack : PropTypes.func.isRequired,
+	addCardCallBack : PropTypes.func.isRequired
 };
 
 export default NewCardForm;

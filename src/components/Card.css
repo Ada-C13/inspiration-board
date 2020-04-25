@@ -1,51 +1,56 @@
 .card {
-  background-color: #F4FF81;
+	background-color: #f4ff81;
+	padding: 1em 0;
+	margin: 0.5rem;
+	width: 20vw;
+	min-height: 40vh;
+	align-items: center;
+	box-shadow: lightpink;
+}
 
-  padding: 1em 0;
-  margin: 0.5rem;
-
-  /* padding: 5rem 10rem; 
-  margin: 5rem 30rem; */
-  
-
-  min-height: 250px;
-  min-width: 225px;
-  flex-basis: 18%;
-
-  border-radius: 5px;
-
-  display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-  align-items: center;
+.card.pink {
+	background-color: hotpink;
 }
 
 .card__content {
-  grid-column-start: 2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  text-align: center;
-  font-weight: 100;
-  overflow: hidden;
+	display: grid;
+	grid-template-rows: 4fr 2fr 1fr;
+	text-align: center;
+	font-weight: 100;
+	overflow: hidden;
 }
 
 .card__content-text {
-  text-overflow: ellipsis;
-  overflow: hidden;
+	fo: ellipsis;
+	overflow: hidden;
+	grid-row-start: 1;
+	/* min-height: 60%; */
 }
 
 .card__content-emoji {
-  font-size: 3rem;
+	font-size: 3rem;
+	grid-row-start: 2;
+	/* min-height: 30%; */
 }
 
-.card__content-text, .card__content-emoji {
-  padding: 0;
-  margin: 0;
+.card__content-text,
+.card__content-emoji {
+	padding: 0;
+	margin: 0;
+}
+
+.card__delete_div {
+	grid-row-start: 3;
+	min-height: 10%;
+	/* display: flex; */
 }
 
 .card__delete {
-  align-self: start;
-  font-family: 'Permanent Marker', Helvetica, sans-serif;
+	/* position: absolute; */
+	/* bottom: 5%; */
+	/* float: bottom; */
+	width: 50%;
+	margin-top: auto;
+	align-self: center;
+	font-family: 'Permanent Marker', Helvetica, sans-serif;
 }

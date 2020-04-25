@@ -1,0 +1,56 @@
+div {
+  width: 200px;
+  margin: 30px;
+}
+
+.dd-header__title h2 {
+  font-family: 'Permanent Marker', Helvetica, sans-serif;
+  margin: 0;
+  padding: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font-family: 'Permanent Marker', Helvetica, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+
+li button {
+  font-size: 15px;
+  background-color: #222;
+  font-family: Helvetica, sans-serif;
+  text-decoration: none;
+  color: white;
+  display: block;
+  width: 200px;
+}
+
+li button:hover {
+  font-size: 20px;
+
+}
+
+.header {
+  padding: 4rem;
+}
+
+.header__h1 {
+  margin: auto 0;
+  text-align: center;
+}
+
+.dd-header__text {
+  padding: 1rem;
+
+  display: inline-block;
+  background-color: #222;
+  color: white;
+  text-transform: uppercase;
+
+  transform: rotate(-3deg) skew(-3deg);
+}

@@ -4,28 +4,31 @@ import emoji from 'emoji-dictionary';
 import axios from 'axios';
 
 import './Board.css';
+import DropDownMenu from './DropDownMenu';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
 
 const Board = (props) => {
 	const [ cardsList, setCardsList ] = useState([]);
 	const [ errorMessage, setErrorMessage ] = useState(null);
+	const [ currentBoard, setCurrentBoard ] = useState(props.boardName);
 
-	useEffect(() => {
-		axios
-			.get(props.url + props.boardName + '/cards')
-			.then((response) => {
-				console.log(response.data);
-				const newCardsList = response.data;
-				setCardsList(newCardsList);
-			})
-			.catch((error) => {
-				console.log(error.message);
-				setErrorMessage(error.message);
-			});
-	}, []);
-
-	// useEffect(() => {}, []);
+	useEffect(
+		() => {
+			axios
+				.get(props.url + currentBoard + '/cards')
+				.then((response) => {
+					console.log(response.data);
+					const newCardsList = response.data;
+					setCardsList(newCardsList);
+				})
+				.catch((error) => {
+					console.log(error.message);
+					setErrorMessage(error.message);
+				});
+		},
+		[ currentBoard ]
+	);
 
 	const deleteCardcallBack = (id) => {
 		const newCardsList = cardsList.filter((post) => {
@@ -48,19 +51,23 @@ const Board = (props) => {
 
 	const addCardCallBack = (card) => {
 		let newEmoji = emoji.getName(card.emoji);
-		if(!newEmoji) {
-			newEmoji = card.emoji
+		if (!newEmoji) {
+			newEmoji = card.emoji;
 		}
-				axios
-					.post(`https://inspiration-board.herokuapp.com/boards/cathynikki/cards?text=${card.text}&emoji=${newEmoji}`)
-					.then((response) => {
-						const newCard = response.data;
-						const newCardsList = [ ...cardsList, newCard ];
-						setCardsList(newCardsList);
-					})
-					.catch((error) => {
-						setErrorMessage(`Error: ${error.message}`);
-					});
+		axios
+			.post(`https://inspiration-board.herokuapp.com/boards/${currentBoard}/cards?text=${card.text}&emoji=${newEmoji}`)
+			.then((response) => {
+				const newCard = response.data;
+				const newCardsList = [ ...cardsList, newCard ];
+				setCardsList(newCardsList);
+			})
+			.catch((error) => {
+				setErrorMessage(`Error: ${error.message}`);
+			});
+	};
+
+	const chooseBoard = (item) => {
+		setCurrentBoard(item.board.name);
 	};
 
 	const board = cardsList.map((post) => {
@@ -71,6 +78,45 @@ const Board = (props) => {
 		);
 	});
 
+	const BOARDS = [
+		{
+			board : {
+				id   : 234,
+				name : 'banana-banana'
+			}
+		},
+		{
+			board : {
+				id   : 237,
+				name : 'cojenco'
+			}
+		},
+		{
+			board : {
+				id   : 238,
+				name : 'nvco'
+			}
+		},
+		{
+			board : {
+				id   : 14,
+				name : 'Bita-Amani'
+			}
+		},
+		{
+			board : {
+				id   : 176,
+				name : 'BogartsBoard'
+			}
+		},
+		{
+			board : {
+				id   : 254,
+				name : 'cathynikki'
+			}
+		}
+	];
+
 	return (
 		<div className="Board">
 			{errorMessage ? (
@@ -80,7 +126,12 @@ const Board = (props) => {
 			) : (
 				''
 			)}
-			{board}
+			<h2> Current Board is {currentBoard} </h2>
+			<DropDownMenu title="Choose Board" items={BOARDS} onChosenCallback={chooseBoard} />
+			<div className='card-container'>
+					{board}
+			</div>
+      <h2>You are posting at {currentBoard} </h2>
 			<NewCardForm addCardCallBack={addCardCallBack} />
 		</div>
 	);
