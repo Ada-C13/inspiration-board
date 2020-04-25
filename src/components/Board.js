@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import './Board.css';
 import Card from './Card';
-import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
 
   const boardComponents = () => { 
-    const cardsList = props.cards.map((card, index) => {
+    const cardsList = props.cards.map((card) => {
     return(
       <Card
-        key={index}
+        key={card.card.id}
         id={card.card.id}
         text= {card.card.text}
         emoji= {card.card.emoji}
@@ -35,6 +32,7 @@ const Board = (props) => {
 };
 
 Board.propTypes = {
+  cards:PropTypes.array,
 };
 
 export default Board;
