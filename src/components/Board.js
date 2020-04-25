@@ -14,6 +14,7 @@ const Board = (props) => {
     axios.get(`${props.url}boards/${props.boardName}/cards`)
       .then((response) => {
         const apiCardsList = response.data;
+        console.log(apiCardsList);   // add to the list?
         setCardsList(apiCardsList);
       })
       .catch((error) => {
@@ -33,8 +34,23 @@ const Board = (props) => {
         console.log(error.message);
       });
 
-
   }
+
+  const onFormSubmit = (formText, formEmoji) => { // new addition!
+    axios.post(`${props.url}boards/${props.boardName}/cards`, {
+      text: formText,
+      emoji: formEmoji,  // passing parameters to API
+    })
+      .then((response) => { // adding to the list
+        const updatedCardList = [response.data, ...cardsList];
+        console.log(updatedCardList);
+        setCardsList(updatedCardList);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
 
   const createCards = () => {
 
@@ -56,6 +72,9 @@ const Board = (props) => {
     <section>
       <div>
         {createCards()}
+        <NewCardForm
+        onFormSubmit={onFormSubmit}   
+        />
       </div>
     </section>
   )
