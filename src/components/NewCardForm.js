@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const NewCardForm = (props) => {
 	const [ cardForm, setCardForm ] = useState({
-		//initial state can be empty object
 		text  : '',
 		emoji : ''
 	});
@@ -18,17 +16,12 @@ const NewCardForm = (props) => {
 
 	const onFormSubmit = (event) => {
 		event.preventDefault();
-
-		console.log(cardForm);
 		props.addCardCallBack(cardForm);
-
 		setCardForm({
 			text  : '',
 			emoji : ''
 		});
 	};
-
-	const EMOJI_LIST = [ '', 'heart_eyes', 'beer', 'clap', 'sparkling_heart', 'heart_eyes_cat', 'dog' ];
 
 	return (
 		<div className="new-card-form">

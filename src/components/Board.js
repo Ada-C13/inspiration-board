@@ -18,7 +18,6 @@ const Board = (props) => {
 			axios
 				.get(props.url + currentBoard + '/cards')
 				.then((response) => {
-					console.log(response.data);
 					const newCardsList = response.data;
 					setCardsList(newCardsList);
 				})
@@ -27,7 +26,7 @@ const Board = (props) => {
 					setErrorMessage(error.message);
 				});
 		},
-		[ currentBoard ]
+		[ currentBoard, props.url ]
 	);
 
 	const deleteCardcallBack = (id) => {
@@ -39,7 +38,7 @@ const Board = (props) => {
 			axios
 				.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
 				.then((response) => {
-					console.log(`Card with id #${id} was deleted`);
+					console.log(`Card ${response.data.card.id} was deleted`);
 				})
 				.catch((error) => {
 					setErrorMessage(`Error: ${error.message}`);
