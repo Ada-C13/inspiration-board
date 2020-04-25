@@ -37,6 +37,10 @@ const BoardsMenu = ({ title, items = [], onChosenCallback }) => {
 	);
 };
 
-BoardsMenu.propTypes = {};
+BoardsMenu.propTypes = {
+  title: PropTypes.string.isRequired,
+  items:PropTypes.array.isRequired,
+  onChosenCallback: PropTypes.func.isRequired,
+};
 
 export default BoardsMenu;
