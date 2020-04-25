@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
@@ -11,15 +10,15 @@ const NewCardForm = (props) => {
   const [phrase, setPhrase] = useState('')
 
   const onInputChange = (event) => {
-  
-  let newPhrase = event.target.value;
-  setPhrase(newPhrase);
+    let newPhrase = event.target.value;
+    setPhrase(newPhrase);
   };
 
   const onFormSubmitCallback = (event) => {
-    event.preventDefault()  
-    props.onSubmitCallback(phrase)
-  }
+    event.preventDefault();
+    props.onSubmitCallback(phrase);
+    setPhrase('');
+  };
 
   return(
 
@@ -29,10 +28,10 @@ const NewCardForm = (props) => {
       <div className="new-card-form__form">
         <h2 className="new-card-form__header">New Card</h2>
         <label htmlFor="writePost" className="new-card-form__form-label">Write Post: </label>
-        <input
+        <input className="new-card-form__form-textarea"
           name="Submit post"
           placeholder="Say amazing things"
-          value={phrase.name}
+          value={phrase}
           onChange={onInputChange}
           type="text"
         />

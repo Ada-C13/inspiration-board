@@ -20,6 +20,7 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
         Write Post: 
       </label>
       <input
+        class="new-card-form__form-textarea"
         name="Submit post"
         placeholder="Say amazing things"
         type="text"

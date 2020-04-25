@@ -19,7 +19,7 @@ const Card = ({text, emoji, onClickCallback, id}) => {
 }
 
 Card.propTypes = {
-  onClickCallback: PropTypes.func.isRequired,
+  onClickCallback: PropTypes.func,
   id: PropTypes.number,
   text: PropTypes.string,
   emoji: PropTypes.string
