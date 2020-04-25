@@ -94,8 +94,8 @@ const NewCardForm = (props) => {
 //     </div>
 //   );
 
-NewCardForm.PropTypes = {
-    addCardCallback: PropTypes.func.isRequired
+NewCardForm.propTypes = {
+  addCardCallback: PropTypes.func.isRequired
 };
 
 export default NewCardForm;

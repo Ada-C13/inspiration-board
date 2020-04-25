@@ -21,7 +21,7 @@ exports[`Card that it matches the existing snapshot 1`] = `
       <button
         class="card_remove"
       >
-        Remove
+        Remove THIS card
       </button>
     </section>
   </div>

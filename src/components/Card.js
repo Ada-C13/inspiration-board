@@ -18,7 +18,7 @@ const Card = (props) => {
         <span className='card__content_emoji'>
           {props.emoji && emoji.getUnicode(props.emoji)}
         </span>
-        <button className='card_remove' onClick={removeCard}>Remove</button>
+        <button className='card_remove' onClick={removeCard}>Remove THIS card</button>
       </section>
     </div>
   );
