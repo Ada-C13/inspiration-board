@@ -19,30 +19,3 @@ const App = () => {
 };
 
 export default App;
-
-// ------ PROPS -------
-//formSubmitCallback
-//allBoardsState
-
-// ------- CREATING NEXT ID ------
-
-//----- GET API ----------------
-//const App = () => {
-// const [studentList, setStudentList] = useState([]);
-//;
-
-// useEffect(() => {
-//   axios.get(API_URL_BASE)
-//     .then((response) => {
-//       const apiStudentList = response.data;
-//       setStudentList(apiStudentList);
-//     })
-//     .catch((error) => {
-//       setErrorMessage(error.message);
-//       console.log(error.message);
-//     });
-// }, []);
-
-//-----RETURN THE ERROR MESSAGE------
-//<div className="App">
-//{ errorMessage ? <div><h2 className="error-msg">{errorMessage}</h2></div> : '' }

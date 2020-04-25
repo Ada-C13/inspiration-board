@@ -4,7 +4,7 @@ import emojiLib from "emoji-dictionary";
 
 import "./Card.css";
 
-const Card = ({ emoji, text, deleteCardCallback, id }) => {
+const Card = ({ emoji, text, deleteCard, id }) => {
   return (
     <div className="card">
       <div className="card__content">
@@ -14,8 +14,10 @@ const Card = ({ emoji, text, deleteCardCallback, id }) => {
         </div>
         <button
           className="card__delete"
-          onClick={deleteCardCallback}
-          >
+          onClick={() => {
+            deleteCard(id);
+          }}
+        >
           Delete
         </button>
       </div>
@@ -27,7 +29,7 @@ Card.propTypes = {
   id: PropTypes.number,
   text: PropTypes.string,
   emoji: PropTypes.string,
-  deleteCallback: PropTypes.func,
+  deleteCard: PropTypes.func,
 };
 export default Card;
 

@@ -7,28 +7,23 @@ import NewCardForm from "./NewCardForm";
 import CARD_DATA from "../data/card-data.json";
 
 const Board = ({ url, boardName }) => {
-  const [listCards, setListCards] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null); //api error message
   const [board, setBoard] = useState([]);
-
-  console.log(listCards);
+  const [errorMessage, setErrorMessage] = useState(null); //api error message
 
   //--------- API CALL ------------
   useEffect(() => {
     axios
       .get(`${url}${boardName}/cards`)
       .then((response) => {
-        const apiListCards = response.data;
-        setListCards(apiListCards);
-        console.log(apiListCards[0].card.id);
+        const apiBoard = response.data;
+        setBoard(apiBoard);
+        console.log(apiBoard[0].card.id);
       })
       .catch((error) => {
         setErrorMessage(error.message);
         console.log(error.message);
       });
   }, [boardName]); // this is a dependency array. If one of the dependencies change the callback method will be run, if it is empty it will only run on the first render
-
-  // const formSubmitCallback = () => {};
 
   const addCard = (card) => {
     axios
@@ -51,10 +46,11 @@ const Board = ({ url, boardName }) => {
 
   const deleteCard = (id) => {
     axios
-      .delete(`${url}${boardName}/cards/${id}`)
+      .delete(`https://inspiration-board.herokuapp.com/cards/${id}`) //https://inspiration-board.herokuapp.com/cards/:card_id
       .then((response) => {
-        const updateBoard = response.data.filter((card) => card.card.id !== id);
-        setBoard(updateBoard);
+        console.log(response);
+        const updateBoard = board.filter((card) => card.card.id !== id); //api
+        setBoard(updateBoard); //
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -72,14 +68,14 @@ const Board = ({ url, boardName }) => {
       ) : (
         ""
       )}
-      {listCards.map((el) => {
+      {board.map((el) => {
         return (
           <Card
             key={el.card.id}
             id={el.card.id}
             text={el.card.text}
             emoji={el.card.emoji}
-            deleteCardCallback={deleteCard}
+            deleteCard={deleteCard}
           />
         );
       })}
