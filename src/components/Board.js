@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./Board.css";
@@ -9,6 +9,8 @@ import CARD_DATA from "../data/card-data.json";
 const Board = ({ url, boardName }) => {
   const [listCards, setListCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null); //api error message
+  const [board, setBoard] = useState([]);
+
   console.log(listCards);
 
   //--------- API CALL ------------
@@ -26,9 +28,39 @@ const Board = ({ url, boardName }) => {
       });
   }, [boardName]); // this is a dependency array. If one of the dependencies change the callback method will be run, if it is empty it will only run on the first render
 
-  const formSubmitCallback = () => {};
+  // const formSubmitCallback = () => {};
 
-  const deleteCallback = (id) => {};
+  const addCard = (card) => {
+    axios
+      .post(url + boardName + "/cards", { text: card.text, emoji: card.emoji })
+      .then((response) => {
+        const newCard = {
+          card: {
+            id: response.data.card.id,
+            text: response.data.card.text,
+            emoji: response.data.card.emoji,
+          },
+        };
+        setBoard(board.push(newCard));
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(error.message);
+      });
+  };
+
+  const deleteCard = (id) => {
+    axios
+      .delete(`${url}${boardName}/cards/${id}`)
+      .then((response) => {
+        const updateBoard = response.data.filter((card) => card.card.id !== id);
+        setBoard(updateBoard);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(error.message);
+      });
+  };
 
   return (
     <div className="Myboard">
@@ -47,9 +79,12 @@ const Board = ({ url, boardName }) => {
             id={el.card.id}
             text={el.card.text}
             emoji={el.card.emoji}
+            deleteCardCallback={deleteCard}
           />
         );
       })}
+
+      <NewCardForm addCardCallback={addCard} />
     </div>
   );
 };
