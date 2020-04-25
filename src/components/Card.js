@@ -5,18 +5,19 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
-const Card = (props) => {
+const validateEmoji = (emojiText)=> {
+  return emojiText ? emoji.getUnicode(emojiText) : "" ;
+}
 
-  // const currentEmoji = emoji.getUnicode(props.emoji)
-  
+const Card = (props) => {
 
   console.log(props);
   return (
     <div id={props.id} className="card">
-      Card
-      <p>{props.text} </p>
-      {/* ? Solve the dictionary library  */}
-      <p>{props.emoji} </p>
+      <div className="card__content">
+        <p className="card__content-text">{props.text} </p>
+        <p className="card__content-emoji">{validateEmoji(props.emoji)} </p>
+      </div>
     </div>
   )
 }
