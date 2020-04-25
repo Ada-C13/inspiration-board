@@ -37,4 +37,10 @@
   background-color: inherit;
   border: 1px solid black;
   font-size: 1em;
+  font-weight: bolder;
+}
+
+.new-card-form__form-button:hover {
+  background-color: gold;
+
 }
