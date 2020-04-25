@@ -3,6 +3,7 @@ import './App.css';
 import Board from './components/Board';
 import axios from 'axios';
 import Card from './components/Card';
+import NewCardForm from './components/NewCardForm';
 
 
 const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/"
@@ -35,6 +36,20 @@ const App = () => {
   //       setErrorMessage(error.message);
   //     })
   //   })
+
+  const addCard = ((card) => {
+    axios.post(getCard, card)
+    .then((response) => {
+      // What should we do when we know the post request worked?
+      const updatedData = [...cardList, response.data];
+      setCardList(updatedData);
+      setErrorMessage('');
+    })
+    .catch((error) => {
+      // What should we do when we know the post request failed?
+      setErrorMessage(error.message);
+    });
+  }) 
   
   useEffect(() => {
     axios.get(getCard)
@@ -61,6 +76,7 @@ const App = () => {
         // boardName={`ross-lex`} 
       />
       {/* <Card /> */}
+      <NewCardForm onFormSubmitCallBack={addCard}/>
     </section>
   );
 };
