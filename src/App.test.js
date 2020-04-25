@@ -5,7 +5,7 @@ import App from './App';
 describe('App', () => {
 
   it('renders without crashing', () => {
-    console.log('testing would be nice! :)');
+    console.log('Inspiration Board');
   });
 
 });
