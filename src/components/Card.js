@@ -5,8 +5,7 @@ import emoji from 'emoji-dictionary';
 import './Card.css';
 
 const Card = (props) => {
-  // console.log(props)
-
+ 
   const onButtonClick = () => {
     props.onDeleteCallback(props.id);
   }
@@ -20,7 +19,10 @@ const Card = (props) => {
 }
 
 Card.propTypes = {
-
+  text: PropTypes.string,
+  emoji: PropTypes.string,
+  id: PropTypes.number,
+  onDeleteCallback: PropTypes.func.isRequired
 };
 
 export default Card;
