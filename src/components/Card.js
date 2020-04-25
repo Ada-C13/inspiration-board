@@ -5,21 +5,18 @@ import './Card.css';
 
 // Resource: Hannah J zoom chat
 const Card = (props) => {
-
   const removeCard = () => {
     props.removeCardCallback(props.id);
   };
 
   return (
     <div className='card'>
-      <section className='card__content'>
+      <section className='card__content' data-testid='delete-card'>
         <p className='card__content-text'>{props.text}</p>
         <span className='card__content-emoji'>
           {props.emoji && emoji.getUnicode(props.emoji)}
         </span>
-        <button 
-          className='card__delete' 
-          onClick={removeCard}> 
+        <button className='card__delete' onClick={removeCard}>
           Take this card if you want/need it...
         </button>
       </section>

@@ -1,43 +1,50 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  fireEvent,
+  getByTestId,
+} from '@testing-library/react';
 import Card from '../Card';
 
 describe('Card', () => {
   afterEach(cleanup);
-  test('that it matches the existing snapshot', () => {
-    //Arrange-Act
-    const { asFragment } = render(
+
+  const setUp = () => {
+    const removeCardCallbackMock = jest.fn(() => {});
+    const renderResult = render(
       <Card
         id={202}
-        text={'hello word'}
+        text={'hello world'}
         emoji={'beer'}
-        removeCardCallback={() => {}}
+        removeCardCallback={removeCardCallbackMock}
       />
     );
+
+    const removeCard = renderResult.getByText(
+      'Take this card if you want/need it...'
+    );
+
+    return {
+      ...renderResult,
+      removeCardCallbackMock,
+      removeCard,
+    };
+  };
+
+  test('that it matches the existing snapshot', () => {
+    //Act-Arrange
+    const { asFragment } = setUp();
 
     // Assert
     expect(asFragment()).toMatchSnapshot();
   });
-});
 
-describe('user interaction with removing a card', () => {
-  const removeCardCallbackMock = jest.fn(() => {});
-  const renderResult = render(
-    <Card
-      id={202}
-      text={'hello world'}
-      emoji={'beer'}
-      removeCardCallback={removeCardCallbackMock}
-    />
-  );
+  test('Removes a card when the function is called', () => {
+    const { removeCardCallbackMock, removeCard } = setUp();
 
-  const removeCard = renderResult.getByText(
-    'Take this card if you want/need it...'
-  );
+    fireEvent.click(removeCard);
 
-  return {
-    ...renderResult,
-    removeCardCallbackMock,
-    removeCard,
-  };
+    expect(removeCardCallbackMock).toHaveBeenCalled();
+  });
 });

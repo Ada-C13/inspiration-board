@@ -7,11 +7,12 @@ exports[`Card that it matches the existing snapshot 1`] = `
   >
     <section
       class="card__content"
+      data-testid="delete-card"
     >
       <p
         class="card__content-text"
       >
-        hello word
+        hello world
       </p>
       <span
         class="card__content-emoji"
