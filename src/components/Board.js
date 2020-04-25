@@ -34,6 +34,25 @@ const Board = (props) => {
     
     return ( <Card id={card.card.id} text={card.card.text} emoji={singleEmoji} />);
   });
+
+
+
+  // const deleteStudent = (id) => {
+  //   const newStudentList = studentList.filter((student) => {
+  //     return student.id !== id;
+  //   });
+
+  //   if (newStudentList.length < studentList.length) {
+  //     axios.delete(`${ API_URL_BASE }/${ id }`)
+  //       .then((response) => {
+  //         setErrorMessage(`Student ${ id } deleted`);
+  //       })
+  //       .catch((error) => {
+  //         setErrorMessage(`Unable to delete student ${ id }`);
+  //       })
+  //     setStudentList(newStudentList);
+  //   }
+  // }
   
   return (
     <div className="board">

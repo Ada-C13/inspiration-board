@@ -13,7 +13,8 @@ const Card = (props) => {
       <div className="card__content">
         <p className="card__content-text"> {props.text}  </p>
         <div className="card__content-emoji"> {props.emoji} </div>
-     </div>
+        <button className="card__delete"> delete</button>
+      </div>
     </div>
   )
 }
