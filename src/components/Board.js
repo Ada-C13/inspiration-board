@@ -24,10 +24,45 @@ const Board = (props) => {
 			});
 	}, []);
 
+	useEffect(() => {}, []);
+
+	const deleteCardcallBack = (id) => {
+		const newCardsList = cardsList.filter((post) => {
+			return post.card.id !== id;
+		});
+
+		if (newCardsList.length < cardsList.length) {
+			axios
+				.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+				.then((response) => {
+					console.log(`Card with id #${id} was deleted`);
+				})
+				.catch((error) => {
+					setErrorMessage(`Error: ${error.message}`);
+				});
+		}
+
+		setCardsList(newCardsList);
+	};
+
+	const addCardCallBack = (card) => {
+
+		axios
+			.post(`https://inspiration-board.herokuapp.com/boards/cathynikki/cards?text=${card.text}&emoji=${card.emoji}`)
+			.then((response) => {
+				const newCard = response.data;
+				const newCardList = [...cardsList, newCard];
+				setCardsList(newCardList);
+			})
+			.catch((error) => {
+        setErrorMessage(`Error: ${error.message}`);
+      });
+	};
+
 	const board = cardsList.map((post) => {
 		return (
 			<div key={post.card.id}>
-				<Card text={post.card.text} emoji={post.card.emoji} />
+				<Card deleteCardcallBack={deleteCardcallBack} id={post.card.id} text={post.card.text} emoji={post.card.emoji} />
 			</div>
 		);
 	});
@@ -42,6 +77,7 @@ const Board = (props) => {
 				''
 			)}
 			{board}
+			<NewCardForm addCardCallBack={addCardCallBack} />
 		</div>
 	);
 };
