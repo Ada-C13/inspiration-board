@@ -4,20 +4,18 @@ import emojiLib from "emoji-dictionary";
 
 import "./Card.css";
 
-const Card = ({ emoji, text, deleteCallback, id }) => {
+const Card = ({ emoji, text, deleteCardCallback, id }) => {
   return (
     <div className="card">
-      <div className="stuffInCard">
-        <div className="cardText">{text ? text : ""}</div>
-        <div className="cardEmoji">
+      <div className="card__content">
+        <div className="card__content-text">{text ? text : ""}</div>
+        <div className="card__content-emoji">
           {emoji ? emojiLib.getUnicode(emoji) : ""}
         </div>
         <button
-          className="cardDeleteButton"
-          onClick={() => {
-            deleteCallback(id);
-          }}
-        >
+          className="card__delete"
+          onClick={deleteCardCallback}
+          >
           Delete
         </button>
       </div>
