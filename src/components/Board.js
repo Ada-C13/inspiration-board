@@ -1,5 +1,5 @@
 
-import React, { Component, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,31 +8,46 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
-
+const reformatData = (data)=> {
+  return data.map((element) => {
+    return element.card;
+  });
+};
 
 const Board = (props) => {
 
-  const endPoint = `${ props.url }/${props.boardName}`
-  
+  const [cardList, setCardList] = useState([]);
 
-  const cardList = CARD_DATA.cards.map((card, i)=> {
-    // console.log(i);
-    // console.log(card);
-    return(
+  const endPoint = `${props.url}/${props.boardName}`
+
+  const getCards = (url) => {
+    axios.get(`${url}/cards`)
+      .then((response) => {
+        const apiCardList = reformatData(response.data);
+        setCardList(apiCardList);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+
+  useEffect(() => { getCards(endPoint); }, [endPoint] );
+
+  const formatCards = cardList.map((card) => {
+
+    return (
       <Card
-        key={i}
-        // ? Why we cannot use key as a prop inside of card?
-        id={i}
+        key={card.id}
+        id={card.id}
         text={card.text}
         emoji={card.emoji}
       />
     );
-  })
+  });
 
   return (
-    <div>
-      Board
-      {cardList}
+    <div className="board">
+      {formatCards}
     </div>
   )
 };
