@@ -35,6 +35,6 @@
 
 .new-card-form__form-button {
   background-color: inherit;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   font-size: 1em;
 }

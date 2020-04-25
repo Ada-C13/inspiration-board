@@ -1,14 +1,35 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
-const NewCardForm = () => {
+
+const NewCardForm = (props) => {
+    
+  const [phrase, setPhrase] = useState('')
+
+  const onInputChange = (event) => {
+  console.log(`Changing field ${ event.target.name } to ${ event.target.value }`);  
+
+  let newPhrase = event.target.value;
+  setPhrase(newPhrase);
+  };
+
+
+  const onFormSubmitCallback = (event) => {
+    event.preventDefault()  
+    props.onSubmitCallback(phrase)
+
+  }
+
+
+
 return(
 
-
-<form className="new-card-form">
+<form className="new-card-form"
+    onSubmit={onFormSubmitCallback}>
 
   <div classname="new-card-form__form">
   <h2 className="new-card-form__header">New Card</h2>
@@ -16,24 +37,17 @@ return(
       <input
         name="Submit post"
         placeholder="Say amazing things"
-        type="text" 
+        value={phrase.name}
+        onChange={onInputChange}
+        type="text"
       />
   </div>
-  </form>
+  <div className="new-card-form__form-button">
+          <input type="submit" value="submit card" className="new-card-form__form-button"  onSubmit={onFormSubmitCallback}/>
+  </div>
+</form>
   );
 };
-    {/* <input
-        className={playerSubmission.adjective1 !== "" ? "valid" : "PlayerSubmissionFormt__input--invalid"}
-        value={playerSubmission.adjective1} 
-        onChange={onAdj1Entry}
-        placeholder="adjective"/>
 
-const onSubmit = (event) => {
-    event.preventDefault();
-    updatePlayer();
-    const newLine = `The ${playerSubmission.adjective1} ${playerSubmission.noun1} ${playerSubmission.adverb1} ${playerSubmission.verb1} the ${playerSubmission.adjective2} ${playerSubmission.noun2}`;
-    props.onSubmitCallback(newLine); 
-    setPlayerSubmission(defaultValues); 
-  }; */}
 
   export default NewCardForm;

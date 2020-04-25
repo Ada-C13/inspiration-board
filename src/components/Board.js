@@ -20,13 +20,12 @@ const Board = ({url, boardName}) => {
       const mappedCards = apiData.map((card) => {
         return <Card text={card.card.text} emoji={card.card.emoji} onClickCallback={onClickCallback} key={card.card.id} id={card.card.id}/>
       })   
-      console.log(mappedCards)
       setCardList(mappedCards);
     })
     .catch((error) => {
       setErrorMessage(error.message);
     });
-  }, [cardList]);
+  }, [cardList, onSubmitCallback]);
 
   const onClickCallback = (id) => {
     console.log(`before delete ${id}`)
@@ -35,19 +34,38 @@ const Board = ({url, boardName}) => {
       console.log(`we are in callback function`)
       console.log(response)
       setCardList(updateData)
-      
-      // setCardList(mappedCards);
     })
     .catch((error) => {
       console.log(`here is our error ${error}`)
     });
   }
 
+  const onSubmitCallback = (phrase) => {
+    axios.post(`${url}boards/${boardName}/cards?text=${phrase}`) 
+    .then ((response) => {
+      console.log(`we are in onSubmitCallback function`)
+      console.log(response)
+      // setCardList(updateData)
+    })
+    .catch((error) => {
+      console.log(`here is our error ${error}`)
+    });
+
+    // useEffect(() => {
+    //   setCardList
+    //   }, [onSubmitCallback]);
+  
+// POST https://inspiration-board.herokuapp.com/boards/:board_name/cards
+// accepted params:
+// text (string)
+// emoji (string)
+
+  }
 
   return (
     <div className="board">
       {cardList}
-      <NewCardForm />
+      <NewCardForm onSubmitCallback={onSubmitCallback}/>
     </div>
 )};
 
