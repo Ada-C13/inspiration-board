@@ -6,7 +6,7 @@ import './Card.css';
 
 const Card = (props) => {
 
-  const onButtonClick = (event) => {
+  const onButtonClick = () => {
     props.onClickCallback(props.id);
   }
 
@@ -20,7 +20,7 @@ const Card = (props) => {
     </div>
   )
 }
-// value: PropTypes.string.isRequired,
+
 Card.propTypes = {
   text: PropTypes.string,
   emoji: PropTypes.string,

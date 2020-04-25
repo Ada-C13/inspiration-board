@@ -40,7 +40,7 @@ const emojiOptions = EMOJI_LIST.map((emoji1 , i) => {
   return (
     <option key={i}>{emoji.getUnicode(`${emoji1}`)}</option>
   )
-})
+});
 
   return (
     <form className="new-card-form" onSubmit={onFormSubmit}>
@@ -67,7 +67,8 @@ const emojiOptions = EMOJI_LIST.map((emoji1 , i) => {
       
     </form>     
   )
-}
+};
+
 NewCardForm.propTypes = {
   addNewCardCallback: PropTypes.func.isRequired,
 };

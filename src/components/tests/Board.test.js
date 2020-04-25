@@ -17,5 +17,3 @@ describe('Board Component', () => {
     cleanup();
   });
 });
-
-
