@@ -30,11 +30,11 @@
 .card__content-text {
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .card__content-emoji {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .card__content-text, .card__content-emoji {
