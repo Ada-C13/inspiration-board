@@ -13,7 +13,7 @@ const NewCardForm = (props) => {
 
   const emojiOptions = EMOJI_LIST.map((e, index) => {
     return (
-      <option value={e} key={index}>{emoji.getUnicode(`${e}`)}</option>
+    <option value={e} key={index}>{emoji.getUnicode(`${e}`)}</option>
     )
   })
 
@@ -24,7 +24,6 @@ const NewCardForm = (props) => {
     }
 
     newInput[event.target.name] = event.target.value
-    console.log(newInput)
     setMessage(newInput)
   })
 
@@ -35,7 +34,7 @@ const NewCardForm = (props) => {
 
     setMessage({
       text:'',
-      emoji:'',
+      emoji: '',
     })
   })
 
@@ -59,9 +58,9 @@ const NewCardForm = (props) => {
           <select
             className="new-card-form__form-select"
             name='emoji'
+            value={message.emoji}
             onChange={onInputChange}
             >
-              {/* refactor the options */}
              {emojiOptions} 
           </select>
         </div>
