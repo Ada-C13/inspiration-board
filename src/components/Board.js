@@ -8,33 +8,82 @@ import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
 const Board = (props) => {
-  const [cardList, setCardList] = useState([]);
+  const [cardData, setCardData] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  
   useEffect(() => {
     //our API call
     axios.get(props.url + props.boardName + "/cards")
       .then((response) => {
-        const cardListFromAPI = response.data.map( (card, i) => {
-          return (
-            <li key={card.card.id}>
-              <Card 
-              text={card.card.text}
-              emoji={card.card.emoji}
-            />
-            </li> 
-          )
+
+        const cardDataFromAPI = response.data.map( (card) => {
+              return({text: card.card.text,
+              emoji: card.card.emoji,
+              id: card.card.id,
+              })
         })
-        setCardList(cardListFromAPI)
+
+        setCardData(cardDataFromAPI)
       })
       .catch((error) =>{
         setErrorMessage(error.message);
       })
   }, []);
 
+  const DELETE_URL = "https://inspiration-board.herokuapp.com/cards/"
+  const deleteCard = (id) =>{
+    console.log(cardData)
+    const newcardData = cardData.filter((card) =>{
+      return card.id !== id
+    })
+
+    console.log(`trying to delete id ${id}`)
+
+    if(newcardData.length < cardData.length){
+      axios.delete(DELETE_URL + id)
+      .then(response =>{
+        setErrorMessage (`Card ${id} deleted`);
+      })
+      .catch ((error) => {
+        setErrorMessage(`Unable to delete card ${id}`);
+      })
+      setCardData(newcardData)
+    }
+  };
+
+  const addCard = (card) => { 
+    axios.post("https://inspiration-board.herokuapp.com/boards/lak-and-katie/cards", card)
+      .then((response) =>{
+        const updatedCardData = [response.data.card, ...cardData];
+        console.log(updatedCardData)
+        setCardData(updatedCardData);
+        setErrorMessage('');
+      })
+      .catch((error) =>{
+        setErrorMessage(error.message)
+      });
+  }
+
+  const cards = cardData.map( (card, i) => {
+    return (
+      <li key={i}>
+        <Card 
+        text={card.text}
+        emoji={card.emoji}
+        id={card.id}
+        onDeleteCallback = {deleteCard}
+      />
+      </li> 
+    )
+  });
+
   return (
     <div>
-      {cardList}
+      {errorMessage ? <div><h2 className="validation-errors-display">{errorMessage}</h2></div> : ''}
+      <NewCardForm addCardCallback={addCard}/>
+      {cards}
     </div>
+
   )
 };
 Board.propTypes = {
