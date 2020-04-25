@@ -10,6 +10,8 @@ const Board = ({ url, boardName }) => {
   const [board, setBoard] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null); //api error message
 
+  console.log(board);
+
   //--------- API CALL ------------
   useEffect(() => {
     axios
@@ -17,7 +19,6 @@ const Board = ({ url, boardName }) => {
       .then((response) => {
         const apiBoard = response.data;
         setBoard(apiBoard);
-        console.log(apiBoard[0].card.id);
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -36,7 +37,8 @@ const Board = ({ url, boardName }) => {
             emoji: response.data.card.emoji,
           },
         };
-        setBoard(board.push(newCard));
+        const newBoard = [newCard, ...board];
+        setBoard(newBoard);
       })
       .catch((error) => {
         setErrorMessage(error.message);

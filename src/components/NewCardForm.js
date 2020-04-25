@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import emoji from "emoji-dictionary";
+import emojiLib from "emoji-dictionary";
 import "./NewCardForm.css";
 
 const EMOJI_LIST = [
@@ -14,23 +14,21 @@ const EMOJI_LIST = [
 ];
 
 const NewCardForm = (props) => {
-  const [text, setText] = useState('');
-  const [emoji, setEmoji] =useState('')
+  const [text, setText] = useState("");
+  const [emoji, setEmoji] = useState("");
 
   // function for submitting the form
   const onFormSubmit = (event) => {
     event.preventDefault();
     const message = {
-      text: {text},
-      emoji: {emoji}
+      text: text,
+      emoji: emoji,
     };
+    props.addCardCallback(message);
 
-    setText('')
-    setEmoji('')
-
-    // props.onFormSubmit(text);
-    props.addCardCallback(message)
-  }
+    setText("");
+    setEmoji("");
+  };
 
   return (
     <form className="new-card-form" onSubmit={onFormSubmit}>
@@ -40,12 +38,12 @@ const NewCardForm = (props) => {
         <label className="new-card-form__form-label" htmlFor="text">
           Text:
         </label>
-        <input 
-          className="new-card-form__form-textarea"  
-          name="text" 
+        <input
+          className="new-card-form__form-textarea"
+          name="text"
           placeholder="text"
-          value={text} 
-          onChange={e => setText(e.target.value)} 
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
       </div>
 
@@ -53,31 +51,28 @@ const NewCardForm = (props) => {
         <label className="new_card_form_form-label" htmlFor="emoji">
           Emoji:
         </label>
-        <input 
-          className="new-card-form__form-textarea" 
+        <input
+          className="new-card-form__form-textarea"
           name="emoji"
           placeholder="emoji"
-          value={emoji} 
-          onChange={e => setEmoji(e.target.value)} 
+          value={emoji}
+          onChange={(e) => setEmoji(e.target.value)}
         />
       </div>
 
-      <input 
-        className="new-card-form__form-button" 
-        type="submit" 
+      <input
+        className="new-card-form__form-button"
+        type="submit"
         value="Add Card"
       />
     </form>
   );
-}
+};
 
 NewCardForm.propTypes = {
   text: PropTypes.string,
   emoji: PropTypes.string,
   addCardCallback: PropTypes.func,
-}
+};
 
-export default NewCardForm
-
-//formSubmitCallback
-//name or id of the board
+export default NewCardForm;
