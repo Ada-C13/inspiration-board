@@ -9,11 +9,11 @@ import NewCardForm from './NewCardForm';
 
 
 
-const Board = (props) => {
+const Board = (props) => { //asncyhronous 
 
   const [cardData, setCardData] = useState([]); 
 
-  useEffect(() => {
+  useEffect(() => { //it start loading 
     axios.get(`${props.url}${props.boardName}/cards`)
 
     .then((response) => {
@@ -29,30 +29,42 @@ const Board = (props) => {
     .catch((error)=>{
 
 
-    })}, []);
+    })}, []); // using api call as an effect hook syays when this code complete then rerender the comonent 
+              //  an array of all of the things, if the empty array changes then rerun code (optimization, not necessary) 
 
-    const cards = cardData.map((card) => {
-      //console.log(card);
-      if(card['emoji'] && card['text']){
-        return <li> <Card id={card.id} text={card.text} emoji={card.Emoji}/></li>
-      }else if(card['text']){
-        return <li> <Card id={card.id} text={card.text}/></li>
+
+    const cards = cardData.map((card, i) => {
+      console.log(card);
+      if(card.emoji && card.text){
+        return <li> <Card key={i} text={card.text} emoji={card.emoji} deleteCard={deleteCard}/></li>
+      }else if(card.text){
+        return <li> <Card key={i} text={card.text} deleteCard={deleteCard}/></li>
       }else{
-        return <li> <Card id={card.id} emoji={card.emoji}/></li>
+        return <li> <Card key={i} emoji={card.emoji} deleteCard={deleteCard}/></li>
       }
 
       }
     );
 
-    const nextId = Math.max(...cardData.map(card => card.id)) + 1
+      
+
+      
+
+      const addCard = (input) => {
+        console.log(input)
+        const addedCard = [...cardData];
+        const nextId = Math.max(...cardData.map(card => card.id)) + 1
 
 
-      const addCard = () => {
-
-
-
+        addedCard.push ({id: nextId, text: input.text, emoji: input.emoji});
+      
+        
+        setCardData(addedCard);
       }
-    
+
+
+
+    const [errorMessage, setErrorMessage] = useState('')
 
     const deleteCard = (id) => {
       const newCardData = cardData.filter((card) => {
@@ -60,7 +72,7 @@ const Board = (props) => {
       });
 
       if (newCardData.length < cardData.length) {
-        axios.delete(`${props.url}cards/${card.id}`)
+        axios.delete(`${props.url}cards/${id}`)
         .then((response) => {
           setErrorMessage(`Card ${id} is deleted`);
         })
@@ -74,8 +86,8 @@ const Board = (props) => {
 
   return (
     <div>
-      <ul> {cards}</ul>
-      <NewCardForm id={nextId} addCardCallback={addCard} />
+      <ul> {cards} </ul>
+      <NewCardForm  addCardCallback={addCard} />
     </div>
   )
 };

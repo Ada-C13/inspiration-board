@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
@@ -11,9 +11,9 @@ const NewCardForm = (props) =>{
     const [input, changeInput] = useState({
         text: '', 
         emoji: '',
-    })
+    });
 
-    const [currentId, changeCurrentId] = useState();
+    //const [currentId, changeCurrentId] = useState();
     
    
     const onInput = (event) => {
@@ -29,37 +29,31 @@ const NewCardForm = (props) =>{
 
       event.preventDefault();
 
-        //create a function that calls back to game and adds the card
-
       props.addCardCallback(input);
+
       changeInput({
         text: '', 
         emoji: '',
-      })
+      });
 
-
-
-    }
+    };
 
     return (
-        <div className='new-card-form'> 
-                <form onClick={onAddCard} > 
+         
+            <form  className='.new-card-form__form' onSubmit={onAddCard}> 
+                <div className='new-card-form' >
                     <header> Add A Card </header>
-                    <label htmlFor='text' className='new-card-form__form-label'> Text </label>
-                    <input key={`${props.id}`} className='text' />
+                    <label htmlFor='text' className='new-card-form__form-label'> Text: </label>
+                    <input onChange={onInput} className='text new-card-form__form-textarea' name='text' value={input.text}/> 
 
-                    <label htmlFor='emoji'  className='new-card-form__form-label'> Emoji </label>
-                    <input key={`${props.id}`} className='emoji' /> 
-
-
-                </form>
+                    <label htmlFor='emoji'  className='new-card-form__form-label'> Emoji: </label>
+                    <input  onChange={onInput} className='emoji new-card-form__form-textarea' name='emoji' value={input.emoji} /> 
 
 
-                <button type='submit' className='new-card-form__form-button'>
-                    Submit Card
-                </button>
-
+                
+            <input type='submit' value='submit card' className='new-card-form__form-button'/>
         </div>
+        </form>
 
 
     );
