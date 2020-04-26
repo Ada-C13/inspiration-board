@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const Board = (props) => {
     axios.get(`${props.url}boards/${props.boardName}/cards`)
       .then((response) => {
         const apiCardsList = response.data;
-        console.log(apiCardsList);   // add to the list?
+        console.log(apiCardsList); 
         setCardsList(apiCardsList);
       })
       .catch((error) => {
@@ -28,7 +28,7 @@ const Board = (props) => {
     axios.delete(`${props.url}cards/${cardId}`)
       .then((response) => {
         const deleteResponse = response.data;
-        console.log(`response`, deleteResponse); // check if id on response matches
+        console.log(`response`, deleteResponse);
       })
       .catch((error) => {
         console.log(error.message);
@@ -36,12 +36,12 @@ const Board = (props) => {
 
   }
 
-  const onFormSubmit = (formText, formEmoji) => { // new addition!
+  const onFormSubmit = (formText, formEmoji) => { 
     axios.post(`${props.url}boards/${props.boardName}/cards`, {
       text: formText,
-      emoji: formEmoji,  // passing parameters to API
+      emoji: formEmoji,  
     })
-      .then((response) => { // adding to the list
+      .then((response) => { 
         const updatedCardList = [response.data, ...cardsList];
         console.log(updatedCardList);
         setCardsList(updatedCardList);
