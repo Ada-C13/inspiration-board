@@ -22,7 +22,6 @@ const Board = (props) => { //asncyhronous
         newCardData.push(response.data[i].card);
 
       }      
-      console.log(cardData);
       setCardData(newCardData);
       
     })
@@ -49,22 +48,29 @@ const Board = (props) => { //asncyhronous
       
 
       
-
+    const [errorMessage, setErrorMessage] = useState('')
       const addCard = (input) => {
-        console.log(input)
         const addedCard = [...cardData];
         const nextId = Math.max(...cardData.map(card => card.id)) + 1
 
-
         addedCard.push ({id: nextId, text: input.text, emoji: input.emoji});
+
+        axios.post(`${props.url}${props.boardName}/cards/`,  {id: nextId, text: input.text, emoji: input.emoji})
+        .then((response) => {
+          setErrorMessage(`Card added`);
+        })
+        .catch((error) => {
+          setErrorMessage(`Unable to add card`);
+
+        });
+
       
-        
         setCardData(addedCard);
       }
 
 
 
-    const [errorMessage, setErrorMessage] = useState('')
+   
 
     const deleteCard = (id) => {
       const newCardData = cardData.filter((card) => {
