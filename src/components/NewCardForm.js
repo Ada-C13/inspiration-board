@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
-const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
+const EMOJI_LIST = [" ", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
 const NewCardForm = (props) => {
   
@@ -11,6 +11,9 @@ const NewCardForm = (props) => {
     text: "",
     emoji: ""
   });
+  console.log(emoji.unicode); 
+
+
 
   const onInputChange = (event) => {
     console.log(event.target.value);
@@ -46,7 +49,7 @@ const NewCardForm = (props) => {
       </h1>
       <form className="new-card-form__form" onSubmit={onFormSubmit}>
         <div>
-          <label className="new-card-form__form-label">Leave your mark!: </label>
+          <label className="new-card-form__form-label">Leave your mark! </label>
           <input 
             type="text"
             name="text" 
@@ -60,7 +63,8 @@ const NewCardForm = (props) => {
           <select 
             className="new-card-form__form-select"
             name="emoji"
-            onChange={onInputChange}
+            onChange={onInputChange} 
+           
           >
             {emojis}
           </select>
@@ -69,6 +73,10 @@ const NewCardForm = (props) => {
       </form>
     </div>
   );
+};
+
+NewCardForm.propTypes = {
+  addCard: PropTypes.string.isRequired
 };
 
 export default NewCardForm;

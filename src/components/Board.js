@@ -83,33 +83,12 @@ const Board = (props) => {
     </div>
   )
 };
-Board.propTypes = {
 
+Board.propTypes = {
+  url: PropTypes.string.isRequired,
+  boardName: PropTypes.string.isRequired
 };
 
 export default Board;
 
 
-// [
-//   {
-//       "card": {
-//           "id": 6066,
-//           "text": "you are perfect the way you are",
-//           "emoji": "princess"
-//       }
-//   },
-//   {
-//       "card": {
-//           "id": 6065,
-//           "text": "you are doing enough",
-//           "emoji": "ok_hand"
-//       }
-//   },
-//   {
-//       "card": {
-//           "id": 6064,
-//           "text": "you are cool",
-//           "emoji": "hibiscus"
-//       }
-//   }
-// ]
