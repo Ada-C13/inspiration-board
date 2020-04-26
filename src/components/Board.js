@@ -23,10 +23,14 @@ const Board = (props) => {
   }, []);
 
   const onDeleteClick = (event) => {
-    const cardId = event.target.name;
+    const cardId = event.target.name; 
     axios.delete(`${props.url}cards/${cardId}`)
       .then((response) => {
         const deleteResponse = response.data;
+        const updatedCardList = cardsList.filter( // removed the deleted card from the in memory card list
+          card => card.card.id !== deleteResponse.card.id
+        );
+        setCardsList(updatedCardList); // update the state to force the screen to redraw
       })
       .catch((error) => {
         console.log(error.message);
