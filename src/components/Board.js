@@ -9,6 +9,8 @@ import NewCardForm from './NewCardForm';
 const Board = (props) => {
   
   const [cardsList, setCardsList] = useState([]);
+  // use hook/state for proper error handling
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     axios.get(`${props.url}boards/${props.boardName}/cards`)
@@ -17,10 +19,10 @@ const Board = (props) => {
         setCardsList(apiCardsList);
       })
       .catch((error) => {
-        console.log(error.message);
+        setErrorMessage(error.message);
       });
 
-  }, []);
+  }, [props.url, props.boardName]); // added dependencies here to fix console error
 
   const onDeleteClick = (event) => {
     const cardId = event.target.name; 
@@ -33,7 +35,7 @@ const Board = (props) => {
         setCardsList(updatedCardList); // update the state to force the screen to redraw
       })
       .catch((error) => {
-        console.log(error.message);
+        setErrorMessage(error.message);
       });
 
   }
@@ -48,7 +50,7 @@ const Board = (props) => {
         setCardsList(updatedCardList);
       })
       .catch((error) => {
-        console.log(error.message);
+        setErrorMessage(error.message);
       });
   }
 
@@ -70,15 +72,19 @@ const Board = (props) => {
   };
 
   return (
-    <section>
-      <div>
+    // display errors - used provided css
+    <div className="validation-errors-display">
+      {errorMessage && (
+        <div className="validation-errors-display__list">
+          <h2>{errorMessage}</h2>
+        </div>
+      )}
         {createCards()}
         <NewCardForm
         onFormSubmit={onFormSubmit}   
         />
-      </div>
-    </section>
-  )
+    </div>
+  );
 };
 
 Board.propTypes = {
