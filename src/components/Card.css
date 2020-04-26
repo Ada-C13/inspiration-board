@@ -23,7 +23,7 @@
 }
 
 .card__content-text {
-	fo: ellipsis;
+	text-overflow: ellipsis;
 	overflow: hidden;
 	grid-row-start: 1;
 	min-height: 10vh;
@@ -56,8 +56,4 @@
 .card__delete:hover {
   background-color:black;
   color: white;
-}
-
-.board--header {
-  display: inline block;
 }

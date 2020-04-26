@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import axios from 'axios';
-
 import './Board.css';
 import DropDownMenu from './DropDownMenu';
 import Card from './Card';
@@ -19,7 +18,8 @@ const Board = (props) => {
 				.get(props.url + currentBoard + '/cards')
 				.then((response) => {
 					const newCardsList = response.data;
-					setCardsList(newCardsList);
+          setCardsList(newCardsList);
+          setErrorMessage(null);
 				})
 				.catch((error) => {
 					console.log(error.message);
@@ -38,7 +38,8 @@ const Board = (props) => {
 			axios
 				.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
 				.then((response) => {
-					console.log(`Card ${response.data.card.id} was deleted`);
+          console.log(`Card ${response.data.card.id} was deleted`);
+          setErrorMessage(null);
 				})
 				.catch((error) => {
 					setErrorMessage(`Error: ${error.message}`);
@@ -58,7 +59,8 @@ const Board = (props) => {
 			.then((response) => {
 				const newCard = response.data;
 				const newCardsList = [ ...cardsList, newCard ];
-				setCardsList(newCardsList);
+        setCardsList(newCardsList);
+        setErrorMessage(null);
 			})
 			.catch((error) => {
 				setErrorMessage(`Error: ${error.message}`);
@@ -118,8 +120,8 @@ const BOARDS = [
   },
   {
     board : {
-      id   : 1,
-      name : 'Ada-Lovelace'
+      id   : 151,
+      name : 'fluffy'
     }
   },
   {
@@ -130,11 +132,10 @@ const BOARDS = [
   },
   {
     board : {
-      id   : 151,
-      name : 'fluffy'
+      id   : 1,
+      name : 'Ada-Lovelace'
     }
   },
-
 ];
 
 Board.propTypes = {

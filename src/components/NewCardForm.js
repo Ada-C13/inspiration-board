@@ -5,7 +5,7 @@ import './NewCardForm.css';
 const NewCardForm = (props) => {
 	const [ cardForm, setCardForm ] = useState({
 		text  : '',
-		emoji : ''
+		emoji : '',
 	});
 
 	const onInputChange = (event) => {
@@ -19,7 +19,7 @@ const NewCardForm = (props) => {
 		props.addCardCallBack(cardForm);
 		setCardForm({
 			text  : '',
-			emoji : ''
+			emoji : '',
 		});
 	};
 
@@ -56,7 +56,7 @@ const NewCardForm = (props) => {
 };
 
 NewCardForm.propTypes = {
-	addCardCallBack : PropTypes.func.isRequired
+	addCardCallBack : PropTypes.func.isRequired,
 };
 
 export default NewCardForm;
