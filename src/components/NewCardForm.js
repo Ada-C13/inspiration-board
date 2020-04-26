@@ -32,43 +32,45 @@ const NewCardForm = (props) => {
     event.preventDefault();
 
     props.addCardCallback(formFields);
-
+    
     setFormFields({
       text: '',
-      email: '',
+      emoji: '',
     });
   };
   
   return(
-    <form className="new-card-form" onSubmit={onFormSubmit}>
-      <h3 className="new-card-form__header">*~Create New Card~*</h3>
-      <div>
-          <label className="new-card-form__form-label">Message:</label>
+    <div className="new-card-form">
+      <form className="new-card-form__form" onSubmit={onFormSubmit}>
+        <h2 className="new-card-form__header">*~Create New Card~*</h2>
+        <div>
+            <label className="new-card-form__form-label">Message:</label>
+            <input
+              className="new-card-form__form-textarea"
+              name="text"
+              type="text"
+              value={formFields.text}
+              onChange={onTextChange}
+            />
+        </div>
+        <div>
+          <label className="new-card-form__form-label">Emoji:</label>
           <input
             className="new-card-form__form-textarea"
-            name="text"
+            name="emoji"
             type="text"
-            value={formFields.text}
-            onChange={onTextChange}
+            value={formFields.emoji}
+            onChange={onEmojiChange}
           />
-      </div>
-      <div>
-        <label className="new-card-form__form-label">Emoji:</label>
-        <input
-          className="new-card-form__form-textarea"
-          name="emoji"
-          type="text"
-          value={formFields.emoji}
-          onChange={onEmojiChange}
+        </div>
+        <input 
+          className="new-card-form__form-button" 
+          type="submit"
+          value="Add Card"
+          onClick={onFormSubmit}
         />
-      </div>
-      <input 
-        className="new-card-form__form-button" 
-        type="submit"
-        value="Add Card"
-        onClick={onFormSubmit}
-      />
-    </form>
+      </form>
+    </div>
   );
 }
 

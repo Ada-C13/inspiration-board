@@ -34,14 +34,6 @@ const Board = (props) => {
   }, [cardsList]);
 
   const addCard = (card) => {
-    // const newCardsList = [...cardsList];
-
-    // newCardsList.push({
-    //   text: card.text,
-    //   emoji: card.emoji,
-    // });
-
-    // setCardsList(newCardsList)
     axios.post(`${API_URL_BASE}boards/alicias-inspir-board/cards?text=${card.text}&emoji=${card.emoji}`)
     .then((response) => {
       setErrorMessage(`Card ${card} added`);
@@ -52,6 +44,8 @@ const Board = (props) => {
       console.log(`Unable to add card: ${errorMessage}`);
     })
   }
+
+  // https://inspiration-board.herokuapp.com/boards/:board_name/cards?text=This is a temporary card&emoji=grimacing
 
   const deleteCard = (cardId) => {
       axios.delete(`${API_URL_BASE}/cards/${cardId}`)
