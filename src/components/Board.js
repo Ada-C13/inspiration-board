@@ -45,6 +45,10 @@ const Board = (props) => {
     }
   }
 
+  const addCard = (card) => {
+    console.log(card);
+  };
+
   const cardComponents = cards.map((card) => {
     let singleEmoji = card.card.emoji;
     if (singleEmoji !== null) {
@@ -55,13 +59,13 @@ const Board = (props) => {
                 id={card.card.id}
                 text={card.card.text}
                 emoji={singleEmoji}
-                deleteCard={deleteCard} 
+                deleteCard={deleteCard}
             />);
   });
 
   return (
     <div>
-      <NewCardForm />
+      <NewCardForm addCard={addCard} />
       <div className="board">
         {cardComponents}
       </div>
