@@ -4,9 +4,6 @@ import Board from './components/Board';
 
 const App = () => {
 
-  
-
-
   return (
     <section>
       <header className="header">

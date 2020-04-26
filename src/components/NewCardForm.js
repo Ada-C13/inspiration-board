@@ -19,7 +19,6 @@ const NewCardForm = (props) => {
   };
 
   const onSubmit = (event) => {
-    console.log(`Debugging onSubmit --->`, event);
     event.preventDefault();
     props.onFormSubmit(formText, formEmoji);
     setFormText("");
@@ -27,7 +26,7 @@ const NewCardForm = (props) => {
 
   };
 
-  return ( /// fixed css names
+  return (
     <div className="new-card-form">
       <h3 className="new-card-form__header">New Card </h3>
       <form className="new-card-form__form" >
@@ -55,15 +54,12 @@ const NewCardForm = (props) => {
             value="Submit Card"
             className="new-card-form__form-button"
             onClick={onSubmit} /> 
-            {/*moved from form to button */}
         </div>
 
       </form>
     </div>
   );
 }
-
-
 
 NewCardForm.propTypes = {
   onFormSubmit: PropTypes.func.isRequired,
