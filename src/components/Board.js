@@ -8,11 +8,10 @@ import CARD_DATA from "../data/card-data.json";
 
 const Board = ({ url, boardName }) => {
   const [board, setBoard] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null); //api error message
+  const [errorMessage, setErrorMessage] = useState(null);
 
   console.log(board);
 
-  //--------- API CALL ------------
   useEffect(() => {
     axios
       .get(`${url}${boardName}/cards`)
@@ -48,10 +47,10 @@ const Board = ({ url, boardName }) => {
 
   const deleteCard = (id) => {
     axios
-      .delete(`https://inspiration-board.herokuapp.com/cards/${id}`) //https://inspiration-board.herokuapp.com/cards/:card_id
+      .delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then((response) => {
         console.log(response);
-        const updateBoard = board.filter((card) => card.card.id !== id); //api
+        const updateBoard = board.filter((card) => card.card.id !== id);
         setBoard(updateBoard); //
       })
       .catch((error) => {

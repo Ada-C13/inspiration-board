@@ -30,6 +30,14 @@ const NewCardForm = (props) => {
     setEmoji("");
   };
 
+  const allEmojis = EMOJI_LIST.map((emoji, index) => {
+    return (
+      <option key={index} value={emoji}>
+        {emojiLib.getUnicode(emoji)}
+      </option>
+    );
+  });
+
   return (
     <form className="new-card-form" onSubmit={onFormSubmit}>
       <h3 className="new-card-form__header">What inspires you?</h3>
@@ -50,6 +58,7 @@ const NewCardForm = (props) => {
       <div className="new-card-form_form">
         <label className="new_card_form_form-label" htmlFor="emoji">
           Emoji:
+          {allEmojis}
         </label>
         <input
           className="new-card-form__form-textarea"
