@@ -47,6 +47,17 @@ const Board = (props) => {
 
   const addCard = (card) => {
     console.log(card);
+    // https://inspiration-board.herokuapp.com/boards/:board_name/cards
+    axios.post(`${props.url}/${props.boardName}/cards`, card)
+      .then((response) => {
+        // What should we do when we know the post request worked?
+        const updatedData = [...cards, response.data];
+        setCards(updatedData);
+      })
+      .catch((error) => {
+        // What should we do when we know the post request failed?
+        console.log(error.message);
+    });
   };
 
   const cardComponents = cards.map((card) => {
