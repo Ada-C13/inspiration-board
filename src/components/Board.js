@@ -23,7 +23,6 @@ const Board = (props) => {
 
   return (
     <div className="board">
-      Board
       {boardComponents()}
       <p className="validation-errors-display"></p>
       <p className="validation-errors-display__list"></p>

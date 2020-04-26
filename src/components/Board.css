@@ -1,6 +1,8 @@
 .board {
   display: flex;
   flex-wrap: wrap;
+  font-size: 5rem;
+  align: center 
 }
 
 .validation-errors-display {
