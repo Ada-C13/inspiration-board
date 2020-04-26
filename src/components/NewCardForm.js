@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, {useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
@@ -11,19 +11,13 @@ const NewCardForm = (props) => {
     text: "",
     emoji: ""
   });
-  console.log(emoji.unicode); 
-
-
-
-  const onInputChange = (event) => {
-    console.log(event.target.value);
   
+  const onInputChange = (event) => {  
     const newFormFields = {
       ...formFields,
     }
     newFormFields[event.target.name] = event.target.value;
     setFormFields(newFormFields);
-    console.log(formFields);
   };
 
   const onFormSubmit = (event) => {
@@ -64,7 +58,7 @@ const NewCardForm = (props) => {
             className="new-card-form__form-select"
             name="emoji"
             onChange={onInputChange} 
-           
+            
           >
             {emojis}
           </select>
