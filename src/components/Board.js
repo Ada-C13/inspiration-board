@@ -33,6 +33,26 @@ const Board = (props) => {
       });
   }, [cardsList]);
 
+  const addCard = (card) => {
+    // const newCardsList = [...cardsList];
+
+    // newCardsList.push({
+    //   text: card.text,
+    //   emoji: card.emoji,
+    // });
+
+    // setCardsList(newCardsList)
+    axios.post(`${API_URL_BASE}boards/alicias-inspir-board/cards?text=${card.text}&emoji=${card.emoji}`)
+    .then((response) => {
+      setErrorMessage(`Card ${card} added`);
+    })
+    
+    .catch((error) => {
+      setErrorMessage(error.message);
+      console.log(`Unable to add card: ${errorMessage}`);
+    })
+  }
+
   const deleteCard = (cardId) => {
       axios.delete(`${API_URL_BASE}/cards/${cardId}`)
       .then((response) => {
@@ -46,7 +66,7 @@ const Board = (props) => {
   
   return (
     <div className="board">
-      <NewCardForm />
+      <NewCardForm addCardCallback={addCard}/>
       {cardsList}
     </div>
   )

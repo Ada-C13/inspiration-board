@@ -5,26 +5,51 @@ import './NewCardForm.css';
 
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
-const newCardForm = (props) => {
+const NewCardForm = (props) => {
   const [formFields, setFormFields] = useState({
-    message: '',
+    text: '',
     emoji: '',
+    
   });
 
-  const onMessageChange (event) => {
-    console.log(`Message field updated ${}`)
-  }
+  const onTextChange = (event) => {
+    console.log(`Text field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      text: event.target.value,
+    });
+  };
+
+  const onEmojiChange = (event) => {
+    console.log(`Emoji field updated ${event.target.value}`);
+    setFormFields({
+      ...formFields,
+      emoji: event.target.value,
+    });
+  };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+
+    props.addCardCallback(formFields);
+
+    setFormFields({
+      text: '',
+      email: '',
+    });
+  };
   
   return(
-    <form className="new-card-form">
+    <form className="new-card-form" onSubmit={onFormSubmit}>
       <h3 className="new-card-form__header">*~Create New Card~*</h3>
       <div>
           <label className="new-card-form__form-label">Message:</label>
           <input
             className="new-card-form__form-textarea"
-            name="message"
+            name="text"
             type="text"
-            onChange={onMessageChange}
+            value={formFields.text}
+            onChange={onTextChange}
           />
       </div>
       <div>
@@ -33,18 +58,19 @@ const newCardForm = (props) => {
           className="new-card-form__form-textarea"
           name="emoji"
           type="text"
-
+          value={formFields.emoji}
+          onChange={onEmojiChange}
         />
       </div>
       <input 
         className="new-card-form__form-button" 
         type="submit"
         value="Add Card"
-        onChange={onEmojiChange}
+        onClick={onFormSubmit}
       />
     </form>
   );
 }
 
 
-export default newCardForm;
+export default NewCardForm;
