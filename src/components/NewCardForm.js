@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
@@ -17,7 +17,7 @@ const NewCardForm = (props) =>{
         const newInput = {
           ...input,
         }
-        newInput[event.target.name] = emoji.getUnicode(event.target.value);
+        newInput[event.target.name] = emojiDictionary.getUnicode(event.target.value);
         changeInput(newInput);
     }
 
@@ -32,28 +32,31 @@ const NewCardForm = (props) =>{
         text: '', 
         emoji: '',
       });
-
     };
 
     return (
     
-      <form  className='.new-card-form__form' onSubmit={onAddCard}> 
-          <div className='new-card-form' >
-              <header> Add A Card </header>
-              <label htmlFor='text' className='new-card-form__form-label'> Text: </label>
-              <input onChange={onInput} className='text new-card-form__form-textarea' name='text' value={input.text}/> 
+    <form  className='.new-card-form__form' onSubmit={onAddCard}> 
+        <div className='new-card-form' >
+          <header> Add A Card </header>
+          <label htmlFor='text' className='new-card-form__form-label'> Text: </label>
+          <input onChange={onInput} className='text new-card-form__form-textarea' name='text' value={input.text}/> 
 
-              <label htmlFor='emoji'  className='new-card-form__form-label'> Emoji: </label>
-              <input  onChange={onInput} className='emoji new-card-form__form-textarea' name='emoji' value={input.emoji} /> 
+          <label htmlFor='emoji'  className='new-card-form__form-label'> Emoji: </label>
+          <input  onChange={onInput} className='emoji new-card-form__form-textarea' name='emoji' value={input.emoji} /> 
 
 
-          
-      <input type='submit' value='submit card' className='new-card-form__form-button'/>
-          </div>
-  </form>
+  
+          <input type='submit' value='submit card' className='new-card-form__form-button'/>
+        </div>
+    </form>
 
 
     );
+}
+
+NewCardForm.propTypes = {
+  addCardCallback: PropTypes.func.isRequired
 }
 
 export default NewCardForm; 

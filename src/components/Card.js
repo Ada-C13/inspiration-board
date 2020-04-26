@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 
@@ -10,7 +10,6 @@ const Card = (props) => {
 const emojiDictionary = require("emoji-dictionary");
   
   const cardContents = () => {
-    
       if(props.emoji && props.text){
         return (<p  className='card__content card__content-text card__content-emoji'>
           {props.text} {emojiDictionary.getUnicode(props.emoji)}
@@ -20,7 +19,6 @@ const emojiDictionary = require("emoji-dictionary");
       }else{
         return ((<p  className='card__content card__content-emoji'>{emoji.getUnicode(props.emoji)}</p>))
       }
-     
   }
 
   const deleteCardCallback = (event) => {
@@ -28,7 +26,6 @@ const emojiDictionary = require("emoji-dictionary");
     props.deleteCard(props.id);
     
   }
-
 
   return (
     <div className="card" id={props.id} onClick={deleteCardCallback}>
@@ -39,7 +36,9 @@ const emojiDictionary = require("emoji-dictionary");
 }
 
 Card.propTypes = {
-
+  text: PropTypes.string,
+  emoji:PropTypes.string,
+  deleteCard: PropTypes.func.isRequired
 };
 
 export default Card;

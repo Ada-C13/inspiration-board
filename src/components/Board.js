@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ import NewCardForm from './NewCardForm';
 const Board = (props) => { //asncyhronous 
 
   const [cardData, setCardData] = useState([]); 
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => { //it start loading 
     axios.get(`${props.url}${props.boardName}/cards`)
@@ -66,10 +67,8 @@ const Board = (props) => { //asncyhronous
       }
     );
 
-      
-
-      
-    const [errorMessage, setErrorMessage] = useState('')
+            
+    
       const addCard = (input) => {
         const addedCard = [...cardData];
         const nextId = Math.max(...cardData.map(card => card.id)) + 1
@@ -84,16 +83,8 @@ const Board = (props) => { //asncyhronous
           setErrorMessage(`Unable to add card`);
 
         });
-
-    
         setCardData(addedCard);
       }
-
-
-
-   
-
-
 
   return (
     <div>
@@ -102,8 +93,10 @@ const Board = (props) => { //asncyhronous
     </div>
   )
 };
-Board.propTypes = {
 
+Board.propTypes = {
+  url: PropTypes.string.isRequired, 
+  boardName: PropTypes.string.isRequired
 };
 
 export default Board;
