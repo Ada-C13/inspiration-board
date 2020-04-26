@@ -7,37 +7,46 @@ import Card from './Card';
 import NewCardForm from './NewCardForm';
 import CARD_DATA from '../data/card-data.json';
 
-// def setCardsList(updatedCards) {
-//   cardList = updatedCards;
-// }
+const API_URL_BASE = "https://inspiration-board.herokuapp.com/"
+
 
 const Board = (props) => {
   const [cardsList, setCardsList] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const API_URL_BASE = "https://inspiration-board.herokuapp.com/boards/alicias-inspir-board/cards"
-  
   useEffect(() => {
-    axios.get(API_URL_BASE)
+    axios.get(`${API_URL_BASE}boards/alicias-inspir-board/cards`)
       .then( (response) => {
-        // How to handle a successful response
         const cards = response.data.map((cardObject) => {
             return (<Card 
               text={cardObject.card.text} 
               emoji={cardObject.card.emoji} 
+              id={cardObject.card.id}
+              onDeleteCallback={deleteCard}
               />);
         });
         setCardsList(cards);
       })
       .catch((error) => {
-        // Still need to handle errors
         setErrorMessage(error.message);
         console.log(errorMessage);
       });
-  }, []);
+  }, [cardsList]);
 
+  const deleteCard = (cardId) => {
+      axios.delete(`${API_URL_BASE}/cards/${cardId}`)
+      .then((response) => {
+        setErrorMessage(`Card ${cardId} deleted`);
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+        console.log(`Unable to delete card: ${errorMessage}`);
+      })
+  }
+  
   return (
     <div className="board">
+      <NewCardForm />
       {cardsList}
     </div>
   )
