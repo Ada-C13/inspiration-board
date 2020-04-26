@@ -15,7 +15,6 @@ const Board = (props) => { //asncyhronous
 
   useEffect(() => { //it start loading 
     axios.get(`${props.url}${props.boardName}/cards`)
-
     .then((response) => {
       let newCardData = []
       for(let i = 0; i < response.data.length; i ++){
@@ -32,14 +31,36 @@ const Board = (props) => { //asncyhronous
               //  an array of all of the things, if the empty array changes then rerun code (optimization, not necessary) 
 
 
-    const cards = cardData.map((card, i) => {
-      console.log(card);
+
+    const deleteCard = (id) => {
+      const newCardData = cardData.filter((card) => {
+        return card.id !== id;
+      });
+     
+      if (newCardData.length < cardData.length) {
+        axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
+        .then((response) => {
+          setErrorMessage(`Card ${id} is deleted`);
+        })
+        .catch((error) => {
+          setErrorMessage(`Unable to delete card ${id}`);
+          
+
+        })
+
+        
+      }
+      setCardData(newCardData);
+    }
+
+    const cards = cardData.map((card) => {
+    
       if(card.emoji && card.text){
-        return <li> <Card key={i} text={card.text} emoji={card.emoji} deleteCard={deleteCard}/></li>
+        return <li> <Card id={card.id} text={card.text} emoji={card.emoji} deleteCard={deleteCard}/></li>
       }else if(card.text){
-        return <li> <Card key={i} text={card.text} deleteCard={deleteCard}/></li>
+        return <li> <Card id={card.id} text={card.text} deleteCard={deleteCard}/></li>
       }else{
-        return <li> <Card key={i} emoji={card.emoji} deleteCard={deleteCard}/></li>
+        return <li> <Card id={card.id} emoji={card.emoji} deleteCard={deleteCard}/></li>
       }
 
       }
@@ -64,7 +85,7 @@ const Board = (props) => { //asncyhronous
 
         });
 
-      
+    
         setCardData(addedCard);
       }
 
@@ -72,23 +93,7 @@ const Board = (props) => { //asncyhronous
 
    
 
-    const deleteCard = (id) => {
-      const newCardData = cardData.filter((card) => {
-        return card.id !== id;
-      });
 
-      if (newCardData.length < cardData.length) {
-        axios.delete(`${props.url}cards/${id}`)
-        .then((response) => {
-          setErrorMessage(`Card ${id} is deleted`);
-        })
-        .catch((error) => {
-          setErrorMessage(`Unable to delete card ${id}`);
-
-        })
-        setCardData(newCardData);
-      }
-    }
 
   return (
     <div>

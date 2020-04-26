@@ -6,11 +6,9 @@ import emoji from 'emoji-dictionary';
 import './Card.css';
 
 const Card = (props) => {
- // text
- // optional emoji 
-  const emojiDictionary = require("emoji-dictionary");
+ 
+const emojiDictionary = require("emoji-dictionary");
   
-
   const cardContents = () => {
     
       if(props.emoji && props.text){
@@ -25,21 +23,17 @@ const Card = (props) => {
      
   }
 
-  const deleteCardCallback = () => {
-    
-
+  const deleteCardCallback = (event) => {
+    event.preventDefault();
     props.deleteCard(props.id);
-    console.log('deleted card? ')
-
-
-
+    
   }
 
 
   return (
-    <div className="card" id={props.id}>
+    <div className="card" id={props.id} onClick={deleteCardCallback}>
       {cardContents()}
-      <button onClick={props.deleteCard} className='card__delete'> Delete </button>
+      <input type='button' className='card__delete' value='delete' />
     </div>
   )
 }
