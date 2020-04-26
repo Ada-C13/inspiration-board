@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
+import emojiDictionary from 'emoji-dictionary';
 
 
 import './Card.css';
 
 const Card = (props) => {
  
-const emojiDictionary = require("emoji-dictionary");
-  
   const cardContents = () => {
       if(props.emoji && props.text){
         return (<p  className='card__content card__content-text card__content-emoji'>
@@ -17,7 +15,7 @@ const emojiDictionary = require("emoji-dictionary");
       }else if(props.text){
         return (<p className='card__content card__content-text'>{props.text} </p>);
       }else{
-        return ((<p  className='card__content card__content-emoji'>{emoji.getUnicode(props.emoji)}</p>))
+        return ((<p  className='card__content card__content-emoji'>{emojiDictionary.getUnicode(props.emoji)}</p>))
       }
   }
 

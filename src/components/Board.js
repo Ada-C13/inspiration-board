@@ -9,12 +9,12 @@ import NewCardForm from './NewCardForm';
 
 
 
-const Board = (props) => { //asncyhronous 
+const Board = (props) => {
 
   const [cardData, setCardData] = useState([]); 
   const [errorMessage, setErrorMessage] = useState('')
 
-  useEffect(() => { //it start loading 
+  useEffect(() => { 
     axios.get(`${props.url}${props.boardName}/cards`)
     .then((response) => {
       let newCardData = []
@@ -26,12 +26,11 @@ const Board = (props) => { //asncyhronous
       
     })
     .catch((error)=>{
+      setErrorMessage("could not get cards");
+      console.log(errorMessage);
 
 
-    })}, []); // using api call as an effect hook syays when this code complete then rerender the comonent 
-              //  an array of all of the things, if the empty array changes then rerun code (optimization, not necessary) 
-
-
+    })}, []); 
 
     const deleteCard = (id) => {
       const newCardData = cardData.filter((card) => {
@@ -45,11 +44,7 @@ const Board = (props) => { //asncyhronous
         })
         .catch((error) => {
           setErrorMessage(`Unable to delete card ${id}`);
-          
-
         })
-
-        
       }
       setCardData(newCardData);
     }
@@ -57,38 +52,41 @@ const Board = (props) => { //asncyhronous
     const cards = cardData.map((card) => {
     
       if(card.emoji && card.text){
-        return <li> <Card id={card.id} text={card.text} emoji={card.emoji} deleteCard={deleteCard}/></li>
+        return <Card key={card.id} id={card.id} text={card.text} emoji={card.emoji} deleteCard={deleteCard}/>
       }else if(card.text){
-        return <li> <Card id={card.id} text={card.text} deleteCard={deleteCard}/></li>
+        return <Card key={card.id} id={card.id} text={card.text} deleteCard={deleteCard}/>
       }else{
-        return <li> <Card id={card.id} emoji={card.emoji} deleteCard={deleteCard}/></li>
+        return <Card  key={card.id} id={card.id} emoji={card.emoji} deleteCard={deleteCard}/>
       }
 
       }
     );
 
-            
-    
-      const addCard = (input) => {
-        const addedCard = [...cardData];
-        const nextId = Math.max(...cardData.map(card => card.id)) + 1
 
-        addedCard.push ({id: nextId, text: input.text, emoji: input.emoji});
+    const addCard = (input) => {
+      const addedCard = [...cardData];
+      const nextId = Math.max(...cardData.map(card => card.id)) + 1
 
-        axios.post(`${props.url}${props.boardName}/cards/`,  {id: nextId, text: input.text, emoji: input.emoji})
-        .then((response) => {
-          setErrorMessage(`Card added`);
-        })
-        .catch((error) => {
-          setErrorMessage(`Unable to add card`);
+      const newCard = {id: nextId, text: input.text, emoji: input.emoji};
 
-        });
-        setCardData(addedCard);
-      }
+      addedCard.push(newCard);
+
+      axios.post(`${props.url}${props.boardName}/cards`, {id: nextId, text: input.text, emoji: input.emoji})
+      .then((response) => {
+        setErrorMessage(`Card added`);
+      })
+      .catch((error) => {
+        console.log(newCard);
+        setErrorMessage(`Unable to add card`);
+      
+      });
+
+      setCardData(addedCard);
+    }
 
   return (
     <div>
-      <ul> {cards} </ul>
+      <div> {cards} </div>
       <NewCardForm  addCardCallback={addCard} />
     </div>
   )
