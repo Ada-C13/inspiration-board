@@ -5,21 +5,23 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
   <div
     class="new-card-form"
   >
+    <header
+      class="new-card-form__header"
+    >
+      <h3
+        class="header__text"
+      >
+        Make a new Card!
+      </h3>
+    </header>
     <form
       class="new-card-form__form"
     >
-      <header
-        class="new-card-form__header"
-      >
-        <h3>
-          Make a new Card!
-        </h3>
-      </header>
       <label
         class="new-card-form__form-label"
         for="text"
       >
-        Type Text Here
+        Text
       </label>
       <input
         class="new-card-form__form-textarea"
@@ -31,7 +33,7 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
         class="new-card-form__form-label"
         for="emoji"
       >
-        Emoji:
+        Emoji
       </label>
       <input
         class="new-card-form__form-textarea"
@@ -42,7 +44,7 @@ exports[`NewCardForm that it matches the existing snapshot 1`] = `
       <button
         class="new-card-form__form-button"
       >
-        Make New Card
+        Post New Card
       </button>
     </form>
   </div>

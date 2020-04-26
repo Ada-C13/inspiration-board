@@ -5,24 +5,53 @@ exports[`Board that it matches the existing snapshot 1`] = `
   <div
     class="Board"
   >
+    <h2>
+       Current Board @ cathynikki 
+    </h2>
+    <div
+      class="dd-container"
+    >
+      <div
+        class="dd-header"
+        role="button"
+      >
+        <h4
+          class="dd-header__title"
+        >
+          <span
+            class="header__text"
+          >
+            Choose Board...
+          </span>
+        </h4>
+      </div>
+    </div>
+    <div
+      class="card-container"
+    />
+    <h2>
+      You are posting @ cathynikki 
+    </h2>
     <div
       class="new-card-form"
     >
+      <header
+        class="new-card-form__header"
+      >
+        <h3
+          class="header__text"
+        >
+          Make a new Card!
+        </h3>
+      </header>
       <form
         class="new-card-form__form"
       >
-        <header
-          class="new-card-form__header"
-        >
-          <h3>
-            Make a new Card!
-          </h3>
-        </header>
         <label
           class="new-card-form__form-label"
           for="text"
         >
-          Type Text Here
+          Text
         </label>
         <input
           class="new-card-form__form-textarea"
@@ -34,7 +63,7 @@ exports[`Board that it matches the existing snapshot 1`] = `
           class="new-card-form__form-label"
           for="emoji"
         >
-          Emoji:
+          Emoji
         </label>
         <input
           class="new-card-form__form-textarea"
@@ -45,7 +74,7 @@ exports[`Board that it matches the existing snapshot 1`] = `
         <button
           class="new-card-form__form-button"
         >
-          Make New Card
+          Post New Card
         </button>
       </form>
     </div>

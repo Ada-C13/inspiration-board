@@ -3,7 +3,7 @@
 exports[`Card that it matches the existing snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="card"
+    class="card pink"
   >
     <div
       class="card__content"
@@ -14,11 +14,15 @@ exports[`Card that it matches the existing snapshot 1`] = `
       <p
         class="card__content-emoji"
       />
-      <button
-        class="card__delete"
+      <div
+        class="card__delete_div"
       >
-        Delete
-      </button>
+        <button
+          class="card__delete"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   </div>
 </DocumentFragment>
