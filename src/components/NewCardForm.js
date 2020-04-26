@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './NewCardForm.css';
 
-
-//const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
-
-
 const NewCardForm = (props) =>{
   
     const [input, changeInput] = useState({
@@ -21,11 +17,8 @@ const NewCardForm = (props) =>{
         changeInput(newInput);
     }
 
-
     const onAddCard = (event) => {
-
       event.preventDefault();
-
       props.addCardCallback(input);
 
       changeInput({

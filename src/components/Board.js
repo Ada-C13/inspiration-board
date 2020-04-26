@@ -27,7 +27,6 @@ const Board = (props) => {
     })
     .catch((error)=>{
       setErrorMessage("could not get cards");
-      console.log(errorMessage);
 
 
     })}, []); 
