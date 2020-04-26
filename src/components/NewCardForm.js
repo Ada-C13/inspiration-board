@@ -11,19 +11,16 @@ const NewCardForm = (props) => {
     text: "",
     emoji: ""
   });
-  
-  const emojis = EMOJI_LIST.map((em) => {
-    return(
-    <option>{emoji.getUnicode(em)}</option>
-    );
-  })
 
   const onInputChange = (event) => {
+    console.log(event.target.value);
+  
     const newFormFields = {
       ...formFields,
     }
     newFormFields[event.target.name] = event.target.value;
     setFormFields(newFormFields);
+    console.log(formFields);
   };
 
   const onFormSubmit = (event) => {
@@ -36,14 +33,20 @@ const NewCardForm = (props) => {
     });
   };
 
+  const emojis = EMOJI_LIST.map((em) => {
+    return(
+    <option name="emoji" value={em}>{emoji.getUnicode(em)}</option>
+    );
+  });
+
   return (
     <div className="new-card-form">
       <h1 className="new-card-form__header">
-        Making a new card!
+        Add a new card!
       </h1>
       <form className="new-card-form__form" onSubmit={onFormSubmit}>
         <div>
-          <label className="new-card-form__form-label">Write your sticky: </label>
+          <label className="new-card-form__form-label">Leave your mark!: </label>
           <input 
             type="text"
             name="text" 
@@ -53,8 +56,12 @@ const NewCardForm = (props) => {
           />
         </div>
         <div>
-          {/* <label className="new-card-form__form-label">Pick your emoji:</label> */}
-          <select className="new-card-form__form-select">
+          <label className="new-card-form__form-label" htmlFor="emoji"></label>
+          <select 
+            className="new-card-form__form-select"
+            name="emoji"
+            onChange={onInputChange}
+          >
             {emojis}
           </select>
         </div>
