@@ -37,7 +37,7 @@ const Board = (props) => {
     cardList.forEach((card)=>{
       if (card.id === cardID) {
         // axios call to remove this card
-        axios.delete(`${endPoint}/${card.id}`)
+        axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`)
           .then((response)=> {
             console.log(`Card # ${cardID} deleted.`);
           })
