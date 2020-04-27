@@ -6,7 +6,7 @@ import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
 
-const reformatData = (data)=> {
+const reformatData = (data) => {
   return data.map((element) => {
     return element.card;
   });
@@ -29,19 +29,19 @@ const Board = (props) => {
       });
   };
 
-  useEffect(() => { getCards(endPoint); }, [endPoint] );
+  useEffect(() => { getCards(endPoint); }, [endPoint]);
 
   const deleteCallBack = (cardID) => {
     const newCardList = [];
     console.log(cardList);
-    cardList.forEach((card)=>{
+    cardList.forEach((card) => {
       if (card.id === cardID) {
         // axios call to remove this card
         axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`)
-          .then((response)=> {
+          .then((response) => {
             console.log(`Card # ${cardID} deleted.`);
           })
-          .catch((error)=>{
+          .catch((error) => {
             console.log(`Couldn't delete card # ${cardID}`);
           });
       } else {
@@ -67,18 +67,15 @@ const Board = (props) => {
   //setCardList(formatCards);
 
   const addCardCallBack = (newCard) => {
-    
+    const updatedData = [newCard, ...cardList];
+    setCardList(updatedData);
     axios.post(endPoint, newCard)
-      .then((response)=>{
-        const updatedData = [...cardList, response.data];
-        setCardList(updatedData);
+      .then((response) => {
         console.log("New card added.");
       })
-      .catch((error)=>{
+      .catch((error) => {
         console.log("New card couldn't be added.");
       });
-    
-    //return setCardList(newCardList);  
   };
 
   return (
@@ -87,7 +84,7 @@ const Board = (props) => {
         {formatCards}
       </div>
       <div>
-        <NewCardForm boardName={props.boardName} addCardCallBack={addCardCallBack}/>
+        <NewCardForm boardName={props.boardName} addCardCallBack={addCardCallBack} />
       </div>
     </main>
   );
