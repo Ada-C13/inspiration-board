@@ -8,7 +8,7 @@ import NewCardForm from './NewCardForm';
 const emoji = require("emoji-dictionary");
 
 const Board = (props) => {
-  const API_CARD_URL = `${props.url}${props.bordName}/cards`
+  const API_CARD_URL = `${props.url}${props.boardName}/cards`
   const [cards, setCardList] = useState([])
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -36,28 +36,34 @@ const Board = (props) => {
     />)
   })
 
-// Source: https://github.com/AdaGold/inspiration-board-api
-const removeCard = (id) => {
-  axios
-    .delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
-    .then((response) => {
-      const updatedCards = cards.filter(
-        (card) => card.id !== response.data.card.id 
-      );
-      setCardList(updatedCards); 
-    })
-    .catch((error) => {
-      setErrorMessage(error.message);
-    });
-};
+  // delete a card
+  // Source: https://github.com/AdaGold/inspiration-board-api
+  const removeCard = (id) => {
+      // generate new list of cards without the card that is about to be deleted
+      const updatedCards= cards.filter((cardObj) => {
+        return cardObj.card.id !== id;
+      });
 
-return (
-  <div className="board">   
-    {errorMessage ? <div><h2>{errorMessage}</h2></div> : ''}
-    {cardComponents}
-    
-  </div>
-)
+      // ensure new list length is shorter than previous one
+      if (updatedCards.length < cards.length) { 
+        axios.delete(`${ props.cardsUrl }/${ id }`)
+          .then((response) => {
+            setErrorMessage(`Card deleted`);
+          })
+          .catch((error) => {
+            setErrorMessage(`Unable to delete card`);
+          })
+        setCardList(updatedCards);
+      }
+  };
+
+  return (
+    <div className="board">   
+      {errorMessage ? <div><h2>{errorMessage}</h2></div> : ''}
+      {cardComponents}
+      
+    </div>
+  )
 
 }
 
