@@ -17,8 +17,8 @@ const Board = (props) => {
   useEffect( () => {
     axios.get(API_CARD_URL)
       .then((response) => {
-        const apiData = [...response.data, ...cards]; //a combined array of all cards (objects)
-        setCardList(apiData); //updating the cards list with the response from the API 
+        const apiData = [...response.data, ...cards]; // a combined array of all cards (objects)
+        setCardList(apiData); // updating the cards list with the response from the API 
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -82,22 +82,3 @@ const Board = (props) => {
 }
 
 export default Board;
-
-// Before Refactoring:
-  // useEffect(() => {
-  //   axios.get(API_CARD_URL)
-  //     .then((response) => {
-  //       const apiData = response.data; //an array of all cards (objects)
-  //       const cardAPI = apiData.map((card) => {
-  //         return {
-  //           id: card.card.id,
-  //           text: card.card.text,
-  //           emoji: card.card.emoji,
-  //         };
-  //       });
-  //       setCardList(cardAPI); //updating the cards list with the response from the API 
-  //     })
-  //     .catch((error) => {
-  //       errorMessage(error.message);
-  //     });
-  // }, []);
