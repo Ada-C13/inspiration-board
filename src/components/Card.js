@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import emoji from 'emoji-dictionary';
-
 import './Card.css';
-//props: text, emoji, and id
-// div = className w/ card conteny i.e. text and emoji
 
 const Card = (props) => {
   return (
     <div className="card">
-      Card
-      <p> {props.text}</p>
-      {
-
-      }
-
+      <div className="card__content">
+        <p className="card__content-text">{props.text}</p>
+        <p className="card__content-emoji">{props.emoji}</p>
+      </div>
+      <button className="card__delete" onClick={() => props.deleteCardCallback(props.id)}>Delete</button>
     </div>
   )
 }
 
 Card.propTypes = {
-  text:PropTypes.string
+  text: PropTypes.string,
+  emoji: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  deleteCardCallback: PropTypes.func.isRequired
 };
 
 export default Card;
