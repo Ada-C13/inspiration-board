@@ -27,6 +27,10 @@ const NewCardForm = (props) => {
     });
   };
 
+  const emojiValid = () => {
+    return EMOJI_LIST.includes(formFields.emoji);
+  };
+
   return (
     <form className="new-card-form" onSubmit={onSubmit}>
       <h3 className="new-card-form__header">Add Card</h3>
@@ -36,7 +40,7 @@ const NewCardForm = (props) => {
     </div>
     <div>
       <label className="new-card-form__form-label" htmlFor="emoji">Emoji:</label>
-      <input className="new-card-form__form-textarea" name="emoji" onChange={onInputChange} value={formFields.emoji}/>
+      <input className={emojiValid() ? "valid" : "invalid" } name="emoji" onChange={onInputChange} value={formFields.emoji}/>
     </div>
     <input className="new-card-form__form-button"
       type="submit"
