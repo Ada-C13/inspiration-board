@@ -16,10 +16,10 @@ const Board = (props) => {
 
   const [cardList, setCardList] = useState([]);
 
-  const endPoint = `${props.url}${props.boardName}`
+  const endPoint = `${props.url}${props.boardName}/cards`
 
   const getCards = (url) => {
-    axios.get(`${url}/cards`)
+    axios.get(url)
       .then((response) => {
         const apiCardList = reformatData(response.data);
         setCardList(apiCardList);
@@ -37,7 +37,7 @@ const Board = (props) => {
     cardList.forEach((card)=>{
       if (card.id === cardID) {
         // axios call to remove this card
-        axios.delete(`${endPoint}/cards/${card.id}`)
+        axios.delete(`${endPoint}/${card.id}`)
           .then((response)=> {
             console.log(`Card # ${cardID} deleted.`);
           })
@@ -66,9 +66,19 @@ const Board = (props) => {
 
   //setCardList(formatCards);
 
-  const addCardCallBack = () => {
-    //const newCardList = []
-    return [];
+  const addCardCallBack = (newCard) => {
+    
+    axios.post(endPoint, newCard)
+      .then((response)=>{
+        const updatedData = [...cardList, response.data];
+        setCardList(updatedData);
+        console.log("New card added.");
+      })
+      .catch((error)=>{
+        console.log("New card couldn't be added.");
+      });
+    
+    //return setCardList(newCardList);  
   };
 
   return (

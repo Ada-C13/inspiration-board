@@ -18,8 +18,17 @@ const NewCardForm = (props) => {
     setFormFields(newFormFields);
   };
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+    props.addCardCallBack(formFields);
+    setFormFields({
+      text: '',
+      emoji: '',
+    });
+  };
+
   return (
-    <form className="new-card-form">
+    <form className="new-card-form" onSubmit={onSubmit}>
       <h3 className="new-card-form__header">Add Card</h3>
     <div>
       <label className="new-card-form__form-label" htmlFor="text">Text:</label>
