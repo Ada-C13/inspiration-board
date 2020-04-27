@@ -32,11 +32,11 @@ const NewCardForm = (props) => {
       <h3 className="new-card-form__header">Add Card</h3>
     <div>
       <label className="new-card-form__form-label" htmlFor="text">Text:</label>
-      <input className="new-card-form__form-textarea" name="text" onChange={onInputChange}/>
+      <input className="new-card-form__form-textarea" name="text" onChange={onInputChange} value={formFields.text}/>
     </div>
     <div>
       <label className="new-card-form__form-label" htmlFor="emoji">Emoji:</label>
-      <input className="new-card-form__form-textarea" name="emoji" onChange={onInputChange}/>
+      <input className="new-card-form__form-textarea" name="emoji" onChange={onInputChange} value={formFields.emoji}/>
     </div>
     <input className="new-card-form__form-button"
       type="submit"
