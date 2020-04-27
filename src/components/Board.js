@@ -84,7 +84,10 @@ const Board = (props) => {
         {formatCards}
       </div>
       <div>
-        <NewCardForm boardName={props.boardName} addCardCallBack={addCardCallBack} />
+        <NewCardForm
+          boardName={props.boardName}
+          addCardCallBack={addCardCallBack}
+        />
       </div>
     </main>
   );
