@@ -3,7 +3,12 @@
 .new-card-form {
   width: 50%;
   margin: auto;
-  padding-bottom: 4rem;
+  margin-bottom: 2em;
+  padding-top: .5em;
+  padding-bottom: 3rem;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: white;
 }
 
 .new-card-form__header {

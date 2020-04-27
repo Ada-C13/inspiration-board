@@ -36,7 +36,7 @@ const Board = (props) => {
       if (updatedCards.length < cards.length) { 
         axios.delete(`${ props.cardsUrl }/${ id }`)
           .then((response) => {
-            setErrorMessage(`Card deleted`);
+            //setErrorMessage(`Card deleted`);
           })
           .catch((error) => {
             setErrorMessage(`Unable to delete card`);
@@ -52,7 +52,7 @@ const Board = (props) => {
         // response is a card object, add it to cards
         const updatedCardList = [response.data, ...cards];
         setCardList(updatedCardList);
-        setErrorMessage('Card Added!');
+        //setErrorMessage('Card Added!');
       })
       .catch( (error) => {
         setErrorMessage(error.message);
@@ -71,10 +71,12 @@ const Board = (props) => {
     })
 
   return (
+    <div>
+    <NewCardForm addCardCallback={addCard}/>
     <div className="board">   
       {errorMessage ? <div><h2>{errorMessage}</h2></div> : ''}
-      <NewCardForm addCardCallback={addCard}/>
       {cardComponents}
+    </div>
     </div>
   )
 }
