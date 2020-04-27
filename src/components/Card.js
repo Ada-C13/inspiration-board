@@ -5,8 +5,8 @@ import emoji from 'emoji-dictionary';
 
 import './Card.css';
 
-const validateEmoji = (emojiText)=> {
-  return emojiText ? emoji.getUnicode(emojiText) : "" ;
+const validateEmoji = (emojiText) => {
+  return emojiText ? emoji.getUnicode(emojiText) : "";
 }
 
 const Card = (props) => {
@@ -16,7 +16,7 @@ const Card = (props) => {
     props.deleteCallBack(props.id);
   };
 
-  console.log(props);
+  // console.log(props);
   return (
     <div id={props.id} className="card">
       <div className="card__content">

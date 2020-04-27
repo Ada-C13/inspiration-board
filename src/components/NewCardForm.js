@@ -13,7 +13,7 @@ const NewCardForm = (props) => {
   });
 
   const onInputChange = (event) => {
-    const newFormFields = {...formFields};
+    const newFormFields = { ...formFields };
     newFormFields[event.target.name] = event.target.value;
     setFormFields(newFormFields);
   };
@@ -34,19 +34,19 @@ const NewCardForm = (props) => {
   return (
     <form className="new-card-form" onSubmit={onSubmit}>
       <h3 className="new-card-form__header">Add Card</h3>
-    <div>
-      <label className="new-card-form__form-label" htmlFor="text">Text:</label>
-      <input className="new-card-form__form-textarea" name="text" onChange={onInputChange} value={formFields.text}/>
-    </div>
-    <div>
-      <label className="new-card-form__form-label" htmlFor="emoji">Emoji:</label>
-      <input className={emojiValid() ? "valid" : "invalid" } name="emoji" onChange={onInputChange} value={formFields.emoji}/>
-    </div>
-    <input className="new-card-form__form-button"
-      type="submit"
-      value="Add Card"
-    />
-  </form>
+      <div>
+        <label className="new-card-form__form-label" htmlFor="text">Text:</label>
+        <input className="new-card-form__form-textarea" name="text" onChange={onInputChange} value={formFields.text} />
+      </div>
+      <div>
+        <label className="new-card-form__form-label" htmlFor="emoji">Emoji:</label>
+        <input className={emojiValid() ? "valid" : "invalid"} name="emoji" onChange={onInputChange} value={formFields.emoji} />
+      </div>
+      <input className="new-card-form__form-button"
+        type="submit"
+        value="Add Card"
+      />
+    </form>
   );
 
 };
