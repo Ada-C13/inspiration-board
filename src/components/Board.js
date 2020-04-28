@@ -16,7 +16,7 @@ const Board = (props) => {
 
   const [cardList, setCardList] = useState([]);
 
-  const endPoint = `${props.url}${props.boardName}/cards`
+  const endPoint = `${props.url}boards/${props.boardName}/cards`
 
   const getCards = (url) => {
     axios.get(url)
@@ -33,10 +33,8 @@ const Board = (props) => {
 
   const deleteCallBack = (cardID) => {
     const newCardList = [];
-    console.log(cardList);
     cardList.forEach((card) => {
       if (card.id === cardID) {
-        // axios call to remove this card
         axios.delete(`https://inspiration-board.herokuapp.com/cards/${cardID}`)
           .then((response) => {
             console.log(`Card # ${cardID} deleted.`);
@@ -48,11 +46,10 @@ const Board = (props) => {
         newCardList.push(card);
       }
     });
-    return setCardList(newCardList);
+    setCardList(newCardList);
   };
 
   const formatCards = cardList.map((card) => {
-
     return (
       <Card
         key={card.id}
@@ -63,8 +60,6 @@ const Board = (props) => {
       />
     );
   });
-
-  //setCardList(formatCards);
 
   const addCardCallBack = (newCard) => {
     const updatedData = [newCard, ...cardList];
