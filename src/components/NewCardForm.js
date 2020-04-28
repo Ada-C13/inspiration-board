@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
-const EMOJI_LIST = emoji.names;
+const EMOJI_LIST = ['', ...emoji.names];
 
 const NewCardForm = (props) => {
 
