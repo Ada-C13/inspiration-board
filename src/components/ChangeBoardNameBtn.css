@@ -1,0 +1,30 @@
+.board-name {
+  position: absolute; 
+  top: 20px;
+  right: 20px;
+}
+
+.change-board-name-btn-label {
+  text-align: center;
+}
+
+/* select - reference: https://codepen.io/raubaca/pen/VejpQP */
+.change-board-name-btn--select {
+  display: flex;
+  width: 10em;
+  height: 3em;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: .25em;
+  font-size: 18px;
+  flex: 1;
+  padding: 0 .5em;
+  cursor: pointer;
+  border: 2px rgb(216, 214, 214) solid;
+  outline: none;
+}
+
+.change-board-name-btn--select:hover {
+  color: orange;
+  font-weight: bold;
+}

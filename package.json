@@ -3,20 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "emoji-dictionary": "^1.0.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "randomcolor": "^0.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
+  "homepage": "http://hannah0124.github.io/inspiration-board",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,6 +31,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "gh-pages": "^2.2.0"
   }
 }

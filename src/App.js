@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Board from './components/Board';
+import ChangeBoardNameBtn from './components/ChangeBoardNameBtn';
 
 const App = () => {
+  const [boardName, setBoardName] = useState('kitty');
+
+  const changeBoardName = (newBoardName) => {
+    setBoardName(newBoardName);
+  };
+
   return (
     <section>
       <header className="header">
@@ -10,7 +17,11 @@ const App = () => {
       </header>
       <Board
         url="https://inspiration-board.herokuapp.com/boards/"
-        boardName={`Ada-Lovelace`}
+        boardName={boardName}
+      />
+      <ChangeBoardNameBtn 
+        changeBoardNameCallback={changeBoardName}
+        boardName={boardName}
       />
     </section>
   );
